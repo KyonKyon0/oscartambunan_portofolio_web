@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 import {
   Code2,
   Database,
@@ -34,44 +36,55 @@ export default function SkillsSection() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category) => {
+          {skillCategories.map((category, idx) => {
             const IconComponent = iconMap[category.icon];
 
             return (
-              <GlassCard key={category.category} hover>
-                <div className="flex items-center gap-2.5 mb-5">
-                  {IconComponent && (
-                    <div className="p-2 rounded-lg bg-accent-muted">
-                      <IconComponent className="w-4 h-4 text-accent" />
-                    </div>
-                  )}
-                  <h3 className="text-sm font-semibold text-text-primary">
-                    {category.category}
-                  </h3>
-                </div>
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <GlassCard hover className="h-full border-border-subtle/50 hover:border-accent/30 transition-colors group">
+                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-subtle/30">
+                    {IconComponent && (
+                      <div className="p-2.5 rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                        <IconComponent className="w-5 h-5 text-accent" />
+                      </div>
+                    )}
+                    <h3 className="text-base font-semibold text-text-primary tracking-wide">
+                      {category.category}
+                    </h3>
+                  </div>
 
-                <ul className="space-y-3">
-                  {category.skills.map((skill) => (
-                    <li key={skill.name}>
-                      <p className="text-sm text-text-primary font-medium">
-                        {skill.name}
-                      </p>
-                      {skill.relatedProjects.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {skill.relatedProjects.map((project) => (
-                            <span
-                              key={project}
-                              className="text-[11px] text-accent/80 bg-accent/5 px-1.5 py-0.5 rounded"
-                            >
-                              {project}
-                            </span>
-                          ))}
+                  <ul className="space-y-4">
+                    {category.skills.map((skill) => (
+                      <li key={skill.name} className="flex flex-col gap-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />
+                          <p className="text-sm text-text-primary font-medium leading-tight">
+                            {skill.name}
+                          </p>
                         </div>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
+                        {skill.relatedProjects.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 ml-3.5">
+                            {skill.relatedProjects.map((project) => (
+                              <span
+                                key={project}
+                                className="text-[10px] font-medium tracking-wide text-emerald-400/90 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-full"
+                              >
+                                {project}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </GlassCard>
+              </motion.div>
             );
           })}
         </div>

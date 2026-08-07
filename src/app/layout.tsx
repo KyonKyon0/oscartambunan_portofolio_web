@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteMetadata } from "@/data/profile";
+import ParticleBackground from "@/components/ParticleBackground";
 import "./globals.css";
 
 const inter = Inter({
@@ -91,8 +92,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-bg-primary text-text-primary font-sans antialiased">
-        {children}
+      <body className="min-h-screen bg-bg-primary text-text-primary font-sans antialiased relative">
+        {/* Global Moving Particles Background */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <ParticleBackground />
+        </div>
+        
+        {/* Main Content */}
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

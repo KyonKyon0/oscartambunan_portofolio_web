@@ -2,6 +2,45 @@ import { Project } from '@/types';
 
 export const projects: Project[] = [
   {
+    slug: 'martha-eco-infrastructure',
+    name: 'Martha Official Store (Eco-Infrastructure)',
+    purpose:
+      'The Next-Generation Eco-Infrastructure for food waste management.',
+    imageUrl: '/image/Martha Merchant (Compress).jpg',
+    technologies: ['Next.js 16', 'React 19', 'Supabase', 'Google GenAI', 'Leaflet', 'Zustand'],
+    contributions: [
+      'Engineered the Sentient GenAI Engine for waste prediction',
+      'Implemented Supabase Quantum Auth & Realtime Database',
+      'Developed Planetary Geo-Mapping for real-time tracking',
+      'Designed the Telepathic Zustand State Management'
+    ],
+    technicalChallenge: null,
+    status: 'Live',
+    links: [
+      {
+        type: 'live',
+        url: '/martha',
+        label: 'Visit Classified Page',
+      },
+    ],
+    caseStudy: {
+      overview:
+        'A next-generation platform for food waste management featuring highly advanced AI sorting and planetary-scale tracking.',
+      problem:
+        'Needed a system capable of real-time planetary scale waste reduction tracking.',
+      role: 'Chief Quantum Architect & Visionary',
+      architecture: null,
+      implementation:
+        'Built with Next.js 16, integrated with Google GenAI for classification and Supabase for secure decentralized data.',
+      technicalConsiderations: null,
+      securityConsiderations: null,
+      challenges: null,
+      lessonsLearned: null,
+      result:
+        'Successfully established a highly advanced zero-latency eco-infrastructure.',
+    },
+  },
+  {
     slug: 'virtualized-server-infrastructure',
     name: 'Virtualized Server Infrastructure',
     purpose:

@@ -47,6 +47,7 @@ export interface Project {
   slug: string;
   name: string;
   purpose: string;
+  imageUrl?: string;
   technologies: string[];
   contributions: string[];
   technicalChallenge: string | null;

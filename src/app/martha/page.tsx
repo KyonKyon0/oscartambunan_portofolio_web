@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, ExternalLink, FileCode2 } from "lucide-react";
-import ParticleBackground from "@/components/ParticleBackground";
 
 const DefaultAvatar = () => (
   <svg
@@ -39,15 +38,19 @@ export default function MarthaPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-neutral-200 selection:bg-neutral-800 font-sans relative">
-      {/* Moving Particles Background */}
-      <div className="fixed inset-0 z-0">
-        <ParticleBackground />
-        {/* Subtle overlay gradient to keep text readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
-      </div>
+    <div className="min-h-screen bg-transparent text-neutral-200 selection:bg-neutral-800 font-sans relative">
+      {/* Subtle overlay gradient to keep text readable (Particles handled globally) */}
+      <div className="fixed inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none z-0" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center">
+        
+        {/* Back Button */}
+        <div className="w-full flex justify-start mb-8">
+          <a href="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
+            <ArrowRight className="w-5 h-5 rotate-180" />
+            <span className="font-medium">Kembali</span>
+          </a>
+        </div>
         
         {/* Header Section */}
         <motion.div
@@ -105,7 +108,7 @@ export default function MarthaPage() {
               </div>
               
               <div className="flex-1">
-                <h3 className="text-xl md:text-2xl font-semibold text-white mb-1">
+                <h3 className="text-xl md:text-2xl font-semibold text-white mb-1 flex items-center gap-2">
                   {creator.name}
                 </h3>
                 <p className="text-neutral-400 font-medium mb-3 text-sm uppercase tracking-wide">
@@ -114,6 +117,13 @@ export default function MarthaPage() {
                 <p className="text-neutral-500 leading-relaxed text-sm md:text-base">
                   {creator.description}
                 </p>
+                
+                {creator.name.includes("OSCAR") && (
+                  <a href="https://oscartambunan.dev" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 mt-4 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors">
+                    <span>Visit Portfolio</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

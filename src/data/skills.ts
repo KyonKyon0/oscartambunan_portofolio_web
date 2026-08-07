@@ -2,18 +2,28 @@ import { SkillCategory } from '@/types';
 
 export const skillCategories: SkillCategory[] = [
   {
-    category: 'Programming',
+    category: 'Languages & Frameworks',
     icon: 'Code2',
     skills: [
+      { name: 'Next.js 16', relatedProjects: ['Martha Official Store (Eco-Infrastructure)'] },
+      { name: 'React 19', relatedProjects: ['Martha Official Store (Eco-Infrastructure)'] },
       { name: 'PHP', relatedProjects: ['UGClashub', 'DODOStore'] },
       { name: 'Python', relatedProjects: [] },
       { name: 'Go', relatedProjects: [] },
     ],
   },
   {
-    category: 'Database',
+    category: 'Database & Backend',
     icon: 'Database',
     skills: [
+      {
+        name: 'Supabase',
+        relatedProjects: ['Martha Official Store (Eco-Infrastructure)'],
+      },
+      {
+        name: 'PostgreSQL',
+        relatedProjects: ['Martha Official Store (Eco-Infrastructure)'],
+      },
       {
         name: 'MySQL',
         relatedProjects: ['UGClashub', 'DODOStore'],

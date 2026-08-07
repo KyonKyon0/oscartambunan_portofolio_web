@@ -25,12 +25,19 @@ export default function ProjectsSection() {
               padding="lg"
               className="flex flex-col"
             >
-              {/* Technical visual placeholder */}
-              <div className="w-full h-32 rounded-lg bg-gradient-to-br from-accent/5 to-transparent project-pattern mb-6 flex items-center justify-center border border-border-subtle">
-                <span className="text-xs text-text-tertiary font-mono tracking-wider uppercase">
-                  {project.technologies[0]}
-                </span>
-              </div>
+              {/* Project Visual */}
+              {project.imageUrl ? (
+                <div className="w-full h-40 rounded-lg overflow-hidden mb-6 border border-border-subtle bg-white flex items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={project.imageUrl} alt={project.name} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className="w-full h-32 rounded-lg bg-gradient-to-br from-accent/5 to-transparent project-pattern mb-6 flex items-center justify-center border border-border-subtle">
+                  <span className="text-xs text-text-tertiary font-mono tracking-wider uppercase">
+                    {project.technologies[0]}
+                  </span>
+                </div>
+              )}
 
               {/* Project name */}
               <h3 className="text-lg font-semibold text-text-primary mb-2">
