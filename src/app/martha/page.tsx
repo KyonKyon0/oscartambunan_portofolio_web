@@ -22,23 +22,23 @@ export default function MarthaPage() {
   const creators = [
     {
       name: "OSCAR VICTORIOUS PUTRA TAMBUNAN",
-      role: "Chief Quantum Architect & Visionary",
-      description: "Mengarahkan arsitektur inti dari Mertha Eco-Infrastructure, menggabungkan intuisi sistem dengan AI canggih.",
+      role: "Full-Stack Developer & Technical Lead",
+      description: "Mengembangkan arsitektur aplikasi web dengan Next.js, integrasi database Supabase, dan koordinasi sistem frontend.",
     },
     {
       name: "YOHANES RAKHA NUGROHO",
-      role: "Lead Holographic Engineer",
-      description: "Merancang UI spasial dan integrasi database, memastikan transmisi data real-time dengan latensi nol.",
+      role: "Frontend & UI/UX Developer",
+      description: "Merancang antarmuka pengguna interaktif, peta merchant lokal, dan pengalaman katalog makanan surplus.",
     },
     {
       name: "BAGUS NUGROHO EKO PRASETYO",
-      role: "Zero-Point Systems Administrator",
-      description: "Menjaga infrastruktur server dan algoritma neural sorting berjalan optimal di edge network.",
+      role: "Backend & Systems Support",
+      description: "Mendukung manajemen database PostgreSQL, verifikasi API endpoints, dan konfigurasi environment.",
     }
   ];
 
   return (
-    <div className="min-h-screen bg-transparent text-neutral-200 selection:bg-neutral-800 font-sans relative">
+    <div className="min-h-screen bg-bg-primary text-text-primary selection:bg-accent/30 font-sans relative">
       {/* Subtle overlay gradient to keep text readable (Particles handled globally) */}
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none z-0" />
 

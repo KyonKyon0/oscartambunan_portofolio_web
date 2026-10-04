@@ -7,7 +7,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'Next.js 16', relatedProjects: ['Martha Official Store (Eco-Infrastructure)'] },
       { name: 'React 19', relatedProjects: ['Martha Official Store (Eco-Infrastructure)'] },
-      { name: 'PHP', relatedProjects: ['UGClashub', 'DODOStore'] },
+      { name: 'PHP', relatedProjects: ['Pesona Tari (pesonatari.site)', 'UGClashub', 'DODOStore'] },
       { name: 'Python', relatedProjects: [] },
       { name: 'Go', relatedProjects: [] },
     ],
@@ -26,7 +26,7 @@ export const skillCategories: SkillCategory[] = [
       },
       {
         name: 'MySQL',
-        relatedProjects: ['UGClashub', 'DODOStore'],
+        relatedProjects: ['Pesona Tari (pesonatari.site)', 'UGClashub', 'DODOStore'],
       },
       { name: 'Basic Queries & CRUD Operations', relatedProjects: [] },
     ],

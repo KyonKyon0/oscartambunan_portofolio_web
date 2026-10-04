@@ -20,25 +20,20 @@ export default function SectionHeading({
 
   return (
     <motion.div
-      className={`mb-12 ${alignClass}`}
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+      className={`mb-8 sm:mb-12 pb-4 border-b border-white/10 ${alignClass}`}
+      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
     >
-      <h2 className="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+      <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-3 text-text-secondary text-base max-w-2xl">
+        <p className="text-xs sm:text-sm text-slate-400 font-mono leading-relaxed max-w-3xl">
           {subtitle}
         </p>
       )}
-      <div
-        className={`mt-4 h-px bg-gradient-to-r from-accent/50 to-transparent ${
-          align === 'center' ? 'mx-auto max-w-32' : 'max-w-16'
-        }`}
-      />
     </motion.div>
   );
 }

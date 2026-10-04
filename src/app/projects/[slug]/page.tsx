@@ -103,6 +103,19 @@ export default async function ProjectPage({
                 </Button>
               ))}
           </div>
+
+          {/* Project Media Preview */}
+          {project.imageUrl && (
+            <div className="mt-8 rounded-2xl border border-white/10 bg-slate-900/60 p-6 sm:p-8 flex items-center justify-center overflow-hidden relative group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 via-transparent to-emerald-500/10 pointer-events-none" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.imageUrl}
+                alt={project.name}
+                className="max-h-52 sm:max-h-64 w-auto object-contain relative z-10 drop-shadow-[0_8px_30px_rgba(0,0,0,0.6)] group-hover:scale-[1.02] transition-transform duration-300"
+              />
+            </div>
+          )}
         </div>
       </div>
 

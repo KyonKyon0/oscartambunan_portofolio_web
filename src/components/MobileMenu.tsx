@@ -67,7 +67,7 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -78,7 +78,7 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
           {/* Menu Panel */}
           <motion.div
             ref={menuRef}
-            className="fixed inset-y-0 right-0 w-full max-w-sm glass-panel-strong z-50 flex flex-col"
+            className="fixed inset-y-0 right-0 w-full max-w-sm glass-panel-strong z-[70] flex flex-col"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -88,20 +88,20 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
             aria-label="Navigation menu"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-border-subtle">
-              <span className="text-sm font-medium text-text-secondary">Navigation</span>
+            <div className="flex items-center justify-between p-5 border-b border-white/[0.08]">
+              <span className="text-sm font-semibold text-white tracking-tight">Oscar Tambunan</span>
               <button
                 ref={closeButtonRef}
                 onClick={onClose}
-                className="p-2 rounded-lg hover:bg-surface transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close navigation menu"
               >
-                <X className="w-5 h-5 text-text-secondary" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Links */}
-            <nav className="flex-1 px-6 py-8">
+            <nav className="flex-1 px-4 py-6 overflow-y-auto">
               <ul className="space-y-1">
                 {navigationItems.map((item) => {
                   const sectionId = item.href.replace('#', '');
@@ -113,12 +113,11 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
                         href={item.href}
                         onClick={onClose}
                         className={`
-                          block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200
-                          min-h-[44px] flex items-center
-                          ${
-                            isActive
-                              ? 'text-accent bg-accent-muted'
-                              : 'text-text-secondary hover:text-text-primary hover:bg-surface'
+                          block px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+                          flex items-center
+                          ${isActive
+                            ? 'text-white bg-white/[0.10] shadow-sm'
+                            : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
                           }
                         `}
                       >
@@ -131,11 +130,11 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
             </nav>
 
             {/* Footer */}
-            <div className="p-6 border-t border-border-subtle">
+            <div className="p-5 border-t border-white/[0.08]">
               <a
                 href="/oscar-tambunan-cv.pdf"
                 download
-                className="flex items-center justify-center w-full px-4 py-3 bg-accent text-white rounded-lg font-medium text-sm hover:bg-accent-hover transition-colors min-h-[44px]"
+                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white rounded-full font-medium text-xs transition-colors"
               >
                 Download CV
               </a>

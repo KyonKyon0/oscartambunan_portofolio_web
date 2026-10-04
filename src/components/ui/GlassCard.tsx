@@ -22,8 +22,8 @@ export default function GlassCard({
   return (
     <div
       className={`
-        glass-panel rounded-xl ${paddingStyles[padding]}
-        ${hover ? 'transition-all duration-300 hover:bg-surface-hover hover:border-border-hover' : ''}
+        glass-panel rounded-2xl ${paddingStyles[padding]}
+        ${hover ? 'transition-all duration-300 ease-out hover:border-white/20 hover:shadow-2xl hover:shadow-black/50 hover:-translate-y-1' : ''}
         ${className}
       `}
     >

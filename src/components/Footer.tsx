@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border-subtle bg-bg-secondary" role="contentinfo">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-text-tertiary">
             © {currentYear} {profile.name}. All rights reserved.

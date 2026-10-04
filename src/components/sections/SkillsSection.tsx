@@ -1,92 +1,208 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
-
-import {
-  Code2,
-  Database,
-  Server,
-  Globe,
-  Cloud,
-  Shield,
-  Wrench,
-} from 'lucide-react';
-import { skillCategories } from '@/data/skills';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
-import GlassCard from '@/components/ui/GlassCard';
+import {
+  NextjsIcon,
+  ReactIcon,
+  TypeScriptIcon,
+  JavaScriptIcon,
+  TailwindIcon,
+  SupabaseIcon,
+  PostgreSQLIcon,
+  MySQLIcon,
+  NodeIcon,
+  PHPIcon,
+  PythonIcon,
+  GoIcon,
+  ProxmoxIcon,
+  LinuxIcon,
+  UbuntuIcon,
+  DebianIcon,
+  DockerIcon,
+  NextcloudIcon,
+  CloudflareIcon,
+  NginxIcon,
+  AdGuardIcon,
+  GitIcon,
+  GitHubIcon,
+  TanStackIcon,
+  FramerMotionIcon,
+  KVMIcon,
+  BashIcon,
+  ApiIcon,
+  ZFSIcon,
+  AaPanelIcon,
+  HTML5Icon,
+  CSS3Icon,
+} from '@/components/ui/TechIcons';
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Code2,
-  Database,
-  Server,
-  Globe,
-  Cloud,
-  Shield,
-  Wrench,
-};
+interface SkillItem {
+  name: string;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
+}
+
+interface CapabilityGroup {
+  category: string;
+  skills: SkillItem[];
+}
+
+const CAPABILITIES_LEFT: CapabilityGroup[] = [
+  {
+    category: 'FRONTEND',
+    skills: [
+      { name: 'HTML5', icon: HTML5Icon },
+      { name: 'CSS3', icon: CSS3Icon },
+      { name: 'JavaScript', icon: JavaScriptIcon },
+      { name: 'TypeScript', icon: TypeScriptIcon },
+      { name: 'React 19', icon: ReactIcon },
+      { name: 'Next.js 16', icon: NextjsIcon },
+      { name: 'Tailwind CSS', icon: TailwindIcon },
+      { name: 'TanStack Query', icon: TanStackIcon },
+      { name: 'Framer Motion', icon: FramerMotionIcon },
+    ],
+  },
+  {
+    category: 'DATABASE',
+    skills: [
+      { name: 'PostgreSQL', icon: PostgreSQLIcon },
+      { name: 'Supabase', icon: SupabaseIcon },
+      { name: 'MySQL / MariaDB', icon: MySQLIcon },
+      { name: 'ZFS Storage', icon: ZFSIcon },
+    ],
+  },
+  {
+    category: 'TOOLS & PLATFORM',
+    skills: [
+      { name: 'Git', icon: GitIcon },
+      { name: 'GitHub', icon: GitHubIcon },
+      { name: 'Nginx', icon: NginxIcon },
+      { name: 'aaPanel LEMP', icon: AaPanelIcon },
+    ],
+  },
+];
+
+const CAPABILITIES_RIGHT: CapabilityGroup[] = [
+  {
+    category: 'NETWORK',
+    skills: [
+      { name: 'Proxmox VE', icon: ProxmoxIcon },
+      { name: 'Linux System Admin', icon: LinuxIcon },
+      { name: 'Ubuntu Server', icon: UbuntuIcon },
+      { name: 'Debian Linux', icon: DebianIcon },
+      { name: 'Docker', icon: DockerIcon },
+      { name: 'KVM / QEMU', icon: KVMIcon },
+      { name: 'Cloudflare Tunnels', icon: CloudflareIcon },
+      { name: 'AdGuard Home', icon: AdGuardIcon },
+      { name: 'Nextcloud', icon: NextcloudIcon },
+    ],
+  },
+  {
+    category: 'BACKEND',
+    skills: [
+      { name: 'Python', icon: PythonIcon },
+      { name: 'PHP', icon: PHPIcon },
+      { name: 'Node.js', icon: NodeIcon },
+      { name: 'Go (Golang)', icon: GoIcon },
+      { name: 'RESTful API', icon: ApiIcon },
+      { name: 'Bash Scripting', icon: BashIcon },
+    ],
+  },
+];
 
 export default function SkillsSection() {
   return (
-    <AnimatedSection id="skills" className="py-20 sm:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Skills"
-          subtitle="Technologies and tools organized by practical use, with project evidence."
-        />
+    <AnimatedSection
+      id="skills"
+      className="py-16 sm:py-24 bg-bg-primary relative overflow-hidden font-sans border-t border-white/[0.08]"
+    >
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+        {/* Section Header: CAPABILITIES */}
+        <SectionHeading title="Capabilities" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, idx) => {
-            const IconComponent = iconMap[category.icon];
-
-            return (
+        {/* 2-Kolom: Kiri (Frontend, Database, Tools) & Kanan (Network, Backend) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start">
+          {/* Kolom Kiri (3 Baris): FRONTEND, DATABASE & TOOLS */}
+          <div className="space-y-8 sm:space-y-10">
+            {CAPABILITIES_LEFT.map((group, idx) => (
               <motion.div
-                key={category.category}
-                initial={{ opacity: 0, y: 20 }}
+                key={group.category}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: idx * 0.08 }}
+                className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6 pb-6 sm:pb-8 border-b border-white/[0.06] last:border-b-0"
               >
-                <GlassCard hover className="h-full border-border-subtle/50 hover:border-accent/30 transition-colors group">
-                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-subtle/30">
-                    {IconComponent && (
-                      <div className="p-2.5 rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                        <IconComponent className="w-5 h-5 text-accent" />
-                      </div>
-                    )}
-                    <h3 className="text-base font-semibold text-text-primary tracking-wide">
-                      {category.category}
-                    </h3>
-                  </div>
+                {/* Category Title */}
+                <div className="w-full sm:w-32 lg:w-36 shrink-0 pt-2">
+                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-wider uppercase">
+                    {group.category}
+                  </h3>
+                </div>
 
-                  <ul className="space-y-4">
-                    {category.skills.map((skill) => (
-                      <li key={skill.name} className="flex flex-col gap-1.5">
-                        <div className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />
-                          <p className="text-sm text-text-primary font-medium leading-tight">
-                            {skill.name}
-                          </p>
+                {/* Rectangular Boxes (Only Icons, No Names) */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 flex-1">
+                  {group.skills.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <div
+                        key={skill.name}
+                        title={skill.name}
+                        aria-label={skill.name}
+                        className="h-11 sm:h-12 min-w-[56px] sm:min-w-[66px] px-3.5 rounded-md border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] hover:border-white/35 flex items-center justify-center transition-all duration-200 group cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+                      >
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center transition-transform duration-200 group-hover:scale-110">
+                          <Icon className="w-full h-full object-contain" />
                         </div>
-                        {skill.relatedProjects.length > 0 && (
-                          <div className="flex flex-wrap gap-1.5 ml-3.5">
-                            {skill.relatedProjects.map((project) => (
-                              <span
-                                key={project}
-                                className="text-[10px] font-medium tracking-wide text-emerald-400/90 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-full"
-                              >
-                                {project}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </GlassCard>
+                      </div>
+                    );
+                  })}
+                </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Kolom Kanan (2 Baris): NETWORK & BACKEND */}
+          <div className="space-y-8 sm:space-y-10">
+            {CAPABILITIES_RIGHT.map((group, idx) => (
+              <motion.div
+                key={group.category}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: idx * 0.08 }}
+                className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6 pb-6 sm:pb-8 border-b border-white/[0.06] last:border-b-0"
+              >
+                {/* Category Title */}
+                <div className="w-full sm:w-32 lg:w-36 shrink-0 pt-2">
+                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-wider uppercase">
+                    {group.category}
+                  </h3>
+                </div>
+
+                {/* Rectangular Boxes (Only Icons, No Names) */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 flex-1">
+                  {group.skills.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <div
+                        key={skill.name}
+                        title={skill.name}
+                        aria-label={skill.name}
+                        className="h-11 sm:h-12 min-w-[56px] sm:min-w-[66px] px-3.5 rounded-md border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] hover:border-white/35 flex items-center justify-center transition-all duration-200 group cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+                      >
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center transition-transform duration-200 group-hover:scale-110">
+                          <Icon className="w-full h-full object-contain" />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </AnimatedSection>

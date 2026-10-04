@@ -2,33 +2,73 @@ import { Certification } from '@/types';
 
 export const certifications: Certification[] = [
   {
-    name: 'LFS162 Introduction to DevOps and Site Reliability Engineering',
+    name: 'Introduction to DevOps and Site Reliability Engineering (LFS162)',
     issuer: 'The Linux Foundation',
     date: 'September 2025',
-    credentialUrl: null, // TODO: Add credential verification URL
+    category: 'Engineering & Cloud',
+    credentialUrl: '/sertifikat/Introduction to DevOps and Site Reliability Engineering (LFS162).pdf',
+    certificateFile: '/sertifikat/Introduction to DevOps and Site Reliability Engineering (LFS162).pdf',
+    thumbnail: '/sertifikat/thumbnails/Introduction to DevOps and Site Reliability Engineering (LFS162).webp',
+    description: 'DevOps best practices, CI/CD pipeline fundamentals, SRE reliability standards, and automated Linux infrastructure.',
   },
   {
     name: 'Databases and SQL for Data Science with Python',
-    issuer: 'IBM',
+    issuer: 'IBM (via Coursera)',
     date: 'September 2025',
-    credentialUrl: null, // TODO: Add credential verification URL
-  },
-  {
-    name: 'Belajar Dasar AI',
-    issuer: 'Dicoding Indonesia',
-    date: 'September 2025',
-    credentialUrl: null, // TODO: Add credential verification URL
+    category: 'Engineering & Cloud',
+    credentialUrl: 'https://coursera.org/verify/8XPCL088YVKD',
+    certificateFile: '/sertifikat/Databases and SQL for Data Science with Python.pdf',
+    thumbnail: '/sertifikat/thumbnails/Databases and SQL for Data Science with Python.webp',
+    description: 'Relational database architecture, advanced SQL operations, indexing, stored routines, and data extraction using Python.',
   },
   {
     name: 'Google Cloud Computing Foundations',
     issuer: 'Alison',
-    date: 'August 2025',
-    credentialUrl: null, // TODO: Add credential verification URL
+    date: 'September 2025',
+    category: 'Engineering & Cloud',
+    credentialUrl: 'https://alison.com/certification/check/bbb34c469a',
+    certificateFile: '/sertifikat/Google Cloud Computing Foundation.pdf',
+    thumbnail: '/sertifikat/thumbnails/Google Cloud Computing Foundation.webp',
+    description: 'Cloud computing fundamentals, VPC virtual networks, compute engine deployment, and enterprise cloud security concepts.',
   },
   {
     name: 'Corporate Finance Essentials',
-    issuer: 'IESE Business School via Coursera',
+    issuer: 'IESE Business School (University of Navarra)',
+    date: 'April 2026',
+    category: 'Finance & Strategy',
+    credentialUrl: 'https://coursera.org/verify/SNKFZ79W48DA',
+    certificateFile: '/sertifikat/IESE_Corporate Finance Essential.png',
+    thumbnail: '/sertifikat/thumbnails/IESE_Corporate Finance Essential.webp',
+    description: 'Financial statement evaluation, discounted cash flow modeling, capital budgeting, and quantitative investment risk analysis.',
+  },
+  {
+    name: 'Business Plan Gamification - INFEST Competition 2026',
+    issuer: 'INFEST Universitas Gunadarma',
+    date: '2026',
+    category: 'Awards & Leadership',
+    credentialUrl: '/sertifikat/Business Plan Gamification INFEST Competition 2026.pdf',
+    certificateFile: '/sertifikat/Business Plan Gamification INFEST Competition 2026.pdf',
+    thumbnail: '/sertifikat/thumbnails/Business Plan Gamification INFEST Competition 2026.webp',
+    description: 'Competitive business model and interactive gamification product design developed for INFEST 2026 competition.',
+  },
+  {
+    name: 'ICIKIWIR Core Team Certificate',
+    issuer: 'INFEST Competition 2026',
+    date: '2026',
+    category: 'Awards & Leadership',
+    credentialUrl: '/sertifikat/ICIKIWIR CORE TEAM.pdf',
+    certificateFile: '/sertifikat/ICIKIWIR CORE TEAM.pdf',
+    thumbnail: '/sertifikat/thumbnails/ICIKIWIR CORE TEAM.webp',
+    description: 'Recognition for core team collaboration, software feature development, and competitive technology pitch execution.',
+  },
+  {
+    name: 'Kepanitiaan PKKMB FTI UG 2025 (Divisi Penanggung Jawab Kelompok)',
+    issuer: 'BEM FTI Universitas Gunadarma',
     date: '2025',
-    credentialUrl: null, // TODO: Add credential verification URL
+    category: 'Awards & Leadership',
+    credentialUrl: '/sertifikat/PK_PKKMB.png',
+    certificateFile: '/sertifikat/PK_PKKMB.png',
+    thumbnail: '/sertifikat/thumbnails/PK_PKKMB.webp',
+    description: 'Student leadership certificate for facilitating orientation cohorts and community adaptation under BEM FTI Gunadarma.',
   },
 ];

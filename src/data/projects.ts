@@ -2,42 +2,297 @@ import { Project } from '@/types';
 
 export const projects: Project[] = [
   {
-    slug: 'martha-eco-infrastructure',
-    name: 'Martha Official Store (Eco-Infrastructure)',
+    slug: 'labamen-accounting-portal',
+    name: 'Lab. Akuntansi Menengah (Redesign & Workflow Architecture)',
     purpose:
-      'The Next-Generation Eco-Infrastructure for food waste management.',
-    imageUrl: '/image/Martha Merchant (Compress).jpg',
-    technologies: ['Next.js 16', 'React 19', 'Supabase', 'Google GenAI', 'Leaflet', 'Zustand'],
+      'Pusat praktikum Laboratorium Akuntansi Menengah terpadu Universitas Gunadarma. Solusi cerdas pendalaman teori akuntansi menuju implementasi praktikum berbasis teknologi dan software akuntansi modern berstandar industri.',
+    imageUrl: '/image/Labamen web.jpg',
+    technologies: ['Next.js / React', 'TypeScript', 'Tailwind CSS', 'Digital Workflow Architecture', 'UI/UX Redesign'],
     contributions: [
-      'Engineered the Sentient GenAI Engine for waste prediction',
-      'Implemented Supabase Quantum Auth & Realtime Database',
-      'Developed Planetary Geo-Mapping for real-time tracking',
-      'Designed the Telepathic Zustand State Management'
+      'Merancang ulang (Redesign) antarmuka portal laboratorium agar modern, responsif, dan mudah diakses oleh ribuan mahasiswa',
+      'Mengembangkan arsitektur alur kerja (workflow) digital terpadu untuk modul praktikum, materi spreadsheet/Excel, dan software akuntansi',
+      'Mengoptimalkan sistem navigasi portal terintegrasi untuk kebutuhan praktikum komputasi akuntansi berbasis teknologi',
+      'Menyediakan saluran komunikasi dan informasi terpusat antara tim asisten laboratorium, instruktur, dan mahasiswa praktikan'
     ],
-    technicalChallenge: null,
+    technicalChallenge:
+      'Menata dan menyederhanakan alur distribusi materi praktikum, modul digital, serta software akuntansi yang sebelumnya terpisah menjadi satu portal digital yang terpadu dan efisien.',
+    status: 'Sistem Aktif',
+    links: [
+      {
+        type: 'live',
+        url: 'https://www.ak-menengah.com/',
+        label: 'Kunjungi ak-menengah.com',
+      },
+    ],
+    caseStudy: {
+      overview:
+        'Redesign menyeluruh antarmuka web dan rekayasa alur kerja (workflow) digital Laboratorium Akuntansi Menengah (ak-menengah.com) Universitas Gunadarma, menghadirkan portal praktikum terpadu modern yang melayani ribuan mahasiswa akuntansi.',
+      problem:
+        'Portal sebelumnya memiliki antarmuka yang lawas dan alur distribusi modul praktikum, software, serta lembar kerja Excel yang membingungkan mahasiswa praktikan sehingga menghambat efisiensi perkuliahan praktikum.',
+      role: 'IT Programmer & Lead Redesign Architect',
+      architecture:
+        'Portal praktikum modern terintegrasi dengan alur terstruktur: Beranda informasi -> Katalog & Unduh Modul Praktikum -> Repositori Materi Spreadsheet/Excel -> Distribusi Software Akuntansi Terlisensi -> Panduan & Ketentuan Praktikum.',
+      implementation:
+        'Merancang ulang tampilan UI/UX yang modern, profesional, dan responsif dengan identitas resmi Labamen, merapikan alur navigasi mahasiswa, serta mengoptimalkan kecepatan akses materi praktikum digital.',
+      technicalConsiderations:
+        'Aksesibilitas mobile-first, load time cepat untuk file modul dan dokumen praktikum berukuran besar, serta kejelasan tipografi instruksional.',
+      securityConsiderations:
+        'Validasi keamanan distribusi berkas modul dan tautan unduhan software praktikum berlisensi kampus.',
+      challenges:
+        'Menyelaraskan kebutuhan akademis pengajar/instruktur, asisten laboratorium, dan mahasiswa praktikan ke dalam satu antarmuka yang bersih tanpa kurva belajar yang rumit.',
+      lessonsLearned:
+        'Penyederhanaan alur navigasi dari 5 langkah terpisah menjadi navigasi 1-klik terbukti meningkatkan kepuasan mahasiswa dan mengurangi kendala teknis saat praktikum berlangsung.',
+      result:
+        'Platform ak-menengah.com aktif digunakan secara live oleh seluruh civitas akademika praktikum Laboratorium Akuntansi Menengah Universitas Gunadarma.',
+    },
+  },
+  {
+    slug: 'labamen-admin-dashboard',
+    name: 'Labamen Internal Operations & Admin Dashboard',
+    purpose:
+      'Sistem dashboard operasional dan manajemen database internal Laboratorium Akuntansi Menengah untuk administrasi data praktikum, penjadwalan asisten, dan pengelolaan modul ujian digital.',
+    imageUrl: '/image/Labamen Admin.jpg',
+    technologies: ['PHP', 'MySQL', 'Relational Database', 'Admin Dashboard', 'CRUD Operations'],
+    contributions: [
+      'Mengembangkan dashboard admin internal berbasis PHP dan MySQL untuk operasional harian laboratorium',
+      'Merancang arsitektur basis data relasional untuk pengelolaan data praktikan, modul ujian, dan jadwal asisten',
+      'Membangun sistem kontrol akses dan manajemen autentikasi untuk tim asisten laboratorium',
+      'Mengotomasi pencatatan dan distribusi materi praktikum guna meningkatkan efisiensi operasional'
+    ],
+    technicalChallenge:
+      'Menjaga integritas data relasional antara jadwal praktikum, modul ujian, dan data ratusan mahasiswa dalam sistem kontrol database tertutup.',
+    status: null,
+    links: [],
+    caseStudy: {
+      overview:
+        'Sistem dashboard operasional dan basis data internal Laboratorium Akuntansi Menengah Universitas Gunadarma, dibangun dengan PHP dan MySQL untuk mengelola administrasi praktikum secara terpusat.',
+      problem:
+        'Proses administrasi praktikum, penjadwalan asisten, dan pengelolaan modul ujian sebelumnya masih memerlukan pencatatan manual yang memakan waktu dan berisiko redudansi data.',
+      role: 'IT Programmer & Database Developer',
+      architecture:
+        'Aplikasi dashboard berbasis web intranet dengan basis data relasional MySQL dan server PHP untuk pemrosesan logika bisnis internal.',
+      implementation:
+        'Mengimplementasikan modul CRUD data praktikan, panel monitoring jadwal asisten, dan repositori modul praktikum digital berbasis PHP.',
+      technicalConsiderations:
+        'Optimalisasi kueri SQL untuk pemrosesan data mahasiswa serta antarmuka admin yang intuitif dan responsif.',
+      securityConsiderations:
+        'Sistem sesi terproteksi, sanitasi input untuk mencegah SQL injection, dan pembatasan akses hanya untuk lingkungan internal laboratorium.',
+      challenges:
+        'Menyusun struktur tabel relasional yang fleksibel terhadap perubahan kurikulum praktikum dari semester ke semester.',
+      lessonsLearned:
+        'Penerapan normalisasi database dan struktur indeks yang tepat mempercepat proses query laporan operasional lab.',
+      result:
+        'Dashboard operasional internal aktif digunakan untuk mendukung kelancaran seluruh kegiatan praktikum akuntansi di laboratorium.',
+    },
+  },
+  {
+    slug: 'cloudflare-edge-tunnel-analytics',
+    name: 'Cloudflare Edge Analytics & Zero-Trust Tunnel Infrastructure',
+    purpose:
+      'Monitoring analitik trafik produksi real-time dan arsitektur web mandiri (self-hosted) via Cloudflare Tunnel terenkripsi tanpa port forwarding.',
+    imageUrl: '/image/Cloudflare Dashboard.jpg',
+    technologies: ['Cloudflare Tunnel', 'Edge Analytics', 'Zero Trust', 'Traffic Monitoring', 'DDoS Protection', 'CDN Caching'],
+    contributions: [
+      'Mengonfigurasi daemon cloudflared untuk menyalurkan traffic web portofolio dan homelab secara aman melalui outbound-only tunnel',
+      'Mengeliminasi kebutuhan port forwarding dan bypass CGNAT tanpa mengekspos alamat IP publik server lokal',
+      'Memantau dan menganalisis performa trafik produksi global (215.65k+ total requests, 5.7k visits, 1.25 GB bandwidth)',
+      'Mengoptimalkan edge caching, proteksi WAF, dan SSL/TLS termination otomatis pada jaringan Anycast Cloudflare'
+    ],
+    technicalChallenge:
+      'Mempertahankan performa throughput tinggi dan kestabilan koneksi outbound tunnel 24/7 dari bare-metal server lokal ke edge network global.',
+    status: 'Sistem Aktif',
+    links: [
+      {
+        type: 'live',
+        url: '/projects/cloudflare-edge-tunnel-analytics',
+        label: 'Lihat Analisis & Arsitektur',
+      },
+    ],
+    caseStudy: {
+      overview:
+        'Infrastruktur edge networking dan pemantauan analitik web real-time yang menghubungkan bare-metal homelab server dengan jaringan global Cloudflare menggunakan Cloudflare Zero Trust Tunnel.',
+      problem:
+        'Hosting web mandiri dari server lokal sering terhalang oleh ISP CGNAT, risiko keamanan dari port forwarding terbuka di router rumah, dan minimnya observabilitas trafik.',
+      role: 'DevOps & Systems Administrator',
+      architecture:
+        'Client Requests -> Cloudflare Anycast Edge (DDoS/WAF & Edge Caching) -> Encrypted Outbound Tunnel (cloudflared daemon) -> Local Reverse Proxy (Nginx) -> Application Services.',
+      implementation:
+        'Menerapkan tunnel terenkripsi dua arah tanpa port masuk terbuka, konfigurasi DNS Anycast Cloudflare, serta integrasi dashboard analitik trafik global untuk pemantauan throughput 24/7.',
+      technicalConsiderations:
+        'Penyetelan cache hit rate pada aset statis, pemantauan status koneksi tunnel, dan isolasi jaringan internal.',
+      securityConsiderations:
+        'Outbound-only connection (tidak ada port terbuka di router), perlindungan DDoS otomatis, dan enkripsi SSL/TLS end-to-end.',
+      challenges:
+        'Menjaga ketersediaan tunnel daemon dengan auto-restart service di Linux systemd serta optimasi buffer streaming.',
+      lessonsLearned:
+        'Penggunaan Cloudflare Tunnel memotong 100% vektor serangan scanning port eksternal dan mempercepat load time global berkat CDN edge caching.',
+      result:
+        'Infrastruktur aktif melayani lebih dari 215.000 requests dengan traffic global dari Amerika Serikat, Indonesia, Belgia, Jepang, hingga Eropa.',
+    },
+  },
+  {
+    slug: 'kerjain-local-service-marketplace',
+    name: 'Kerjain (Friendly Local Service Marketplace)',
+    purpose:
+      'Platform penghubung konsumen dan mitra kerja untuk menyelesaikan berbagai kebutuhan rumah tangga harian secara aman, praktis, dan transparan di Indonesia.',
+    imageUrl: '/image/kerjain logo.png',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'TanStack Query', 'Vercel'],
+    contributions: [
+      'Merancang arsitektur aplikasi marketplace web responsif untuk kebutuhan rumah tangga harian',
+      'Mengintegrasikan caching data asynchronous dan client state management menggunakan TanStack Query',
+      'Menerapkan sistem pencarian mitra kerja dan komunikasi kebutuhan tugas mikro yang transparan',
+      'Mengoptimalkan performa mobile-first untuk akses cepat di berbagai jaringan seluler di Indonesia'
+    ],
+    technicalChallenge: 'Memastikan alur penemuan mitra jasa dan pemesanan tugas mikro berjalan lancar dengan latensi rendah pada perangkat mobile.',
+    status: 'Sistem Aktif',
+    links: [
+      {
+        type: 'live',
+        url: 'https://kerjainv2.vercel.app/',
+        label: 'Kunjungi Web Kerjain',
+      },
+    ],
+    caseStudy: {
+      overview:
+        'Kerjain adalah platform local service marketplace yang mempertemukan konsumen dengan mitra kerja terpercaya untuk menyelesaikan kebutuhan bantuan mikro dan pekerjaan rumah tangga harian secara aman, praktis, dan transparan di Indonesia.',
+      problem:
+        'Konsumen sering kesulitan menemukan penyedia jasa harian yang terpercaya dengan tarif transparan, sementara pekerja lepas lokal membutuhkan saluran pemasaran jasa yang mudah diakses.',
+      role: 'Full-Stack Developer',
+      architecture: null,
+      implementation:
+        'Dikembangkan menggunakan Next.js dengan antarmuka modern Tailwind CSS, proteksi rute pengguna, dan sistem query asynchronous TanStack Query yang di-deploy di Vercel edge infrastructure.',
+      technicalConsiderations:
+        'Desain antarmuka mobile-first responsif dengan waktu muat halaman cepat untuk kenyamanan pengguna di seluruh Indonesia.',
+      securityConsiderations: 'Validasi form pemesanan jasa terenkripsi dan rute pengguna terproteksi.',
+      challenges: 'Menyajikan alur pemesanan bantuan mikro yang sangat mudah dipahami oleh pengguna awam tanpa gesekan teknis.',
+      lessonsLearned: 'Penerapan caching client-side TanStack Query meningkatkan kecepatan respons navigasi secara drastis.',
+      result:
+        'Platform aktif beroperasi dan dapat diakses publik melalui kerjainv2.vercel.app.',
+    },
+  },
+  {
+    slug: 'pesonatari-cultural-ticketing',
+    name: 'Pesona Tari (Indonesian Cultural Performing Arts Ticketing Platform)',
+    purpose:
+      'Platform reservasi dan pembelian tiket pertunjukan seni tari tradisional Nusantara berbasis web dengan integrasi pembayaran QRIS real-time dan manajemen tiket digital.',
+    imageUrl: '/image/Pesonatarisite.jpeg',
+    technologies: ['PHP', 'MySQL', 'CSS3', 'QRIS Payment Gateway', 'Relational Database', 'Ticketing Workflow'],
+    contributions: [
+      'Merancang dan membangun arsitektur platform web pemesanan tiket pertunjukan seni tari Nusantara berbasis PHP dan basis data MySQL',
+      'Mengintegrasikan sistem pembayaran QRIS otomatis real-time dengan verifikasi kode pesanan unik (order ID)',
+      'Mengembangkan sistem manajemen katalog event tari kebudayaan, kuota tiket, dan ringkasan transaksi pemesanan',
+      'Merancang antarmuka checkout yang responsif dan user-friendly untuk kenyamanan proses pembayaran digital pengguna'
+    ],
+    technicalChallenge:
+      'Mengelola alur verifikasi transaksi pembayaran QRIS secara dinamis serta sinkronisasi ketersediaan kuota tiket pertunjukan berbasis basis data relasional MySQL.',
+    status: 'Sistem Aktif',
+    links: [
+      {
+        type: 'live',
+        url: 'https://pesonatari.site',
+        label: 'Kunjungi Pesonatari.site',
+      },
+    ],
+    caseStudy: {
+      overview:
+        'Pesona Tari (pesonatari.site) adalah platform web pemesanan dan tiket digital untuk pertunjukan seni tari tradisional kebudayaan Indonesia (Langit Biru Nusantara), dilengkapi dengan gateway pembayaran digital QRIS dan sistem manajemen pemesanan terstruktur.',
+      problem:
+        'Pemesanan tiket pentas seni tari tradisional sering kali masih dilakukan manual melalui pesan chat atau loket fisik, menyebabkan antrean, risiko kesalahan pencatatan nomor tiket, dan keterbatasan metode pembayaran non-tunai.',
+      role: 'Full-Stack Web Developer',
+      architecture:
+        'Arsitektur web dinamis berbasis PHP modular dan basis data relasional MySQL: Katalog Pertunjukan Tari -> Detail Event & Jadwal -> Form Reservasi Pemesan -> Modul Generate Invoice & Pembayaran QRIS -> Validasi Transaksi & Penerbitan Tiket Digital.',
+      implementation:
+        'Membangun sistem pemrosesan transaksi berbasis PHP native dengan database MySQL, mendesain antarmuka kustom dengan CSS modern yang elegan, serta mengintegrasikan modul pembayaran QRIS untuk proses checkout instan.',
+      technicalConsiderations:
+        'Kecepatan akses halaman pemesanan tiket, kejelasan informasi biaya layanan dan kode unik transaksi, serta kompatibilitas antarmuka pada layar mobile.',
+      securityConsiderations:
+        'Sanitasi input form reservasi untuk pencegahan SQL injection dan validasi status transaksi invoice pembayaran.',
+      challenges:
+        'Memastikan sinkronisasi status pembayaran QRIS berjalan akurat dan menghasilkan tiket digital dengan kode order unik tanpa duplikasi.',
+      lessonsLearned:
+        'Penerapan alur checkout satu layar (one-screen checkout summary) dengan kode QRIS instan mempercepat konversi pembayaran dan mempermudah pengguna.',
+      result:
+        'Platform aktif beroperasi secara live di pesonatari.site, memfasilitasi reservasi dan tiket pertunjukan seni budaya Nusantara secara digital.',
+    },
+  },
+  {
+    slug: 'martha-eco-infrastructure',
+    name: 'Mertha (Food Waste Mitigation Platform)',
+    purpose:
+      'A web platform designed to reduce food waste by connecting surplus inventory with buyers and distribution channels.',
+    imageUrl: '/image/Mertha Logo.png',
+    technologies: ['Next.js 16', 'React 19', 'Supabase', 'Leaflet Maps', 'Zustand', 'Tailwind CSS'],
+    contributions: [
+      'Developed responsive user interfaces with Next.js App Router and React 19',
+      'Integrated Supabase authentication and realtime database subscriptions',
+      'Implemented geolocation and interactive mapping for local merchant discovery',
+      'Constructed predictable client state workflows using Zustand'
+    ],
+    technicalChallenge: 'Ensuring seamless map rendering and low-latency inventory updates on mobile browsers.',
     status: 'Live',
     links: [
       {
         type: 'live',
         url: '/martha',
-        label: 'Visit Classified Page',
+        label: 'View Project Details',
       },
     ],
     caseStudy: {
       overview:
-        'A next-generation platform for food waste management featuring highly advanced AI sorting and planetary-scale tracking.',
+        'A full-stack web application tailored to minimize food waste by providing businesses and communities an intuitive platform to discover and purchase surplus meals at discounted rates.',
       problem:
-        'Needed a system capable of real-time planetary scale waste reduction tracking.',
-      role: 'Chief Quantum Architect & Visionary',
+        'Food retailers struggle with unsold inventory near closing hours, leading to avoidable food waste and revenue loss.',
+      role: 'Full-Stack Developer & Technical Lead',
       architecture: null,
       implementation:
-        'Built with Next.js 16, integrated with Google GenAI for classification and Supabase for secure decentralized data.',
-      technicalConsiderations: null,
-      securityConsiderations: null,
-      challenges: null,
-      lessonsLearned: null,
+        'Engineered modern frontend components with Next.js 16 and Tailwind CSS. Backed by Supabase PostgreSQL with row-level security and realtime synchronization.',
+      technicalConsiderations:
+        'Optimized map markers and image assets for fast load times on bandwidth-constrained mobile networks.',
+      securityConsiderations: 'Role-based access controls and encrypted authentication via Supabase Auth.',
+      challenges: 'Handling real-time synchronization of merchant stocks during high-traffic order spikes.',
+      lessonsLearned: 'Modular state architecture significantly reduces unnecessary re-renders in heavy map interfaces.',
       result:
-        'Successfully established a highly advanced zero-latency eco-infrastructure.',
+        'Successfully delivered a functional web portal with active merchant listings and responsive geolocation features.',
+    },
+  },
+  {
+    slug: 'odc-storage-datacenter',
+    name: 'ODC Storage (Media & Private DNS)',
+    purpose:
+      'Layanan cloud storage mandiri, pusat penyimpanan media & API gateway multi-tenant, serta server private AdGuard DNS.',
+    imageUrl: '/image/ODC logo.png',
+    technologies: ['PHP', 'API Gateway', 'Multi-Tenant', 'AdGuard Home', 'Cloudflare', 'Linux'],
+    contributions: [
+      'Merancang arsitektur penyimpanan berkas fisik independen berbasis UUID di luar webroot publik',
+      'Mengimplementasikan streaming video efisien dengan protokol HTTP Byte-Range Requests',
+      'Membangun API gateway terproteksi dengan token autentikasi dan rate limiting',
+      'Mengintegrasikan server DNS mandiri AdGuard Home untuk proteksi privasi dan ad-blocking jaringan'
+    ],
+    technicalChallenge: 'Memastikan isolasi direktori multi-tenant aman dan performa streaming media berkecepatan tinggi.',
+    status: 'Sistem Aktif',
+    links: [
+      {
+        type: 'live',
+        url: 'https://datacenter.oscartambunan.my.id/',
+        label: 'Kunjungi ODC Storage',
+      },
+    ],
+    caseStudy: {
+      overview:
+        'ODC Storage adalah infrastruktur cloud storage mandiri dan API gateway multi-tenant yang melayani penyimpanan aset media (JPG, PNG, WEBP, PDF, MP4 byte-range streaming) serta integrasi server private DNS AdGuard Home yang aktif beroperasi.',
+      problem:
+        'Kebutuhan infrastruktur penyimpanan file mandiri yang terpusat untuk berbagai aplikasi web tanpa ketergantungan berlebih pada layanan cloud komersial pihak ketiga yang mahal.',
+      role: 'Systems Architect & Full-Stack Infrastructure Engineer',
+      architecture: null,
+      implementation:
+        'Dikonfigurasi di atas bare-metal Linux server dengan reverse proxy Cloudflare, gateway API multi-tenant berbasis UUID di luar webroot publik, dan protokol streaming video HTTP byte-range.',
+      technicalConsiderations:
+        'Isolasi direktori fisik multi-tenant, kuota penyimpanan teratur, validasi ekstensi MIME aman, dan integrasi upstream DNS terenkripsi.',
+      securityConsiderations: 'Token-based API authentication, rate limiting, no-store headers, dan proteksi anti-directory traversal.',
+      challenges: 'Menangani streaming file video besar tanpa buffering tinggi pada koneksi seluler.',
+      lessonsLearned: 'Penerapan HTTP Byte-Range Requests dan Cloudflare CDN caching secara dramatis memotong beban I/O disk server lokal.',
+      result:
+        'Sistem aktif beroperasi secara live di datacenter.oscartambunan.my.id melayani kebutuhan penyimpanan berkas dan CDN privat.',
     },
   },
   {
@@ -113,80 +368,6 @@ export const projects: Project[] = [
       lessonsLearned: null, // TODO: Add lessons learned
       result:
         'Achieved a functional private cloud storage system with secure remote access and multi-device synchronization.',
-    },
-  },
-  {
-    slug: 'ugclashub',
-    name: 'UGClashub',
-    purpose:
-      'Build and deploy a responsive web platform with user and content management capabilities.',
-    technologies: ['PHP', 'MySQL', 'Web Hosting'],
-    contributions: [
-      'Developed the website using PHP and MySQL',
-      'Designed a database schema for user data',
-      'Built core content-management and user-interaction features',
-      'Created a responsive interface',
-      'Deployed the application to live hosting',
-    ],
-    technicalChallenge: null, // TODO: Add technical challenge details
-    status: 'Live',
-    links: [
-      {
-        type: 'live',
-        url: 'https://ugclashub.tech',
-        label: 'Visit Live Website',
-      },
-    ],
-    caseStudy: {
-      overview:
-        'A responsive web platform with content management and user interaction capabilities, built with PHP and MySQL and deployed to live hosting.',
-      problem:
-        'Needed to create a web platform that could manage user data and content while providing a responsive experience across devices.',
-      role: 'Full-stack developer. Responsible for front-end design, back-end development, database design, and deployment.',
-      architecture: null, // TODO: Add architecture details
-      implementation:
-        'Built the application using PHP for server-side logic and MySQL for data persistence. Designed database schemas to support user management and content storage. Created responsive front-end layouts.',
-      technicalConsiderations:
-        'Database schema design needed to accommodate user data and content relationships. Responsive design required testing across multiple screen sizes.',
-      securityConsiderations: null, // TODO: Add security details
-      challenges: null, // TODO: Add specific challenges
-      lessonsLearned: null, // TODO: Add lessons learned
-      result:
-        'Successfully deployed a live web platform accessible at ugclashub.tech.',
-    },
-  },
-  {
-    slug: 'dodostore',
-    name: 'DODOStore',
-    purpose:
-      'Develop an end-to-end online store covering the homepage, shopping workflow, authentication, cart, and payment page.',
-    technologies: ['PHP', 'MySQL', 'AJAX'],
-    contributions: [
-      'Developed an integrated front-end and back-end',
-      'Connected the application to MySQL',
-      'Implemented an interactive cart using AJAX',
-      'Built login and user authentication functionality',
-      'Developed the website flow from homepage to payment page',
-    ],
-    technicalChallenge: null, // TODO: Add technical challenge details
-    status: null, // TODO: Add current project status
-    links: [],
-    caseStudy: {
-      overview:
-        'An end-to-end online store application featuring product browsing, shopping cart, user authentication, and a payment page flow.',
-      problem:
-        'Needed to build a complete e-commerce workflow from product listing to payment, demonstrating full-stack development capabilities.',
-      role: 'Full-stack developer. Built both the front-end interface and back-end logic, including database integration and AJAX interactions.',
-      architecture: null, // TODO: Add architecture details
-      implementation:
-        'Developed the store using PHP for server-side processing and MySQL for product and user data. Implemented AJAX for the shopping cart to provide a dynamic, page-refresh-free experience. Built authentication for user accounts.',
-      technicalConsiderations:
-        'AJAX integration required careful handling of asynchronous requests and state management for the cart. Authentication needed secure session handling.',
-      securityConsiderations: null, // TODO: Add security details if applicable
-      challenges: null, // TODO: Add specific challenges
-      lessonsLearned: null, // TODO: Add lessons learned
-      result:
-        'Completed a functional online store with end-to-end shopping workflow from browsing to payment.',
     },
   },
 ];

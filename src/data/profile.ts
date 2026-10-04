@@ -11,6 +11,7 @@ export const profile: Profile = {
   linkedIn: 'https://www.linkedin.com/in/haioscartambunan',
   github: null, // TODO: Add GitHub URL when available
   whatsapp: 'https://wa.me/6281222994801',
+  instagram: 'https://instagram.com/haioscartambunan',
   cvUrl: '/oscar-tambunan-cv.pdf', // TODO: Replace with actual CV file
   socialLinks: [
     {
@@ -36,11 +37,12 @@ export const profile: Profile = {
 
 export const navigationItems: NavigationItem[] = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
+  { label: 'Infrastructure', href: '#infrastructure' },
+  { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
   { label: 'Certifications', href: '#certifications' },
+  { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' },
 ];
 

@@ -2,208 +2,304 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, ChevronLeft, ChevronRight, Grid, X } from 'lucide-react';
+import {
+  Maximize2,
+  X,
+  ArrowLeft,
+  ArrowRight,
+} from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
-import GlassCard from '@/components/ui/GlassCard';
-import Button from '@/components/ui/Button';
 
 interface GallerySectionProps {
   initialImages?: string[];
 }
 
-export default function GallerySection({ initialImages = [] }: GallerySectionProps) {
-  const [images, setImages] = useState<string[]>(initialImages);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const DEFAULT_IMAGES = [
+  'Kota Tua Gambir.jpg',
+  'Smoking_Man.jpeg',
+  'Ui x UG.jpeg',
+  'capung.jpeg',
+  'komodo.jpeg',
+];
+
+function getPhotoTitle(filename: string): string {
+  const lower = filename.toLowerCase();
+  if (lower.includes('kota tua') || lower.includes('gambir')) return 'Kota Tua Gambir';
+  if (lower.includes('smoking') || lower.includes('man')) return 'Smoking Man in Shadow';
+  if (lower.includes('ui') && lower.includes('ug')) return 'UI x UG Campus Perspective';
+  if (lower.includes('capung')) return 'Capung (Dragonfly Macro)';
+  if (lower.includes('komodo')) return 'Komodo Dragon Wildlife Study';
+  return filename.replace(/\.[^/.]+$/, '').replace(/_/g, ' ');
+}
+
+export default function GallerySection({ initialImages }: GallerySectionProps) {
+  const [images, setImages] = useState<string[]>(
+    initialImages && initialImages.length > 0 ? initialImages : DEFAULT_IMAGES
+  );
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   useEffect(() => {
-    // Fetch latest images so drops update instantly without server rebuild
     fetch('/api/gallery')
       .then((res) => res.json())
       .then((data) => {
-        if (data.images) {
+        if (data.images && data.images.length > 0) {
           setImages(data.images);
         }
       })
       .catch(console.error);
   }, []);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  const total = images.length || 1;
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
   };
 
-  const getVisibleImages = () => {
-    if (images.length === 0) return [];
-    
-    // Calculate previous, current, and next indices
-    const prev = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    const next = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-    
-    return [prev, currentIndex, next];
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
   };
 
-  const visibleIndices = getVisibleImages();
+  // Keyboard navigation (Left / Right Arrow)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxImage) return;
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxImage, total]);
+
+  // Touch Swipe Handlers for Mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchStartX - touchEndX;
+    if (deltaX > 45) {
+      nextSlide();
+    } else if (deltaX < -45) {
+      prevSlide();
+    }
+    setTouchStartX(null);
+  };
+
+  if (images.length === 0) {
+    return null;
+  }
 
   return (
-    <AnimatedSection id="gallery" className="py-20 sm:py-28 bg-bg-primary overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Photography"
-          subtitle="Capturing moments through the lens."
-        />
+    <AnimatedSection
+      id="gallery"
+      className="py-16 sm:py-24 bg-bg-primary relative overflow-hidden font-sans border-t border-white/[0.08]"
+    >
+      {/* Ambient background glow */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)] pointer-events-none"
+        aria-hidden="true"
+      />
 
-        {/* Gear Description */}
-        <div className="mb-12 max-w-2xl mx-auto text-center">
-          <GlassCard className="inline-flex flex-col items-center p-6 sm:p-8 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
-            <Camera className="w-8 h-8 text-accent mb-4" />
-            <h3 className="text-xl font-bold text-text-primary mb-2">Canon EOS M50</h3>
-            <p className="text-sm text-text-secondary leading-relaxed">
-              A versatile mirrorless camera system. Currently shooting with the standard 
-              <span className="text-text-primary font-medium"> 15-45mm f/3.5-6.3 IS STM </span> 
-              kit lens for everyday captures, and the 
-              <span className="text-text-primary font-medium"> EF-S 55-250mm f/4-5.6 IS STM </span> 
-              for telephoto reach and compression.
-            </p>
-          </GlassCard>
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+        <SectionHeading
+          title="Photography &amp; Creative Eye"
+          subtitle="Everyday moments, architecture, and textures captured through physical glass."
+        />
+      </div>
+
+      {/* Full-Width 3D Slider Container — Sama Persis dengan Certifications */}
+      <div
+        className="w-full relative overflow-hidden py-4 select-none"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="relative w-full max-w-[620px] mx-auto h-[460px] sm:h-[520px] flex items-center justify-center">
+          {images.map((image, index) => {
+            // Calculate shortest relative circular distance
+            let diff = index - currentIndex;
+            if (diff > total / 2) diff -= total;
+            if (diff < -total / 2) diff += total;
+
+            const isCenter = diff === 0;
+            const isLeft = diff === -1;
+            const isRight = diff === 1;
+            const isVisible = Math.abs(diff) <= 1;
+
+            let xOffset = '0%';
+            let scale = 1;
+            let opacity = 1;
+            let zIndex = 30;
+
+            if (isCenter) {
+              xOffset = '0%';
+              scale = 1;
+              opacity = 1;
+              zIndex = 10;
+            } else if (isRight) {
+              xOffset = '82%';
+              scale = 0.92;
+              opacity = 0.45;
+              zIndex = 5;
+            } else if (isLeft) {
+              xOffset = '-82%';
+              scale = 0.92;
+              opacity = 0.45;
+              zIndex = 5;
+            } else if (diff > 1) {
+              xOffset = '160%';
+              scale = 0.82;
+              opacity = 0;
+              zIndex = 0;
+            } else {
+              xOffset = '-160%';
+              scale = 0.82;
+              opacity = 0;
+              zIndex = 0;
+            }
+
+            const title = getPhotoTitle(image);
+
+            return (
+              <motion.div
+                key={image}
+                animate={{
+                  x: xOffset,
+                  scale,
+                  opacity,
+                  zIndex,
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 280,
+                  damping: 28,
+                  mass: 0.8,
+                }}
+                onClick={() => {
+                  if (isLeft) prevSlide();
+                  if (isRight) nextSlide();
+                  if (isCenter) setLightboxImage(image);
+                }}
+                className={`absolute top-0 w-[90vw] max-w-[360px] sm:max-w-[540px] md:max-w-[600px] h-full ${
+                  isCenter
+                    ? 'cursor-pointer'
+                    : isVisible
+                    ? 'cursor-pointer hover:opacity-75 transition-opacity'
+                    : 'pointer-events-none'
+                }`}
+              >
+                {/* Minimalist Card — Sama Persis dengan Certifications */}
+                <div
+                  className={`w-full h-full rounded-2xl border transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden relative ${
+                    isCenter
+                      ? 'bg-[#080d19] border-white/20 shadow-2xl shadow-black/80 hover:border-accent/40'
+                      : 'bg-[#080d19]/90 border-white/10 shadow-lg'
+                  }`}
+                >
+                  {/* Photo Frame */}
+                  <div className="w-full flex-1 rounded-xl overflow-hidden bg-[#030712] border border-white/10 relative flex items-center justify-center mb-3 group/img shadow-inner">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`/image_camera/${image}`}
+                      alt={title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.03]"
+                    />
+
+                    {isCenter && (
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-mono text-white backdrop-blur-[2px]">
+                        <Maximize2 className="w-4 h-4 text-accent" />
+                        <span>Perbesar Tampilan</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* HANYA TAMPILKAN JUDUL SAJA (Sisanya tidak usah) */}
+                  <div className="px-1 py-1">
+                    <h3 className="text-base sm:text-lg font-bold text-white tracking-tight leading-snug line-clamp-1">
+                      {title}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* 3D Carousel */}
-        {images.length > 0 ? (
-          <div className="relative h-[400px] sm:h-[500px] w-full flex items-center justify-center perspective-1000">
-            <div className="relative w-full max-w-3xl h-full flex items-center justify-center">
-              <AnimatePresence initial={false}>
-                {images.map((img, i) => {
-                  const position = visibleIndices.indexOf(i);
-                  if (position === -1) return null; // Not visible
-
-                  const isCenter = position === 1;
-                  const isLeft = position === 0;
-                  const isRight = position === 2;
-
-                  return (
-                    <motion.div
-                      key={img}
-                      initial={{ 
-                        opacity: 0, 
-                        scale: 0.8,
-                        x: isLeft ? '-50%' : isRight ? '50%' : '0%',
-                        zIndex: 0
-                      }}
-                      animate={{
-                        opacity: isCenter ? 1 : 0.5,
-                        scale: isCenter ? 1 : 0.8,
-                        x: isLeft ? '-60%' : isRight ? '60%' : '0%',
-                        zIndex: isCenter ? 10 : 5,
-                        rotateY: isLeft ? 15 : isRight ? -15 : 0,
-                      }}
-                      exit={{ 
-                        opacity: 0, 
-                        scale: 0.8,
-                        zIndex: 0
-                      }}
-                      transition={{ duration: 0.5, type: 'spring', stiffness: 300, damping: 30 }}
-                      className="absolute top-0 w-[280px] sm:w-[400px] md:w-[500px] h-full rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
-                      onClick={() => {
-                        if (isLeft) prevSlide();
-                        if (isRight) nextSlide();
-                      }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={`/image_camera/${img}`} 
-                        alt={`Gallery ${i}`} 
-                        className="w-full h-full object-cover rounded-2xl border border-border-subtle"
-                      />
-                      {/* Dark overlay for side images */}
-                      {!isCenter && (
-                        <div className="absolute inset-0 bg-black/40 rounded-2xl" />
-                      )}
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
-            </div>
-
-            {/* Navigation Controls */}
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 sm:px-8 z-20 pointer-events-none">
-              <button 
-                onClick={prevSlide}
-                className="pointer-events-auto p-3 rounded-full bg-bg-secondary/80 text-text-primary backdrop-blur-sm border border-border-subtle hover:bg-bg-tertiary transition-colors"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="pointer-events-auto p-3 rounded-full bg-bg-secondary/80 text-text-primary backdrop-blur-sm border border-border-subtle hover:bg-bg-tertiary transition-colors"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="text-center text-text-tertiary py-20">
-            No photos found in the gallery.
-          </div>
-        )}
-
-        {/* All Photos Button */}
-        <div className="mt-12 flex justify-center">
-          <Button 
-            onClick={() => setIsModalOpen(true)}
-            variant="outline"
-            icon={Grid}
-            size="lg"
+        {/* Minimalist Bottom Navigation Bar: [ ← ] 01 / 05 [ → ] */}
+        <div className="flex items-center justify-center gap-6 sm:gap-8 mt-8 sm:mt-10">
+          <button
+            type="button"
+            onClick={prevSlide}
+            aria-label="Previous Photo"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg border border-white/20 hover:border-accent text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all duration-200 flex items-center justify-center cursor-pointer active:scale-95 shadow-lg group"
           >
-            View All Photos
-          </Button>
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-x-0.5" />
+          </button>
+
+          <div className="font-mono text-sm sm:text-base tracking-[0.2em] text-slate-300 flex items-center gap-2 select-none">
+            <span className="text-white font-bold">{String(currentIndex + 1).padStart(2, '0')}</span>
+            <span className="text-slate-600">/</span>
+            <span className="text-slate-400">{String(total).padStart(2, '0')}</span>
+          </div>
+
+          <button
+            type="button"
+            onClick={nextSlide}
+            aria-label="Next Photo"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg border border-white/20 hover:border-accent text-slate-300 hover:text-white hover:bg-white/[0.06] transition-all duration-200 flex items-center justify-center cursor-pointer active:scale-95 shadow-lg group"
+          >
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
+          </button>
         </div>
       </div>
 
-      {/* All Photos Modal */}
+      {/* Lightbox Modal: Tampilan Layar Penuh Bebas Distraksi */}
       <AnimatePresence>
-        {isModalOpen && (
-          <motion.div 
+        {lightboxImage && (
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-bg-primary/95 backdrop-blur-xl overflow-y-auto"
+            className="fixed inset-0 z-[80] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md"
+            onClick={() => setLightboxImage(null)}
           >
-            <div className="min-h-screen p-4 sm:p-8">
-              <div className="flex justify-between items-center mb-8 sticky top-0 bg-bg-primary/90 backdrop-blur py-4 z-10 border-b border-border-subtle">
-                <h2 className="text-2xl font-bold text-text-primary">All Photos</h2>
-                <button 
-                  onClick={() => setIsModalOpen(false)}
-                  className="p-2 rounded-full hover:bg-bg-secondary transition-colors text-text-secondary hover:text-text-primary"
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl bg-[#080d19] border border-white/15 p-4 sm:p-6 shadow-2xl relative overflow-hidden"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between gap-4 pb-3 mb-3 border-b border-white/10 shrink-0">
+                <h3 className="text-base sm:text-lg font-bold text-white leading-snug truncate">
+                  {getPhotoTitle(lightboxImage)}
+                </h3>
+
+                <button
+                  type="button"
+                  onClick={() => setLightboxImage(null)}
+                  aria-label="Tutup"
+                  className="p-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                {images.map((img, i) => (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    key={`grid-${img}`}
-                    className="aspect-square rounded-xl overflow-hidden border border-border-subtle bg-bg-secondary"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src={`/image_camera/${img}`} 
-                      alt={`Gallery ${i}`} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
-                ))}
+
+              {/* Modal Body */}
+              <div className="flex-1 min-h-[260px] sm:min-h-[460px] bg-[#030712] rounded-xl overflow-hidden border border-white/10 flex items-center justify-center p-2 sm:p-4 shadow-inner">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/image_camera/${lightboxImage}`}
+                  alt={getPhotoTitle(lightboxImage)}
+                  className="w-full h-full object-contain max-h-[70vh]"
+                />
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

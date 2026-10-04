@@ -1,211 +1,179 @@
 'use client';
 
-import { Briefcase, TrendingUp } from 'lucide-react';
-import { experiences, additionalExperience } from '@/data/experience';
+import { ExternalLink } from 'lucide-react';
+import { education } from '@/data/education';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
-import GlassCard from '@/components/ui/GlassCard';
-
-function calculateDuration(period: string) {
-  try {
-    const [startStr, endStr] = period.split('—').map(s => s.trim());
-    if (!startStr) return '';
-    
-    // Simple month mapping
-    const monthsMap: Record<string, number> = {
-      january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
-      july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
-    };
-
-    const parseDateStr = (dateStr: string) => {
-      if (dateStr.toLowerCase() === 'present') return new Date();
-      const parts = dateStr.split(' ');
-      if (parts.length === 2) {
-        const m = monthsMap[parts[0].toLowerCase()];
-        const y = parseInt(parts[1], 10);
-        if (m !== undefined && !isNaN(y)) return new Date(y, m, 1);
-      }
-      return new Date(dateStr);
-    };
-
-    const startDate = parseDateStr(startStr);
-    const endDate = parseDateStr(endStr || startStr);
-    
-    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) return '';
-
-    let months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
-    months -= startDate.getMonth();
-    months += endDate.getMonth();
-    months += 1; // Include starting month
-
-    const years = Math.floor(months / 12);
-    const remainingMonths = months % 12;
-
-    if (years === 0) {
-      return `${remainingMonths} mo${remainingMonths !== 1 ? 's' : ''}`;
-    } else if (remainingMonths === 0) {
-      return `${years} yr${years !== 1 ? 's' : ''}`;
-    }
-    return `${years} yr${years !== 1 ? 's' : ''} ${remainingMonths} mo${remainingMonths !== 1 ? 's' : ''}`;
-  } catch (e) {
-    return '';
-  }
-}
 
 export default function ExperienceSection() {
   return (
-    <AnimatedSection id="experience" className="py-20 sm:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <AnimatedSection id="experience" className="py-16 sm:py-24 bg-bg-secondary relative overflow-hidden border-t border-white/[0.08]">
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading
-          title="Experience"
-          subtitle="Professional roles and organizational involvement."
+          title="Education &amp; Experience"
+          subtitle="Riwayat pendidikan akademik &amp; rekam jejak peran profesional."
         />
 
-        {/* Timeline */}
-        <div className="space-y-16 mb-16">
-          {(() => {
-            // Group experiences by organization
-            const groups: typeof experiences[] = [];
-            let currentGroup: typeof experiences = [];
-            
-            experiences.forEach((exp, idx) => {
-              if (idx === 0) {
-                currentGroup.push(exp);
-              } else if (experiences[idx - 1].organization === exp.organization) {
-                currentGroup.push(exp);
-              } else {
-                groups.push(currentGroup);
-                currentGroup = [exp];
-              }
-            });
-            if (currentGroup.length > 0) groups.push(currentGroup);
-
-            return groups.map((group, groupIdx) => (
-              <div key={`group-${groupIdx}`} className="relative space-y-8">
-                {/* Vertical line per organization group */}
-                {group.length > 1 && (
-                  <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border-subtle hidden sm:block" />
-                )}
-
-                {group.map((exp, expIdx) => {
-                  const duration = calculateDuration(exp.year);
-                  // For the first item in a group, the dot is solid. For subsequent, it's hollow.
-                  const isPrimary = expIdx === 0;
-
-                  return (
-                    <div key={`${exp.organization}-${exp.role}-${expIdx}`} className="relative flex gap-6">
-                      {/* Timeline dot */}
-                      <div className="hidden sm:flex shrink-0 w-10 items-start justify-center pt-1">
-                        <div className={`w-3 h-3 rounded-full ${isPrimary ? 'bg-accent' : 'bg-border-subtle'} border-2 border-bg-primary z-10`} />
-                      </div>
-
-                      <GlassCard hover className="flex-1">
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                          <div>
-                            <h3 className="text-base font-semibold text-text-primary">
-                              {exp.role}
-                            </h3>
-                            <p className="text-sm text-text-secondary">{exp.organization}</p>
-                          </div>
-                          <div className="flex flex-col items-end gap-1">
-                            <span className="text-xs font-medium text-text-tertiary bg-surface px-2.5 py-1 rounded-md border border-border-subtle whitespace-nowrap">
-                              {exp.year}
-                            </span>
-                            {duration && (
-                              <span className="text-xs font-medium text-emerald-400/80">
-                                {duration}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Only show responsibilities if not empty */}
-                        {exp.responsibilities.length > 0 && (
-                          <ul className="space-y-1.5 mt-3">
-                            {exp.responsibilities.map((resp) => (
-                              <li
-                                key={resp}
-                                className="flex items-start gap-2 text-sm text-text-secondary"
-                              >
-                                <span className="w-1 h-1 rounded-full bg-text-tertiary mt-2 shrink-0" />
-                                {resp}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
-                        {/* Only show description if available */}
-                        {exp.description && (
-                          <p className="text-sm text-text-secondary mt-3">{exp.description}</p>
-                        )}
-                      </GlassCard>
-                    </div>
-                  );
-                })}
-              </div>
-            ));
-          })()}
-        </div>
-
-        {/* Additional Analytical Experience */}
-        <div className="mt-12">
-          <div className="flex items-center gap-2 mb-6">
-            <TrendingUp className="w-4 h-4 text-accent" />
-            <h3 className="text-lg font-semibold text-text-primary">
-              Additional Analytical Experience
-            </h3>
-          </div>
-
-          <GlassCard>
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-              <div className="flex items-center gap-2">
-                <Briefcase className="w-4 h-4 text-text-tertiary" />
-                <h4 className="text-base font-medium text-text-primary">
-                  {additionalExperience.title}
-                </h4>
-              </div>
-              <span className="text-xs font-medium text-text-tertiary bg-surface px-2.5 py-1 rounded-md border border-border-subtle whitespace-nowrap">
-                {additionalExperience.period}
-              </span>
+        {/* LinkedIn-Style Flow — Standardized Typography Hierarchy Across All Entries */}
+        <div className="w-full divide-y divide-white/[0.08]">
+          {/* ========================================================================= */}
+          {/* Entry 1: Universitas Gunadarma (Education)                                */}
+          {/* ========================================================================= */}
+          <div className="pb-6 sm:pb-8 flex items-start gap-3.5 sm:gap-5">
+            {/* University Logo */}
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-white/10 p-1.5 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/image/Gunadarma logo.png"
+                alt="Universitas Gunadarma Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Focus Areas */}
-              <div>
-                <p className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-3">
-                  Focus Areas
-                </p>
-                <ul className="space-y-2">
-                  {additionalExperience.focusAreas.map((area) => (
-                    <li
-                      key={area}
-                      className="flex items-start gap-2 text-sm text-text-secondary"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" />
-                      {area}
-                    </li>
-                  ))}
-                </ul>
+            {/* Content Body */}
+            <div className="flex-1 min-w-0">
+              {/* Level 3: Organization / Institution Title */}
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                {education.institution}
+              </h3>
+
+              {/* Level 4: Degree / Program */}
+              <div className="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
+                {education.degree}{' '}
+                <span className="text-slate-400 font-normal">· Undergraduate Degree (S1 Teknik Informatika)</span>
               </div>
 
-              {/* Evidence Of */}
-              <div>
-                <p className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-3">
-                  Demonstrates
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {additionalExperience.evidenceOf.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-xs font-medium text-accent bg-accent-muted rounded-md border border-accent/20"
-                    >
-                      {skill}
+              {/* Level 5: Dates, Location & Mode */}
+              <p className="text-xs text-slate-400 font-mono mt-1">
+                {education.yearRange} <span className="text-slate-500">·</span> Depok, West Java, Indonesia <span className="text-slate-500">·</span> On-site
+              </p>
+
+              {/* Level 6: Content & Academic Competencies (Kalimat Singkat & To The Point) */}
+              <p className="mt-2.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+                Fokus pada Rekayasa Perangkat Lunak, Basis Data Relasional, dan Jaringan Komputer dengan implementasi langsung pada aplikasi web produksi dan server bare-metal mandiri.
+              </p>
+            </div>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* Entry 2: Laboratorium Akuntansi Menengah                                  */}
+          {/* ========================================================================= */}
+          <div className="py-6 sm:py-8 flex items-start gap-3.5 sm:gap-5">
+            {/* Organization Logo */}
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-white/10 p-1.5 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/image/Labamen Logo.png"
+                alt="Laboratorium Akuntansi Menengah Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {/* Content Body */}
+            <div className="flex-1 min-w-0">
+              {/* Level 3: Organization Title with Website Link (Identical font size & weight) */}
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                <a
+                  href="https://www.ak-menengah.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent hover:underline inline-flex items-center gap-1.5 transition-colors group/link text-white font-bold"
+                >
+                  <span>Lab. Akuntansi Menengah, Universitas Gunadarma</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-accent transition-colors shrink-0" />
+                </a>
+              </h3>
+
+              {/* Level 4: Role & Employment Type */}
+              <div className="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
+                IT Staff &amp; Support <span className="text-slate-400 font-normal">· Part-time</span>
+              </div>
+
+              {/* Level 5: Dates & Location */}
+              <p className="text-xs text-slate-400 font-mono mt-1">
+                Jun 2026 – Present <span className="text-slate-500">·</span> 5 mos <span className="text-slate-500">·</span> Depok, West Java, Indonesia <span className="text-slate-500">·</span> On-site
+              </p>
+
+              {/* Level 6: Responsibilities (Kalimat Singkat & To The Point) */}
+              <p className="mt-2.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+                Bertanggung jawab atas pemeliharaan rutin PC laboratorium, instalasi software praktikum (Office &amp; Zahir Accounting), serta pengelolaan portal web dan database operasional.
+              </p>
+            </div>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* Entry 3: Kelompok Studi Pasar Modal (KSPM) - Career Progression           */}
+          {/* ========================================================================= */}
+          <div className="pt-6 sm:pt-8 flex items-start gap-3.5 sm:gap-5">
+            {/* Organization Logo */}
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-white/10 p-1.5 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/image/KSPM Logo.png"
+                alt="KSPM Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {/* Content Body */}
+            <div className="flex-1 min-w-0">
+              {/* Level 3: Org Name (Identical font size & weight) */}
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                Kelompok Studi Pasar Modal (KSPM), Universitas Gunadarma
+              </h3>
+
+              {/* Level 4: Organization Scope / Subtitle */}
+              <div className="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
+                Student Organization <span className="text-slate-400 font-normal">· Depok, West Java, Indonesia</span>
+              </div>
+
+              {/* Career Progression Timeline (LinkedIn nested line & dots) */}
+              <div className="relative pl-6 sm:pl-7 mt-4 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-3 before:w-[2px] before:bg-white/15">
+                {/* Role 1: Head of Asset Management */}
+                <div className="relative">
+                  {/* Timeline Node Dot */}
+                  <span className="absolute -left-6 sm:-left-7 top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-bg-secondary" />
+
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <h4 className="text-xs sm:text-sm font-semibold text-slate-200">
+                      Head of Asset Management
+                    </h4>
+                    <span className="text-[10px] font-mono text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20 font-medium">
+                      Promoted
                     </span>
-                  ))}
+                  </div>
+
+                  <p className="text-xs text-slate-400 font-mono mt-1">
+                    Jun 2026 – Present <span className="text-slate-500">·</span> 5 mos <span className="text-slate-500">·</span> Depok, West Java <span className="text-slate-500">·</span> On-site
+                  </p>
+
+                  <ul className="mt-2 space-y-1.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed list-disc list-outside pl-4 sm:pl-5">
+                    <li>Pengelolaan kas treasury organisasi, pengawasan arus kas (cash flow), dan alokasi anggaran operasional kegiatan.</li>
+                    <li>Edukasi analisis portofolio ekuitas, diversifikasi aset, dan manajemen risiko bagi anggota divisi.</li>
+                  </ul>
+                </div>
+
+                {/* Role 2: Member */}
+                <div className="relative">
+                  {/* Timeline Node Dot */}
+                  <span className="absolute -left-6 sm:-left-7 top-1.5 w-2.5 h-2.5 rounded-full bg-slate-500 ring-4 ring-bg-secondary" />
+
+                  <h4 className="text-xs sm:text-sm font-semibold text-slate-200">
+                    Member
+                  </h4>
+
+                  <p className="text-xs text-slate-400 font-mono mt-1">
+                    May 2026 – Jun 2026 <span className="text-slate-500">·</span> 2 mos <span className="text-slate-500">·</span> Depok, West Java <span className="text-slate-500">·</span> On-site
+                  </p>
+
+                  <ul className="mt-2 space-y-1.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed list-disc list-outside pl-4 sm:pl-5">
+                    <li>Mempelajari fondasi analisis fundamental valuasi ekuitas (PBV, PER) serta metodologi evaluasi rasio keuangan.</li>
+                    <li>Riset berkala kondisi pasar makroekonomi dan analisis tren sebelum meraih promosi ke posisi Kepala Divisi.</li>
+                  </ul>
                 </div>
               </div>
             </div>
-          </GlassCard>
+          </div>
         </div>
       </div>
     </AnimatedSection>

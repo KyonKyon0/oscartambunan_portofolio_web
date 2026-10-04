@@ -3,23 +3,24 @@ import { Experience, AdditionalExperience } from '@/types';
 export const experiences: Experience[] = [
   {
     organization: 'Laboratorium Akuntansi Menengah, Universitas Gunadarma',
-    role: 'IT Programmer (Part-time)',
+    role: 'IT Staff & Support (Part-time)',
     year: 'June 2026 — Present',
     type: 'primary',
     responsibilities: [
-      'Developing and maintaining internal software systems to support laboratory operations',
-      'Assisting in the digitalization of accounting modules and practical exam environments',
-      'Providing technical support and troubleshooting for laboratory infrastructure'
+      'Design web, relogin DB, dan perancangan alur kerja (workflow) operasional laboratorium',
+      'Instalasi software praktikum (Office, Zahir Accounting) dan maintenance rutin PC laboratorium',
+      'Pengolahan modul dan data praktikum di Excel serta pengelolaan file materi lab',
+      'Desain materi visual feeds/informasi laboratorium dan memastikan PC siap pakai untuk sesi praktikum'
     ],
-    tools: ['Software Development', 'System Administration', 'Technical Troubleshooting'],
+    tools: [],
     contributions: [
-      'Streamlined digital workflows for accounting practicums',
-      'Ensured high availability of laboratory IT systems during peak operational hours'
+      'Memastikan kesiapan operasional PC dan software praktikum akuntansi',
+      'Mendukung kelancaran pelaksanaan praktikum dan ketersediaan materi mahasiswa'
     ],
     results: [
-      'Improved the efficiency of digital exam executions and module distributions'
+      'Seluruh PC dan software lab beroperasi optimal selama sesi praktikum'
     ],
-    description: 'Serving as a part-time IT Programmer, bridging the gap between accounting processes and technological infrastructure. Focused on maintaining system reliability and developing tools that enhance the educational experience within the laboratory.',
+    description: 'Bertanggung jawab dalam instalasi software penunjang praktikum (Office & Zahir Accounting), pemeliharaan PC laboratorium, pengolahan modul Excel, dan desain feeds informasi.',
   },
   {
     organization: 'Kelompok Studi Pasar Modal (KSPM), Universitas Gunadarma',
@@ -31,7 +32,7 @@ export const experiences: Experience[] = [
       'Overseeing cash flow, requesting operational funds, and allocating capital for investments',
       'Educating team members on investment fundamentals and asset diversification strategies'
     ],
-    tools: ['Portfolio Management', 'Treasury Management', 'Leadership'],
+    tools: [],
     contributions: [
       'Spearheaded the asset management division by establishing structured treasury operations',
       'Optimized cash allocation to maximize returns while maintaining organizational liquidity'
@@ -51,7 +52,7 @@ export const experiences: Experience[] = [
       'Evaluating PBV (Price-to-Book Value) and PER (Price-to-Earnings Ratio)',
       'Participating in regular market condition monitoring'
     ],
-    tools: ['Financial Modeling', 'Fundamental Analysis'],
+    tools: [],
     contributions: [
       'Contributed deep analytical insights during team evaluations',
     ],

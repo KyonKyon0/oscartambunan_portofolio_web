@@ -20,6 +20,7 @@ export interface Profile {
   linkedIn: string;
   github: string | null;
   whatsapp: string | null;
+  instagram?: string | null;
   cvUrl: string;
   socialLinks: SocialLink[];
 }
@@ -99,6 +100,10 @@ export interface Certification {
   issuer: string;
   date: string;
   credentialUrl: string | null;
+  certificateFile?: string | null;
+  thumbnail?: string | null;
+  category?: string;
+  description?: string;
 }
 
 export interface NavigationItem {
