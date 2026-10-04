@@ -67,7 +67,7 @@ export default function ContactSection() {
             <div className="relative w-full aspect-[4/5] sm:aspect-[4/5] lg:aspect-auto lg:h-full min-h-[320px] lg:min-h-[500px] rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl group">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/image/Carmen1.jpg"
+                src="/images/profile/carmen-portrait.jpg"
                 alt="Carmen"
                 className="w-full h-full object-cover object-[center_18%] brightness-95 contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
               />

@@ -46,7 +46,7 @@ const CARDS: CardData[] = [
     id: 'hardware-systems',
     title: 'Hardware & Systems Infrastructure',
     summary: '8 Cores Dedicated CPU • Proxmox VE • FTTH 150 Mbps',
-    wallpaper: '/image/ODC Wallpaper.jpg',
+    wallpaper: '/images/wallpapers/odc-hardware.jpg',
     icon: Server,
     highlights: [
       { value: '8 Cores CPU' },
@@ -307,7 +307,7 @@ const CARDS: CardData[] = [
     id: 'asset',
     title: 'Asset Management',
     summary: 'Portofolio Multi-Aset',
-    wallpaper: '/image/Asset wallpaper.jpg',
+    wallpaper: '/images/wallpapers/asset-management.jpg',
     icon: PieChart,
     highlights: [
       { value: 'Danamas 46.6%' },

@@ -12,7 +12,7 @@ import CertificationsSection from '@/components/sections/CertificationsSection';
 import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
-  const imageCameraDir = path.join(process.cwd(), 'public', 'image_camera');
+  const imageCameraDir = path.join(process.cwd(), 'public', 'images', 'photography');
   let cameraImages: string[] = [];
   try {
     const files = fs.readdirSync(imageCameraDir);

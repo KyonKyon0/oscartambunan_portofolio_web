@@ -16,21 +16,21 @@ interface GallerySectionProps {
 }
 
 const DEFAULT_IMAGES = [
-  'Kota Tua Gambir.jpg',
-  'Smoking_Man.jpeg',
-  'Ui x UG.jpeg',
-  'capung.jpeg',
-  'komodo.jpeg',
+  'kota-tua-gambir.jpg',
+  'smoking-man.jpg',
+  'ui-x-ug.jpg',
+  'capung.jpg',
+  'komodo.jpg',
 ];
 
 function getPhotoTitle(filename: string): string {
   const lower = filename.toLowerCase();
-  if (lower.includes('kota tua') || lower.includes('gambir')) return 'Kota Tua Gambir';
+  if (lower.includes('kota') || lower.includes('gambir')) return 'Kota Tua Gambir';
   if (lower.includes('smoking') || lower.includes('man')) return 'Smoking Man in Shadow';
   if (lower.includes('ui') && lower.includes('ug')) return 'UI x UG Campus Perspective';
   if (lower.includes('capung')) return 'Capung (Dragonfly Macro)';
   if (lower.includes('komodo')) return 'Komodo Dragon Wildlife Study';
-  return filename.replace(/\.[^/.]+$/, '').replace(/_/g, ' ');
+  return filename.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
 }
 
 export default function GallerySection({ initialImages }: GallerySectionProps) {
@@ -204,7 +204,7 @@ export default function GallerySection({ initialImages }: GallerySectionProps) {
                   <div className="w-full flex-1 rounded-xl overflow-hidden bg-[#030712] border border-white/10 relative flex items-center justify-center mb-3 group/img shadow-inner">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={`/image_camera/${image}`}
+                      src={`/images/photography/${image}`}
                       alt={title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.03]"
                     />
@@ -294,7 +294,7 @@ export default function GallerySection({ initialImages }: GallerySectionProps) {
               <div className="flex-1 min-h-[260px] sm:min-h-[460px] bg-[#030712] rounded-xl overflow-hidden border border-white/10 flex items-center justify-center p-2 sm:p-4 shadow-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/image_camera/${lightboxImage}`}
+                  src={`/images/photography/${lightboxImage}`}
                   alt={getPhotoTitle(lightboxImage)}
                   className="w-full h-full object-contain max-h-[70vh]"
                 />

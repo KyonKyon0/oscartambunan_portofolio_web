@@ -24,7 +24,7 @@ export default function ExperienceSection() {
             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-white/10 p-1.5 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/image/Gunadarma logo.png"
+                src="/images/logos/gunadarma.png"
                 alt="Universitas Gunadarma Logo"
                 className="w-full h-full object-contain"
               />
@@ -63,7 +63,7 @@ export default function ExperienceSection() {
             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-white/10 p-1.5 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/image/Labamen Logo.png"
+                src="/images/logos/labamen.png"
                 alt="Laboratorium Akuntansi Menengah Logo"
                 className="w-full h-full object-contain"
               />
@@ -109,7 +109,7 @@ export default function ExperienceSection() {
             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-white/10 p-1.5 flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/image/KSPM Logo.png"
+                src="/images/logos/kspm.png"
                 alt="KSPM Logo"
                 className="w-full h-full object-contain"
               />

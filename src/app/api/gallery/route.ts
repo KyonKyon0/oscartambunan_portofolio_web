@@ -5,13 +5,13 @@ import path from 'path';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const imageCameraDir = path.join(process.cwd(), 'public', 'image_camera');
+  const imageCameraDir = path.join(process.cwd(), 'public', 'images', 'photography');
   try {
     const files = fs.readdirSync(imageCameraDir);
     let cameraImages = files.filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file));
     
-    // Find "Kota Tua Gambir" (ignoring extension just in case it's .jpeg instead of .jpg)
-    const firstImageIndex = cameraImages.findIndex(file => file.toLowerCase().includes('kota tua gambir'));
+    // Find "Kota Tua Gambir"
+    const firstImageIndex = cameraImages.findIndex(file => file.toLowerCase().includes('kota') || file.toLowerCase().includes('gambir'));
     
     let firstImage = null;
     if (firstImageIndex !== -1) {

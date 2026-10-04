@@ -175,7 +175,7 @@ export default function HeroSection() {
                 <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-slate-800 to-slate-950 flex items-center justify-center">
                   {/* Profile Photo */}
                   <Image
-                    src="/image/profile_foto.jpg"
+                    src="/images/profile/oscar-portrait.jpg"
                     alt="Oscar Victorious Putra Tambunan"
                     width={340}
                     height={425}

@@ -6,7 +6,7 @@ export const projects: Project[] = [
     name: 'Lab. Akuntansi Menengah (Redesign & Workflow Architecture)',
     purpose:
       'Pusat praktikum Laboratorium Akuntansi Menengah terpadu Universitas Gunadarma. Solusi cerdas pendalaman teori akuntansi menuju implementasi praktikum berbasis teknologi dan software akuntansi modern berstandar industri.',
-    imageUrl: '/image/Labamen web.jpg',
+    imageUrl: '/images/projects/labamen-portal.jpg',
     technologies: ['Next.js / React', 'TypeScript', 'Tailwind CSS', 'Digital Workflow Architecture', 'UI/UX Redesign'],
     contributions: [
       'Merancang ulang (Redesign) antarmuka portal laboratorium agar modern, responsif, dan mudah diakses oleh ribuan mahasiswa',
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     name: 'Labamen Internal Operations & Admin Dashboard',
     purpose:
       'Sistem dashboard operasional dan manajemen database internal Laboratorium Akuntansi Menengah untuk administrasi data praktikum, penjadwalan asisten, dan pengelolaan modul ujian digital.',
-    imageUrl: '/image/Labamen Admin.jpg',
+    imageUrl: '/images/projects/labamen-admin.jpg',
     technologies: ['PHP', 'MySQL', 'Relational Database', 'Admin Dashboard', 'CRUD Operations'],
     contributions: [
       'Mengembangkan dashboard admin internal berbasis PHP dan MySQL untuk operasional harian laboratorium',
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     name: 'Cloudflare Edge Analytics & Zero-Trust Tunnel Infrastructure',
     purpose:
       'Monitoring analitik trafik produksi real-time dan arsitektur web mandiri (self-hosted) via Cloudflare Tunnel terenkripsi tanpa port forwarding.',
-    imageUrl: '/image/Cloudflare Dashboard.jpg',
+    imageUrl: '/images/projects/cloudflare-tunnel.jpg',
     technologies: ['Cloudflare Tunnel', 'Edge Analytics', 'Zero Trust', 'Traffic Monitoring', 'DDoS Protection', 'CDN Caching'],
     contributions: [
       'Mengonfigurasi daemon cloudflared untuk menyalurkan traffic web portofolio dan homelab secara aman melalui outbound-only tunnel',
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     name: 'Kerjain (Friendly Local Service Marketplace)',
     purpose:
       'Platform penghubung konsumen dan mitra kerja untuk menyelesaikan berbagai kebutuhan rumah tangga harian secara aman, praktis, dan transparan di Indonesia.',
-    imageUrl: '/image/kerjain logo.png',
+    imageUrl: '/images/logos/kerjain.png',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'TanStack Query', 'Vercel'],
     contributions: [
       'Merancang arsitektur aplikasi marketplace web responsif untuk kebutuhan rumah tangga harian',
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     name: 'Pesona Tari (Indonesian Cultural Performing Arts Ticketing Platform)',
     purpose:
       'Platform reservasi dan pembelian tiket pertunjukan seni tari tradisional Nusantara berbasis web dengan integrasi pembayaran QRIS real-time dan manajemen tiket digital.',
-    imageUrl: '/image/Pesonatarisite.jpeg',
+    imageUrl: '/images/projects/pesonatari.jpg',
     technologies: ['PHP', 'MySQL', 'CSS3', 'QRIS Payment Gateway', 'Relational Database', 'Ticketing Workflow'],
     contributions: [
       'Merancang dan membangun arsitektur platform web pemesanan tiket pertunjukan seni tari Nusantara berbasis PHP dan basis data MySQL',
@@ -220,7 +220,7 @@ export const projects: Project[] = [
     name: 'Mertha (Food Waste Mitigation Platform)',
     purpose:
       'A web platform designed to reduce food waste by connecting surplus inventory with buyers and distribution channels.',
-    imageUrl: '/image/Mertha Logo.png',
+    imageUrl: '/images/logos/martha.png',
     technologies: ['Next.js 16', 'React 19', 'Supabase', 'Leaflet Maps', 'Zustand', 'Tailwind CSS'],
     contributions: [
       'Developed responsive user interfaces with Next.js App Router and React 19',
@@ -260,7 +260,7 @@ export const projects: Project[] = [
     name: 'ODC Storage (Media & Private DNS)',
     purpose:
       'Layanan cloud storage mandiri, pusat penyimpanan media & API gateway multi-tenant, serta server private AdGuard DNS.',
-    imageUrl: '/image/ODC logo.png',
+    imageUrl: '/images/logos/odc.png',
     technologies: ['PHP', 'API Gateway', 'Multi-Tenant', 'AdGuard Home', 'Cloudflare', 'Linux'],
     contributions: [
       'Merancang arsitektur penyimpanan berkas fisik independen berbasis UUID di luar webroot publik',

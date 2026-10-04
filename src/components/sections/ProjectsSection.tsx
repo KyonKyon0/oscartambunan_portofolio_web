@@ -26,7 +26,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full overflow-hidden bg-slate-950">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/Labamen web.jpg"
+          src="/images/projects/labamen-portal.jpg"
           alt="Lab. Akuntansi Menengah Website"
           className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
         />
@@ -40,7 +40,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full overflow-hidden bg-slate-950">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/Labamen Admin.jpg"
+          src="/images/projects/labamen-admin.jpg"
           alt="Labamen Admin Dashboard"
           className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
         />
@@ -54,7 +54,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full overflow-hidden bg-slate-950">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/Cloudflare Dashboard.jpg"
+          src="/images/projects/cloudflare-tunnel.jpg"
           alt="Cloudflare Edge Analytics Dashboard"
           className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
         />
@@ -68,7 +68,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full overflow-hidden bg-slate-950">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/Pesonatarisite.jpeg"
+          src="/images/projects/pesonatari.jpg"
           alt="Pesona Tari Ticketing Website"
           className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
         />
@@ -82,7 +82,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-gradient-to-br from-slate-900/90 via-[#070e1b] to-emerald-950/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/kerjain logo.png"
+          src="/images/logos/kerjain.png"
           alt="Kerjain Logo"
           className="max-h-5 sm:max-h-6 md:max-h-7 w-auto max-w-[80%] object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
         />
@@ -95,7 +95,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-gradient-to-br from-slate-900/90 via-[#070e1b] to-emerald-950/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/Mertha Logo.png"
+          src="/images/logos/martha.png"
           alt="Mertha Logo"
           className="max-h-5 sm:max-h-6 md:max-h-7 w-auto max-w-[80%] object-contain rounded relative z-10 transition-transform duration-300 group-hover:scale-105"
         />
@@ -108,7 +108,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-gradient-to-br from-slate-900/90 via-[#070e1b] to-emerald-950/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/image/ODC logo.png"
+          src="/images/logos/odc.png"
           alt="ODC Storage Logo"
           className="max-h-5 sm:max-h-6 md:max-h-7 w-auto max-w-[80%] object-contain rounded relative z-10 transition-transform duration-300 group-hover:scale-105"
         />
