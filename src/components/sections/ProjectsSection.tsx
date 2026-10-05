@@ -244,12 +244,12 @@ export default function ProjectsSection() {
                           href={targetUrl}
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
-                          className="w-20 sm:w-28 md:w-32 lg:w-36 aspect-[16/10] rounded-lg overflow-hidden bg-slate-900/80 border border-white/10 shrink-0 relative flex items-center justify-center group-hover:border-accent/40 transition-all duration-200"
+                          className="w-16 sm:w-28 md:w-32 lg:w-36 aspect-[16/10] rounded-lg overflow-hidden bg-slate-900/80 border border-white/10 shrink-0 relative flex items-center justify-center group-hover:border-accent/40 transition-all duration-200"
                         >
                           <ProjectVisual project={project} />
                         </a>
                       ) : (
-                        <div className="w-20 sm:w-28 md:w-32 lg:w-36 aspect-[16/10] rounded-lg overflow-hidden bg-slate-900/80 border border-white/10 shrink-0 relative flex items-center justify-center">
+                        <div className="w-16 sm:w-28 md:w-32 lg:w-36 aspect-[16/10] rounded-lg overflow-hidden bg-slate-900/80 border border-white/10 shrink-0 relative flex items-center justify-center">
                           <ProjectVisual project={project} />
                         </div>
                       )}
@@ -278,7 +278,7 @@ export default function ProjectsSection() {
                         </h3>
 
                         {/* Purpose Description */}
-                        <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed max-w-3xl">
+                        <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed max-w-3xl">
                           {project.purpose}
                         </p>
 
