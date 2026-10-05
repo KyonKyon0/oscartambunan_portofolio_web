@@ -4,14 +4,20 @@ import { ExternalLink } from 'lucide-react';
 import { education } from '@/data/education';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ExperienceSection() {
+  const { t } = useLanguage();
+
   return (
     <AnimatedSection id="experience" className="py-16 sm:py-24 bg-bg-secondary relative overflow-hidden border-t border-white/[0.08]">
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading
-          title="Education &amp; Experience"
-          subtitle="Riwayat pendidikan akademik &amp; rekam jejak peran profesional."
+          title={t('Pendidikan & Pengalaman', 'Education & Experience')}
+          subtitle={t(
+            'Riwayat pendidikan akademik & rekam jejak peran profesional.',
+            'Academic education history & track record of professional roles.'
+          )}
         />
 
         {/* LinkedIn-Style Flow — Standardized Typography Hierarchy Across All Entries */}
@@ -39,18 +45,23 @@ export default function ExperienceSection() {
 
               {/* Level 4: Degree / Program */}
               <div className="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
-                {education.degree}{' '}
-                <span className="text-slate-400 font-normal">· Undergraduate Degree (S1 Teknik Informatika)</span>
+                {t('Sarjana Teknik Informatika', education.degree)}{' '}
+                <span className="text-slate-400 font-normal">
+                  {t('· Sarjana Strata 1 (S1)', '· Undergraduate Degree (S1 Teknik Informatika)')}
+                </span>
               </div>
 
               {/* Level 5: Dates, Location & Mode */}
-              <p className="text-xs text-slate-400 font-mono mt-1">
-                {education.yearRange} <span className="text-slate-500">·</span> Depok, West Java, Indonesia <span className="text-slate-500">·</span> On-site
+              <p className="text-xs text-slate-400 font-sans mt-1">
+                {education.yearRange} <span className="text-slate-500">·</span> Depok, West Java, Indonesia <span className="text-slate-500">·</span> {t('Di Lokasi', 'On-site')}
               </p>
 
               {/* Level 6: Content & Academic Competencies (Kalimat Singkat & To The Point) */}
               <p className="mt-2.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
-                Fokus pada Rekayasa Perangkat Lunak, Basis Data Relasional, dan Jaringan Komputer dengan implementasi langsung pada aplikasi web produksi dan server bare-metal mandiri.
+                {t(
+                  'Fokus pada Rekayasa Perangkat Lunak, Basis Data Relasional, dan Jaringan Komputer dengan implementasi langsung pada aplikasi web produksi dan server bare-metal mandiri.',
+                  'Focusing on Software Engineering, Relational Databases, and Computer Networks with hands-on implementation in production web applications and self-hosted bare-metal servers.'
+                )}
               </p>
             </div>
           </div>
@@ -86,17 +97,20 @@ export default function ExperienceSection() {
 
               {/* Level 4: Role & Employment Type */}
               <div className="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
-                IT Staff &amp; Support <span className="text-slate-400 font-normal">· Part-time</span>
+                IT Staff &amp; Support <span className="text-slate-400 font-normal">· {t('Paruh Waktu', 'Part-time')}</span>
               </div>
 
               {/* Level 5: Dates & Location */}
-              <p className="text-xs text-slate-400 font-mono mt-1">
-                Jun 2026 – Present <span className="text-slate-500">·</span> 5 mos <span className="text-slate-500">·</span> Depok, West Java, Indonesia <span className="text-slate-500">·</span> On-site
+              <p className="text-xs text-slate-400 font-sans mt-1">
+                {t('Jun 2026 – Sekarang', 'Jun 2026 – Present')} <span className="text-slate-500">·</span> {t('5 bln', '5 mos')} <span className="text-slate-500">·</span> Depok, West Java, Indonesia <span className="text-slate-500">·</span> {t('Di Lokasi', 'On-site')}
               </p>
 
               {/* Level 6: Responsibilities (Kalimat Singkat & To The Point) */}
               <p className="mt-2.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed">
-                Bertanggung jawab atas pemeliharaan rutin PC laboratorium, instalasi software praktikum (Office &amp; Zahir Accounting), serta pengelolaan portal web dan database operasional.
+                {t(
+                  'Bertanggung jawab atas pemeliharaan rutin PC laboratorium, instalasi software praktikum (Office & Zahir Accounting), serta pengelolaan portal web dan database operasional.',
+                  'Responsible for routine maintenance of laboratory PCs, practical software installations (Office & Zahir Accounting), and managing the web portal and operational databases.'
+                )}
               </p>
             </div>
           </div>
@@ -124,7 +138,7 @@ export default function ExperienceSection() {
 
               {/* Level 4: Organization Scope / Subtitle */}
               <div className="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
-                Student Organization <span className="text-slate-400 font-normal">· Depok, West Java, Indonesia</span>
+                {t('Organisasi Mahasiswa', 'Student Organization')} <span className="text-slate-400 font-normal">· Depok, West Java, Indonesia</span>
               </div>
 
               {/* Career Progression Timeline (LinkedIn nested line & dots) */}
@@ -138,18 +152,18 @@ export default function ExperienceSection() {
                     <h4 className="text-xs sm:text-sm font-semibold text-slate-200">
                       Head of Asset Management
                     </h4>
-                    <span className="text-[10px] font-mono text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20 font-medium">
-                      Promoted
+                    <span className="text-[10px] font-sans text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20 font-medium">
+                      {t('Dipromosikan', 'Promoted')}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-400 font-mono mt-1">
-                    Jun 2026 – Present <span className="text-slate-500">·</span> 5 mos <span className="text-slate-500">·</span> Depok, West Java <span className="text-slate-500">·</span> On-site
+                  <p className="text-xs text-slate-400 font-sans mt-1">
+                    {t('Jun 2026 – Sekarang', 'Jun 2026 – Present')} <span className="text-slate-500">·</span> {t('5 bln', '5 mos')} <span className="text-slate-500">·</span> Depok, West Java <span className="text-slate-500">·</span> {t('Di Lokasi', 'On-site')}
                   </p>
 
                   <ul className="mt-2 space-y-1.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed list-disc list-outside pl-4 sm:pl-5">
-                    <li>Pengelolaan kas treasury organisasi, pengawasan arus kas (cash flow), dan alokasi anggaran operasional kegiatan.</li>
-                    <li>Edukasi analisis portofolio ekuitas, diversifikasi aset, dan manajemen risiko bagi anggota divisi.</li>
+                    <li>{t('Pengelolaan kas treasury organisasi, pengawasan arus kas (cash flow), dan alokasi anggaran operasional kegiatan.', 'Managing organization treasury funds, monitoring cash flow, and allocating event operational budgets.')}</li>
+                    <li>{t('Edukasi analisis portofolio ekuitas, diversifikasi aset, dan manajemen risiko bagi anggota divisi.', 'Educating division members on equity portfolio analysis, asset diversification, and risk management.')}</li>
                   </ul>
                 </div>
 
@@ -159,16 +173,16 @@ export default function ExperienceSection() {
                   <span className="absolute -left-6 sm:-left-7 top-1.5 w-2.5 h-2.5 rounded-full bg-slate-500 ring-4 ring-bg-secondary" />
 
                   <h4 className="text-xs sm:text-sm font-semibold text-slate-200">
-                    Member
+                    {t('Anggota Divisi', 'Member')}
                   </h4>
 
-                  <p className="text-xs text-slate-400 font-mono mt-1">
-                    May 2026 – Jun 2026 <span className="text-slate-500">·</span> 2 mos <span className="text-slate-500">·</span> Depok, West Java <span className="text-slate-500">·</span> On-site
+                  <p className="text-xs text-slate-400 font-sans mt-1">
+                    {t('Mei 2026 – Jun 2026', 'May 2026 – Jun 2026')} <span className="text-slate-500">·</span> {t('2 bln', '2 mos')} <span className="text-slate-500">·</span> Depok, West Java <span className="text-slate-500">·</span> {t('Di Lokasi', 'On-site')}
                   </p>
 
                   <ul className="mt-2 space-y-1.5 text-xs sm:text-sm text-slate-300/90 leading-relaxed list-disc list-outside pl-4 sm:pl-5">
-                    <li>Mempelajari fondasi analisis fundamental valuasi ekuitas (PBV, PER) serta metodologi evaluasi rasio keuangan.</li>
-                    <li>Riset berkala kondisi pasar makroekonomi dan analisis tren sebelum meraih promosi ke posisi Kepala Divisi.</li>
+                    <li>{t('Mempelajari fondasi analisis fundamental valuasi ekuitas (PBV, PER) serta metodologi evaluasi rasio keuangan.', 'Studied foundations of fundamental equity valuation (PBV, PER) and financial ratio evaluation methodologies.')}</li>
+                    <li>{t('Riset berkala kondisi pasar makroekonomi dan analisis tren sebelum meraih promosi ke posisi Kepala Divisi.', 'Conducted periodic research on macroeconomic conditions and trend analysis before being promoted to Head of Asset Management.')}</li>
                   </ul>
                 </div>
               </div>

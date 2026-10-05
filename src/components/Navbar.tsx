@@ -4,7 +4,20 @@ import { useState, useEffect } from 'react';
 import { Menu, Download } from 'lucide-react';
 import { navigationItems } from '@/data/profile';
 import { useActiveSection } from '@/lib/hooks/useActiveSection';
+import { useLanguage } from '@/context/LanguageContext';
+import LanguageToggle from '@/components/ui/LanguageToggle';
 import MobileMenu from './MobileMenu';
+
+const navTranslations: Record<string, { id: string; en: string }> = {
+  '#home': { id: 'Beranda', en: 'Home' },
+  '#infrastructure': { id: 'Infrastruktur', en: 'Infrastructure' },
+  '#skills': { id: 'Kemampuan', en: 'Capabilities' },
+  '#experience': { id: 'Pengalaman', en: 'Experience' },
+  '#projects': { id: 'Karya Pilihan', en: 'Selected Works' },
+  '#certifications': { id: 'Sertifikasi', en: 'Certifications' },
+  '#gallery': { id: 'Galeri', en: 'Gallery' },
+  '#contact': { id: 'Kontak', en: 'Contact' },
+};
 
 const sectionIds = [
   'home',
@@ -18,6 +31,7 @@ const sectionIds = [
 ];
 
 export default function Navbar() {
+  const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const activeSection = useActiveSection(sectionIds);
@@ -73,7 +87,7 @@ export default function Navbar() {
                         : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]'
                     }`}
                   >
-                    {item.label}
+                    {navTranslations[item.href] ? t(navTranslations[item.href].id, navTranslations[item.href].en) : item.label}
                   </a>
                 </li>
               );
@@ -81,15 +95,18 @@ export default function Navbar() {
           </ul>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <LanguageToggle className="hidden lg:inline-flex" />
+
             <a
               href="/oscar-tambunan-cv.pdf"
               download
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 rounded-full transition-all duration-200 shadow-sm min-h-[36px]"
+              className="hidden lg:inline-flex items-center justify-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 rounded-full transition-all duration-200 shadow-sm min-h-[36px]"
               aria-label="Download CV"
+              title={t('Unduh CV', 'Download CV')}
             >
               <Download className="w-3.5 h-3.5 text-slate-400" />
-              <span className="hidden sm:inline">Download CV</span>
+              <span>{t('Unduh CV', 'Download CV')}</span>
             </a>
 
             {/* Mobile menu button */}

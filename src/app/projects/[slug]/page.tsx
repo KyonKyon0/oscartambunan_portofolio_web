@@ -144,7 +144,7 @@ export default async function ProjectPage({
           {sections.map((section, index) => (
             <section key={section.title}>
               <div className="flex items-baseline gap-3 mb-3">
-                <span className="text-xs font-mono text-text-tertiary">
+                <span className="text-xs font-sans tabular-nums text-text-tertiary">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <h2 className="text-lg font-semibold text-text-primary">

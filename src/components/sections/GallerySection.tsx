@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface GallerySectionProps {
   initialImages?: string[];
@@ -34,6 +35,7 @@ function getPhotoTitle(filename: string): string {
 }
 
 export default function GallerySection({ initialImages }: GallerySectionProps) {
+  const { t } = useLanguage();
   const [images, setImages] = useState<string[]>(
     initialImages && initialImages.length > 0 ? initialImages : DEFAULT_IMAGES
   );
@@ -107,8 +109,11 @@ export default function GallerySection({ initialImages }: GallerySectionProps) {
 
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading
-          title="Photography &amp; Creative Eye"
-          subtitle="Everyday moments, architecture, and textures captured through physical glass."
+          title={t('Fotografi & Sudut Pandang Visual', 'Photography & Creative Eye')}
+          subtitle={t(
+            'Koleksi bidikan fotografi jalanan, arsitektur, dan komposisi visual melalui lensa kamera.',
+            'Everyday moments, architecture, and textures captured through physical glass.'
+          )}
         />
       </div>
 
@@ -210,9 +215,9 @@ export default function GallerySection({ initialImages }: GallerySectionProps) {
                     />
 
                     {isCenter && (
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-mono text-white backdrop-blur-[2px]">
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-sans text-white backdrop-blur-[2px]">
                         <Maximize2 className="w-4 h-4 text-accent" />
-                        <span>Perbesar Tampilan</span>
+                        <span>{t('Perbesar Tampilan', 'Zoom View')}</span>
                       </div>
                     )}
                   </div>
@@ -240,7 +245,7 @@ export default function GallerySection({ initialImages }: GallerySectionProps) {
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-x-0.5" />
           </button>
 
-          <div className="font-mono text-sm sm:text-base tracking-[0.2em] text-slate-300 flex items-center gap-2 select-none">
+          <div className="font-sans tabular-nums text-sm sm:text-base tracking-[0.15em] text-slate-300 flex items-center gap-2 select-none">
             <span className="text-white font-bold">{String(currentIndex + 1).padStart(2, '0')}</span>
             <span className="text-slate-600">/</span>
             <span className="text-slate-400">{String(total).padStart(2, '0')}</span>

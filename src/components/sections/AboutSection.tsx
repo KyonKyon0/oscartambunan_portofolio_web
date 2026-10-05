@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import {
   Server,
   PieChart,
@@ -10,6 +11,7 @@ import {
 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { useLanguage } from '@/context/LanguageContext';
 
 type CardId = 'hardware-systems' | 'asset';
 
@@ -398,6 +400,7 @@ const assetPieGradient = (() => {
 })();
 
 export default function AboutSection() {
+  const { t } = useLanguage();
   const [selectedId, setSelectedId] = useState<CardId | null>(null);
 
   const selectedCard = CARDS.find((c) => c.id === selectedId) || null;
@@ -468,7 +471,7 @@ export default function AboutSection() {
         </div>
 
         {/* Bottom Click Affordance */}
-        <div className="relative z-10 pt-1.5 sm:pt-2.5 border-t border-white/10 flex items-center justify-between text-[8.5px] sm:text-[11px] font-mono text-slate-400 group-hover:text-white transition-colors">
+        <div className="relative z-10 pt-1.5 sm:pt-2.5 border-t border-white/10 flex items-center justify-between text-[8.5px] sm:text-[11px] font-sans text-slate-400 group-hover:text-white transition-colors">
           <span>{isSingleView ? 'Aktif' : 'Spesifikasi'}</span>
           <span>↗</span>
         </div>
@@ -479,15 +482,41 @@ export default function AboutSection() {
   return (
     <AnimatedSection
       id="infrastructure"
-      className="py-14 sm:py-20 bg-bg-secondary relative overflow-hidden border-t border-white/[0.08]"
+      className="py-14 sm:py-20 bg-[#080a10] relative overflow-hidden border-t border-white/[0.08]"
     >
       {/* Anchor for backward compatibility with #about */}
       <span id="about" className="sr-only" aria-hidden="true" />
 
+      {/* Background Wallpaper: wallpaper_section2 */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/wallpapers/wallpaper_section2.webp"
+          alt="Infrastruktur & Manajemen Aset Wallpaper"
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-70 sm:opacity-80"
+          quality={95}
+        />
+        {/* Layer 1: Tint peredup halus merata untuk memastikan keterbacaan teks & kontras kartu */}
+        <div className="absolute inset-0 bg-[#080a10]/60" />
+
+        {/* Layer 2: Vignette radial halus untuk kedalaman visual */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#080a10_100%)] opacity-85" />
+
+        {/* Layer 3: Gradien atas menyatu mulus ke HeroSection */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#080a10] via-[#080a10]/70 to-transparent" />
+
+        {/* Layer 4: Gradien bawah menyatu mulus ke SkillsSection */}
+        <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#080a10] via-[#080a10]/80 to-transparent" />
+      </div>
+
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading
-          title="Infrastructure &amp; Asset Management"
-          subtitle="Fondasi sistem komputasi on-premise dan transparansi alokasi portofolio multi-aset."
+          title={t('Infrastruktur & Manajemen Aset', 'Infrastructure & Asset Management')}
+          subtitle={t(
+            'Fondasi sistem komputasi on-premise dan transparansi alokasi portofolio multi-aset.',
+            'Foundations of on-premise computing systems and transparent multi-asset portfolio allocation.'
+          )}
         />
 
         {/* ========================================================================= */}
@@ -512,10 +541,10 @@ export default function AboutSection() {
               <button
                 type="button"
                 onClick={() => setSelectedId(null)}
-                className="inline-flex items-center gap-2 text-xs font-mono text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 px-3.5 py-1.5 rounded-lg transition-colors mb-3 cursor-pointer group shadow-sm"
+                className="inline-flex items-center gap-2 text-xs font-sans text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 px-3.5 py-1.5 rounded-lg transition-colors mb-3 cursor-pointer group shadow-sm"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                <span>Kembali ke Semua Kartu</span>
+                <span>{t('Kembali ke Semua Kartu', 'Back to All Cards')}</span>
               </button>
 
               {/* Render HANYA kartu yang dipilih dengan wallpaper dan ikon */}
@@ -556,7 +585,7 @@ export default function AboutSection() {
                             {item.label}
                           </span>
                         </div>
-                        <span className="font-mono font-bold text-white text-[11px] sm:text-xs shrink-0">
+                        <span className="font-sans font-bold text-white text-[11px] sm:text-xs shrink-0">
                           {item.percent}%
                         </span>
                       </div>
@@ -567,7 +596,7 @@ export default function AboutSection() {
             </div>
 
             {/* SISI KANAN: SHEET SPESIFIKASI SCROLLABLE */}
-            <div className="flex-1 min-w-0 w-full">
+            <div className="flex-1 min-w-0 w-full bg-[#070c18]/90 border border-white/15 rounded-2xl p-5 sm:p-7 backdrop-blur-md shadow-2xl">
               {/* Header Sheet */}
               <div className="pb-4 border-b border-white/10 flex items-start justify-between gap-4">
                 <div>
@@ -613,7 +642,7 @@ export default function AboutSection() {
 
                           {/* Sisi Kanan: Nilai */}
                           <div className="sm:text-right shrink-0">
-                            <span className="text-xs sm:text-sm font-mono text-slate-300 font-medium">
+                            <span className="text-xs sm:text-sm font-sans text-slate-300 font-medium">
                               {row.value}
                             </span>
                           </div>

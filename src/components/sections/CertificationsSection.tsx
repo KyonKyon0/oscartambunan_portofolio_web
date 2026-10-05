@@ -14,6 +14,7 @@ import {
 import { certifications } from '@/data/certifications';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { useLanguage } from '@/context/LanguageContext';
 import { Certification } from '@/types';
 
 const CERT_IDS = [
@@ -27,6 +28,7 @@ const CERT_IDS = [
 ];
 
 export default function CertificationsSection() {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [lightboxCert, setLightboxCert] = useState<Certification | null>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
@@ -80,8 +82,11 @@ export default function CertificationsSection() {
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         {/* Editorial Section Header */}
         <SectionHeading
-          title="Certifications & Honors"
-          subtitle="Accredited technical credentials, cloud & DevOps engineering coursework, and university honors."
+          title={t('Sertifikasi & Penghargaan', 'Certifications & Honors')}
+          subtitle={t(
+            'Kredensial teknis terakreditasi, kursus rekayasa cloud & DevOps, dan penghargaan universitas.',
+            'Accredited technical credentials, cloud & DevOps engineering coursework, and university honors.'
+          )}
         />
       </div>
 
@@ -189,9 +194,9 @@ export default function CertificationsSection() {
                     )}
 
                     {isCenter && (
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-mono text-white backdrop-blur-[2px]">
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-sans text-white backdrop-blur-[2px]">
                         <Maximize2 className="w-4 h-4 text-sky-400" />
-                        <span>Perbesar Tampilan</span>
+                        <span>{t('Perbesar Tampilan', 'Zoom View')}</span>
                       </div>
                     )}
                   </div>
@@ -200,7 +205,7 @@ export default function CertificationsSection() {
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       {/* Issuer / Category */}
-                      <div className="text-[11px] font-mono font-semibold text-sky-400 uppercase tracking-widest truncate mb-1">
+                      <div className="text-[11px] font-sans font-semibold text-sky-400 uppercase tracking-widest truncate mb-1">
                         {cert.issuer}
                       </div>
 
@@ -210,7 +215,7 @@ export default function CertificationsSection() {
                       </h3>
 
                       {/* Period / Date */}
-                      <p className="text-xs font-mono text-slate-400 mt-1">
+                      <p className="text-xs font-sans text-slate-400 mt-1">
                         {cert.date}
                       </p>
 
@@ -223,7 +228,7 @@ export default function CertificationsSection() {
                     </div>
 
                     {/* Bottom Action Bar: BUKA DOKUMEN / DETAIL / #ID */}
-                    <div className="pt-3.5 mt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                    <div className="pt-3.5 mt-3 border-t border-white/10 flex items-center justify-between text-xs font-sans">
                       <div className="flex items-center gap-3.5 sm:gap-4">
                         {docUrl ? (
                           <a
@@ -233,11 +238,11 @@ export default function CertificationsSection() {
                             onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-1 text-slate-200 hover:text-accent font-semibold transition-colors group/link"
                           >
-                            <span>BUKA DOKUMEN</span>
+                            <span>{t('BUKA DOKUMEN', 'OPEN DOCUMENT')}</span>
                             <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-accent transition-colors" />
                           </a>
                         ) : (
-                          <span className="text-slate-500">RESMI</span>
+                          <span className="text-slate-500">{t('RESMI', 'OFFICIAL')}</span>
                         )}
 
                         <button
@@ -248,13 +253,13 @@ export default function CertificationsSection() {
                           }}
                           className="inline-flex items-center gap-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
                         >
-                          <span>DETAIL</span>
+                          <span>{t('DETAIL', 'DETAILS')}</span>
                           <Maximize2 className="w-3 h-3 text-sky-400" />
                         </button>
                       </div>
 
                       {/* Industrial Hash/Serial ID */}
-                      <span className="text-slate-500 font-mono text-[10px] sm:text-[11px] tracking-wider shrink-0">
+                      <span className="text-slate-500 font-sans text-[10px] sm:text-[11px] tracking-wider shrink-0">
                         {certId}
                       </span>
                     </div>
@@ -276,7 +281,7 @@ export default function CertificationsSection() {
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-x-0.5" />
           </button>
 
-          <div className="font-mono text-sm sm:text-base tracking-[0.2em] text-slate-300 flex items-center gap-2 select-none">
+          <div className="font-sans tabular-nums text-sm sm:text-base tracking-[0.15em] text-slate-300 flex items-center gap-2 select-none">
             <span className="text-white font-bold">{String(currentIndex + 1).padStart(2, '0')}</span>
             <span className="text-slate-600">/</span>
             <span className="text-slate-400">{String(total).padStart(2, '0')}</span>
@@ -313,7 +318,7 @@ export default function CertificationsSection() {
               {/* Modal Header */}
               <div className="flex items-start justify-between gap-4 pb-3 mb-3 border-b border-white/10 shrink-0">
                 <div className="min-w-0">
-                  <span className="text-[10px] font-mono font-semibold text-sky-400 uppercase tracking-wider">
+                  <span className="text-[10px] font-sans font-semibold text-sky-400 uppercase tracking-wider">
                     {lightboxCert.category} &bull; {lightboxCert.date}
                   </span>
                   <h3 className="text-base sm:text-lg font-bold text-white leading-snug mt-0.5">
@@ -358,7 +363,7 @@ export default function CertificationsSection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-accent text-bg-primary font-semibold text-xs hover:bg-accent/90 transition-colors shrink-0 shadow-md"
                   >
-                    <span>Buka Dokumen Asli</span>
+                    <span>{t('Buka Dokumen Asli', 'Open Original Document')}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}

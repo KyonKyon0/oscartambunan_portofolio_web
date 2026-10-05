@@ -2,15 +2,37 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {
-  Mail,
-  Download,
-} from 'lucide-react';
 import { profile } from '@/data/profile';
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion';
-import Button from '@/components/ui/Button';
+import { useLanguage } from '@/context/LanguageContext';
+
+const DASHBOARD_ICONS_CDN = 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons';
+
+const SOCIAL_LINKS = [
+  {
+    name: 'LinkedIn',
+    href: profile.linkedIn,
+    icon: `${DASHBOARD_ICONS_CDN}/svg/linkedin.svg`,
+  },
+  {
+    name: 'Email',
+    href: `mailto:${profile.email}`,
+    icon: `${DASHBOARD_ICONS_CDN}/svg/gmail.svg`,
+  },
+  {
+    name: 'WhatsApp',
+    href: profile.whatsapp || 'https://wa.me/6281222994801',
+    icon: `${DASHBOARD_ICONS_CDN}/svg/whatsapp.svg`,
+  },
+  {
+    name: 'Instagram',
+    href: profile.instagram || 'https://instagram.com/haioscartambunan',
+    icon: `${DASHBOARD_ICONS_CDN}/svg/instagram.svg`,
+  },
+];
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
 
   const containerVariants = {
@@ -32,6 +54,33 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-[90vh] flex flex-col justify-between pt-20 pb-6 sm:pt-24 sm:pb-8 overflow-hidden"
     >
+      {/* Background Wallpaper: Bendera Indonesia — Mulus, Alami, & Rapi */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/wallpapers/wallpaper_bendera indonesia.webp"
+          alt="Indonesian Flag Wallpaper"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center sm:object-[center_20%] opacity-85"
+          quality={95}
+        />
+        {/* Layer 1: Tint peredup halus merata di seluruh layar tanpa potongan garis */}
+        <div className="absolute inset-0 bg-[#030712]/55" />
+
+        {/* Layer 2: Vignette radial halus untuk memfokuskan visual ke tengah secara mulus */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#030712_100%)] opacity-80" />
+
+        {/* Layer 3: Gradien halus dari kiri di desktop agar teks judul & narasi kontras tinggi */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/40 to-transparent w-3/5" />
+
+        {/* Layer 4: Gradien atas untuk area navbar */}
+        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#030712] via-[#030712]/60 to-transparent" />
+        
+        {/* Layer 5: Gradien bawah menyatu mulus ke section berikutnya */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
+      </div>
+
       {/* Hero Container */}
       <div className="relative z-10 w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex-1 flex items-center">
         <motion.div
@@ -42,12 +91,12 @@ export default function HeroSection() {
         >
           {/* Left Column: Narrative & CTAs (7 cols) - Muncul Kedua di HP (order-2) */}
           <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-            {/* Headline - Refined, Balanced Font Scale */}
+            {/* Headline - Refined, Balanced Font Scale dengan Drop Shadow Alami */}
             <motion.h1
               variants={itemVariants}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2 leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
             >
-              Hi, I&apos;m{' '}
+              {t('Halo, Saya', "Hi, I'm")}{' '}
               <span className="gradient-accent-text block sm:inline">
                 Oscar Tambunan
               </span>
@@ -56,10 +105,10 @@ export default function HeroSection() {
             {/* Subtitle & Role */}
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg font-medium text-slate-200 mb-3 max-w-xl"
+              className="text-base sm:text-lg font-medium text-white sm:text-slate-200 mb-3 max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]"
             >
               Junior Full-Stack Developer{' '}
-              <span className="text-slate-400 font-normal">
+              <span className="text-slate-300 sm:text-slate-400 font-normal">
                 &amp; Linux Systems Engineer
               </span>
             </motion.p>
@@ -67,94 +116,50 @@ export default function HeroSection() {
             {/* Narrative Description - To The Point */}
             <motion.p
               variants={itemVariants}
-              className="text-xs sm:text-sm text-slate-400 max-w-xl mb-6 leading-relaxed text-pretty"
+              className="text-xs sm:text-sm text-slate-300 sm:text-slate-400 max-w-xl mb-6 leading-relaxed text-pretty drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
             >
-              Informatics Engineering student at{' '}
+              {t(
+                'Mahasiswa Teknik Informatika di ',
+                'Informatics Engineering student at '
+              )}
               <span className="text-white font-medium">Universitas Gunadarma</span>.
-              Building scalable full-stack applications and self-hosted bare-metal infrastructure from Proxmox VE to Cloudflare tunnels.
+              {t(
+                ' Mengembangkan aplikasi full-stack terukur dan infrastruktur bare-metal self-hosted dari Proxmox VE hingga Cloudflare tunnels.',
+                ' Building scalable full-stack applications and self-hosted bare-metal infrastructure from Proxmox VE to Cloudflare tunnels.'
+              )}
             </motion.p>
 
-            {/* Action Buttons: Only Download CV */}
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center justify-center lg:justify-start mb-6"
-            >
-              <Button
-                href="/oscar-tambunan-cv.pdf"
-                variant="primary"
-                icon={Download}
-                size="md"
-                external
-              >
-                Download CV
-              </Button>
-            </motion.div>
 
-            {/* Social Links with Logo Icons */}
+            {/* Social Links with Dashboard Icons (Same as Skills) */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 text-xs text-slate-300"
             >
-              <a
-                href={profile.linkedIn}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-sm"
-                aria-label="LinkedIn"
-              >
-                <svg
-                  className="w-4 h-4 text-[#0A66C2] fill-current group-hover:scale-110 transition-transform"
-                  viewBox="0 0 24 24"
+              {SOCIAL_LINKS.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target={item.href.startsWith('mailto:') ? undefined : '_blank'}
+                  rel={item.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                  className="inline-flex items-center gap-2 p-2.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-sm cursor-pointer backdrop-blur-sm"
+                  aria-label={item.name}
+                  title={item.name}
                 >
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.66 1.66 0 1 0-.01 3.32 1.66 1.66 0 0 0 .01-3.32Z" />
-                </svg>
-                <span className="font-medium text-slate-300 group-hover:text-white transition-colors">LinkedIn</span>
-              </a>
-
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-sm"
-                aria-label="Email"
-              >
-                <Mail className="w-4 h-4 text-sky-400 group-hover:scale-110 transition-transform" />
-                <span className="font-medium text-slate-300 group-hover:text-white transition-colors">Email</span>
-              </a>
-
-              <a
-                href={profile.whatsapp || 'https://wa.me/6281222994801'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-sm"
-                aria-label="WhatsApp"
-              >
-                <svg
-                  className="w-4 h-4 text-[#25D366] fill-current group-hover:scale-110 transition-transform"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29Z" />
-                </svg>
-                <span className="font-medium text-slate-300 group-hover:text-white transition-colors">WhatsApp</span>
-              </a>
-
-              <a
-                href={profile.instagram || 'https://instagram.com/haioscartambunan'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-sm"
-                aria-label="Instagram"
-              >
-                <svg
-                  className="w-4 h-4 text-[#E1306C] fill-none stroke-current stroke-2 group-hover:scale-110 transition-transform"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-                <span className="font-medium text-slate-300 group-hover:text-white transition-colors">Instagram</span>
-              </a>
+                  <div className="w-4 h-4 sm:w-4.5 sm:h-4.5 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110 relative">
+                    <Image
+                      src={item.icon}
+                      alt={item.name}
+                      width={18}
+                      height={18}
+                      className="w-full h-full object-contain"
+                      unoptimized
+                    />
+                  </div>
+                  <span className="hidden sm:inline font-medium text-slate-300 group-hover:text-white transition-colors">
+                    {item.name}
+                  </span>
+                </a>
+              ))}
             </motion.div>
           </div>
 

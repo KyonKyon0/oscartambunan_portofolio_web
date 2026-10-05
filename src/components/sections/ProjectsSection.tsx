@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '@/data/projects';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { useLanguage } from '@/context/LanguageContext';
 
 function getProjectCategory(slug: string): string {
   if (slug === 'labamen-accounting-portal') return 'ACADEMIC PLATFORM';
@@ -127,7 +128,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
           </div>
           <div className="text-left font-sans">
             <div className="text-[9.5px] font-black tracking-wider text-white leading-none">PROXMOX</div>
-            <div className="text-[6.5px] font-mono tracking-widest text-[#E57000] uppercase font-bold mt-0.5">VE</div>
+            <div className="text-[6.5px] font-sans tracking-widest text-[#E57000] uppercase font-bold mt-0.5">VE</div>
           </div>
         </div>
       </div>
@@ -147,7 +148,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
           </div>
           <div className="text-left font-sans">
             <div className="text-[9.5px] font-bold tracking-tight text-white leading-none">nextcloud</div>
-            <div className="text-[6.5px] font-mono text-sky-400 font-medium mt-0.5">Vault</div>
+            <div className="text-[6.5px] font-sans text-sky-400 font-medium mt-0.5">Vault</div>
           </div>
         </div>
       </div>
@@ -156,7 +157,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-slate-900/80">
-      <span className="text-[10px] font-mono text-slate-400 font-semibold">{project.name}</span>
+      <span className="text-[10px] font-sans text-slate-400 font-semibold">{project.name}</span>
     </div>
   );
 }
@@ -164,6 +165,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
 const ITEMS_PER_PAGE = 4;
 
 export default function ProjectsSection() {
+  const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
 
@@ -203,8 +205,11 @@ export default function ProjectsSection() {
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
         {/* Editorial Section Header: SELECTED WORKS */}
         <SectionHeading
-          title="Selected Works"
-          subtitle="Full-stack applications, distributed cloud services, and bare-metal virtualization systems."
+          title={t('Karya & Proyek Terpilih', 'Selected Works')}
+          subtitle={t(
+            'Aplikasi full-stack, layanan komputasi awan terdistribusi, dan sistem virtualisasi bare-metal.',
+            'Full-stack applications, distributed cloud services, and bare-metal virtualization systems.'
+          )}
         />
 
         {/* 1-Column Stack: Vertikal ke Bawah (Maksimal 4 per Halaman) */}
@@ -234,7 +239,7 @@ export default function ProjectsSection() {
                   >
                     <div className="flex flex-row items-center gap-3 sm:gap-4 md:gap-5 w-full min-w-0">
                       {/* Left: Index Number */}
-                      <span className="font-mono text-xs font-semibold text-slate-500 shrink-0 w-5 sm:w-6">
+                      <span className="font-sans tabular-nums text-xs font-semibold text-slate-500 shrink-0 w-5 sm:w-6">
                         {indexStr}
                       </span>
 
@@ -277,18 +282,18 @@ export default function ProjectsSection() {
                           {project.purpose}
                         </p>
 
-                        {/* Monospace Tech Stack Pills */}
+                        {/* Tech Stack Pills */}
                         <div className="hidden sm:flex flex-wrap items-center gap-1 pt-0.5">
                           {project.technologies.slice(0, 4).map((tech) => (
                             <span
                               key={tech}
-                              className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-white/[0.03] border border-white/[0.08] text-slate-300"
+                              className="font-sans text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-white/[0.03] border border-white/[0.08] text-slate-300"
                             >
                               {tech}
                             </span>
                           ))}
                           {project.technologies.length > 4 && (
-                            <span className="font-mono text-[9px] sm:text-[10px] px-1 py-0.2 rounded text-slate-500">
+                            <span className="font-sans text-[9px] sm:text-[10px] px-1 py-0.2 rounded text-slate-500">
                               +{project.technologies.length - 4}
                             </span>
                           )}
@@ -337,7 +342,7 @@ export default function ProjectsSection() {
               <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
 
-            <div className="font-mono text-xs sm:text-sm tracking-[0.2em] text-slate-400 flex items-center gap-1.5 select-none">
+            <div className="font-sans tabular-nums text-xs sm:text-sm tracking-[0.15em] text-slate-400 flex items-center gap-1.5 select-none">
               <span className="text-white font-bold">{String(currentPage).padStart(2, '0')}</span>
               <span className="text-slate-600">/</span>
               <span className="text-slate-400">{String(totalPages).padStart(2, '0')}</span>

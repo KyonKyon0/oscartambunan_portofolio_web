@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { siteMetadata } from "@/data/profile";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -8,12 +9,6 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -84,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} dark`}
+      className={`${plusJakartaSans.variable} dark`}
     >
       <head>
         <script
@@ -106,7 +101,9 @@ export default function RootLayout({
         
         {/* Main Content */}
         <div className="relative z-10">
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </div>
       </body>
     </html>
