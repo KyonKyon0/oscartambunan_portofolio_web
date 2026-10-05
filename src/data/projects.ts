@@ -3,9 +3,8 @@ import { Project } from '@/types';
 export const projects: Project[] = [
   {
     slug: 'labamen-accounting-portal',
-    name: 'Lab. Akuntansi Menengah (Redesign & Workflow Architecture)',
-    purpose:
-      'Pusat praktikum Laboratorium Akuntansi Menengah terpadu Universitas Gunadarma. Solusi cerdas pendalaman teori akuntansi menuju implementasi praktikum berbasis teknologi dan software akuntansi modern berstandar industri.',
+    name: 'Lab. Akuntansi Menengah',
+    purpose: 'Redesign portal praktikum Labamen Universitas Gunadarma — distribusi modul, materi, dan software akuntansi dalam satu platform terpadu.',
     imageUrl: '/images/projects/labamen-portal.jpg',
     technologies: ['Next.js / React', 'TypeScript', 'Tailwind CSS', 'Digital Workflow Architecture', 'UI/UX Redesign'],
     contributions: [
@@ -49,8 +48,7 @@ export const projects: Project[] = [
   {
     slug: 'labamen-admin-dashboard',
     name: 'Labamen Internal Operations & Admin Dashboard',
-    purpose:
-      'Sistem dashboard operasional dan manajemen database internal Laboratorium Akuntansi Menengah untuk administrasi data praktikum, penjadwalan asisten, dan pengelolaan modul ujian digital.',
+    purpose: 'Dashboard operasional internal Labamen — manajemen data praktikum, jadwal asisten, dan modul ujian berbasis PHP dan MySQL.',
     imageUrl: '/images/projects/labamen-admin.jpg',
     technologies: ['PHP', 'MySQL', 'Relational Database', 'Admin Dashboard', 'CRUD Operations'],
     contributions: [
@@ -88,8 +86,7 @@ export const projects: Project[] = [
   {
     slug: 'cloudflare-edge-tunnel-analytics',
     name: 'Cloudflare Edge Analytics & Zero-Trust Tunnel Infrastructure',
-    purpose:
-      'Monitoring analitik trafik produksi real-time dan arsitektur web mandiri (self-hosted) via Cloudflare Tunnel terenkripsi tanpa port forwarding.',
+    purpose: 'Self-hosted web via Cloudflare Tunnel terenkripsi tanpa port forwarding — monitoring trafik produksi real-time, DDoS protection, dan edge caching.',
     imageUrl: '/images/projects/cloudflare-tunnel.jpg',
     technologies: ['Cloudflare Tunnel', 'Edge Analytics', 'Zero Trust', 'Traffic Monitoring', 'DDoS Protection', 'CDN Caching'],
     contributions: [
@@ -133,8 +130,7 @@ export const projects: Project[] = [
   {
     slug: 'kerjain-local-service-marketplace',
     name: 'Kerjain (Friendly Local Service Marketplace)',
-    purpose:
-      'Platform penghubung konsumen dan mitra kerja untuk menyelesaikan berbagai kebutuhan rumah tangga harian secara aman, praktis, dan transparan di Indonesia.',
+    purpose: 'Marketplace jasa rumah tangga — menghubungkan konsumen dengan mitra kerja lokal secara transparan dan mudah.',
     imageUrl: '/images/logos/kerjain.png',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'TanStack Query', 'Vercel'],
     contributions: [
@@ -173,8 +169,7 @@ export const projects: Project[] = [
   {
     slug: 'pesonatari-cultural-ticketing',
     name: 'Pesona Tari (Indonesian Cultural Performing Arts Ticketing Platform)',
-    purpose:
-      'Platform reservasi dan pembelian tiket pertunjukan seni tari tradisional Nusantara berbasis web dengan integrasi pembayaran QRIS real-time dan manajemen tiket digital.',
+    purpose: 'Platform tiket digital pertunjukan seni tari Nusantara — reservasi online dengan pembayaran QRIS dan manajemen kuota tiket.',
     imageUrl: '/images/projects/pesonatari.jpg',
     technologies: ['PHP', 'MySQL', 'CSS3', 'QRIS Payment Gateway', 'Relational Database', 'Ticketing Workflow'],
     contributions: [
@@ -218,8 +213,7 @@ export const projects: Project[] = [
   {
     slug: 'martha-eco-infrastructure',
     name: 'Mertha (Food Waste Mitigation Platform)',
-    purpose:
-      'A web platform designed to reduce food waste by connecting surplus inventory with buyers and distribution channels.',
+    purpose: 'Platform web pengurangan food waste — menghubungkan surplus inventori makanan dengan pembeli melalui peta geolokasi real-time.',
     imageUrl: '/images/logos/martha.png',
     technologies: ['Next.js 16', 'React 19', 'Supabase', 'Leaflet Maps', 'Zustand', 'Tailwind CSS'],
     contributions: [
@@ -258,8 +252,7 @@ export const projects: Project[] = [
   {
     slug: 'odc-storage-datacenter',
     name: 'ODC Storage (Media & Private DNS)',
-    purpose:
-      'Layanan cloud storage mandiri, pusat penyimpanan media & API gateway multi-tenant, serta server private AdGuard DNS.',
+    purpose: 'Cloud storage mandiri multi-tenant dengan API gateway, streaming media, dan private AdGuard DNS di bare-metal server.',
     imageUrl: '/images/logos/odc.png',
     technologies: ['PHP', 'API Gateway', 'Multi-Tenant', 'AdGuard Home', 'Cloudflare', 'Linux'],
     contributions: [
@@ -298,8 +291,7 @@ export const projects: Project[] = [
   {
     slug: 'virtualized-server-infrastructure',
     name: 'Virtualized Server Infrastructure',
-    purpose:
-      'Build a personal virtualization environment as the foundation for independently managed hosting and server services.',
+    purpose: 'Virtualisasi bare-metal dengan Proxmox VE sebagai fondasi server dan layanan self-hosted mandiri.',
     technologies: ['Proxmox VE', 'Linux', 'Virtual Machines', 'Containers'],
     contributions: [
       'Implemented Proxmox VE for virtual machine and container management',
@@ -332,8 +324,7 @@ export const projects: Project[] = [
   {
     slug: 'private-cloud-storage',
     name: 'Private Cloud Storage System',
-    purpose:
-      'Create a private, self-hosted cloud storage system as an alternative to public file-storage services.',
+    purpose: 'Private cloud storage self-hosted berbasis Nextcloud dengan akses aman melalui Cloudflare Tunnel dan multi-factor authentication.',
     technologies: [
       'Nextcloud',
       'Linux',

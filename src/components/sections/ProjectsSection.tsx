@@ -256,11 +256,6 @@ export default function ProjectsSection() {
 
                       {/* Middle: Content & Details */}
                       <div className="flex-1 min-w-0 space-y-0.5 sm:space-y-1">
-                        {/* Category Label */}
-                        <div className="text-[9px] sm:text-[10px] font-mono tracking-wider text-slate-400 uppercase font-semibold">
-                          {category}
-                        </div>
-
                         {/* Project Title */}
                         <h3 className="text-xs sm:text-sm md:text-base font-semibold text-white tracking-tight group-hover:text-accent transition-colors">
                           {targetUrl ? (
