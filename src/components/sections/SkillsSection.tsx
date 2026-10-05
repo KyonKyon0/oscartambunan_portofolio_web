@@ -6,8 +6,9 @@ import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
 
-// Base CDN for Dashboard Icons SVGs (via MCP: dashboard-icons)
-const CDN = 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg';
+// Base CDN for Dashboard Icons (via MCP: dashboard-icons)
+// Use /svg for SVG variants, /png for PNG-only icons (e.g. aapanel)
+const CDN = 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons';
 
 interface SkillItem {
   name: string;
@@ -23,32 +24,36 @@ const CAPABILITIES_LEFT: CapabilityGroup[] = [
   {
     category: 'FRONTEND',
     skills: [
-      { name: 'HTML5',          icon: `${CDN}/html.svg` },
-      { name: 'CSS3',           icon: `${CDN}/css.svg` },
-      { name: 'JavaScript',     icon: `${CDN}/javascript.svg` },
-      { name: 'TypeScript',     icon: `${CDN}/typescript.svg` },
-      { name: 'React 19',       icon: `${CDN}/reactjs.svg` },
-      { name: 'Next.js 16',     icon: `${CDN}/nextjs.svg` },
-      { name: 'Tailwind CSS',   icon: `${CDN}/tailwind.svg` },
-      { name: 'Framer Motion',  icon: `${CDN}/framer.svg` },
+      // html-light & css-light: default SVG has colored background, light variant is transparent
+      { name: 'HTML5',         icon: `${CDN}/svg/html.svg` },
+      { name: 'CSS3',          icon: `${CDN}/svg/css.svg` },
+      { name: 'JavaScript',    icon: `${CDN}/svg/javascript.svg` },
+      { name: 'TypeScript',    icon: `${CDN}/svg/typescript.svg` },
+      { name: 'React 19',      icon: `${CDN}/svg/reactjs.svg` },
+      // nextjs default is white (invisible on dark) → use nextjs-light (dark text on transparent)
+      { name: 'Next.js 16',    icon: `${CDN}/svg/nextjs-light.svg` },
+      { name: 'Tailwind CSS',  icon: `${CDN}/svg/tailwind.svg` },
+      { name: 'Framer Motion', icon: `${CDN}/svg/framer.svg` },
     ],
   },
   {
     category: 'DATABASE',
     skills: [
-      { name: 'PostgreSQL',      icon: `${CDN}/postgresql.svg` },
-      { name: 'Supabase',        icon: `${CDN}/supabase.svg` },
-      { name: 'MySQL / MariaDB', icon: `${CDN}/mysql.svg` },
-      { name: 'MariaDB',         icon: `${CDN}/mariadb.svg` },
+      { name: 'PostgreSQL',      icon: `${CDN}/svg/postgresql.svg` },
+      { name: 'Supabase',        icon: `${CDN}/svg/supabase.svg` },
+      { name: 'MySQL',           icon: `${CDN}/svg/mysql.svg` },
+      { name: 'MariaDB',         icon: `${CDN}/svg/mariadb.svg` },
     ],
   },
   {
     category: 'TOOLS & PLATFORM',
     skills: [
-      { name: 'Git',          icon: `${CDN}/git.svg` },
-      { name: 'GitHub',       icon: `${CDN}/github.svg` },
-      { name: 'Nginx',        icon: `${CDN}/nginx.svg` },
-      { name: 'aaPanel LEMP', icon: `${CDN}/aapanel.svg` },
+      { name: 'Git',          icon: `${CDN}/svg/git.svg` },
+      // github default SVG is black → use light variant (white/light colored) for dark bg
+      { name: 'GitHub',       icon: `${CDN}/svg/github-light.svg` },
+      { name: 'Nginx',        icon: `${CDN}/svg/nginx.svg` },
+      // aapanel base format is PNG (no SVG light variant available)
+      { name: 'aaPanel LEMP', icon: `${CDN}/png/aapanel.png` },
     ],
   },
 ];
@@ -57,25 +62,28 @@ const CAPABILITIES_RIGHT: CapabilityGroup[] = [
   {
     category: 'NETWORK',
     skills: [
-      { name: 'Proxmox VE',         icon: `${CDN}/proxmox.svg` },
-      { name: 'Linux System Admin',  icon: `${CDN}/linux.svg` },
-      { name: 'Ubuntu Server',       icon: `${CDN}/ubuntu-linux.svg` },
-      { name: 'Debian Linux',        icon: `${CDN}/debian-linux.svg` },
-      { name: 'Docker',              icon: `${CDN}/docker.svg` },
-      { name: 'KVM / QEMU',          icon: `${CDN}/qemu.svg` },
-      { name: 'Cloudflare Tunnels',  icon: `${CDN}/cloudflared.svg` },
-      { name: 'AdGuard Home',        icon: `${CDN}/adguard-home.svg` },
-      { name: 'Nextcloud',           icon: `${CDN}/nextcloud.svg` },
+      { name: 'Proxmox VE',        icon: `${CDN}/svg/proxmox.svg` },
+      { name: 'Linux System Admin', icon: `${CDN}/svg/linux.svg` },
+      { name: 'Ubuntu Server',      icon: `${CDN}/svg/ubuntu-linux.svg` },
+      { name: 'Debian Linux',       icon: `${CDN}/svg/debian-linux.svg` },
+      { name: 'Docker',             icon: `${CDN}/svg/docker.svg` },
+      // qemu default is a light/white icon → use dark variant for dark bg
+      { name: 'KVM / QEMU',         icon: `${CDN}/svg/qemu-dark.svg` },
+      { name: 'Cloudflare Tunnels', icon: `${CDN}/svg/cloudflared.svg` },
+      { name: 'AdGuard Home',       icon: `${CDN}/svg/adguard-home.svg` },
+      { name: 'Nextcloud',          icon: `${CDN}/svg/nextcloud.svg` },
     ],
   },
   {
     category: 'BACKEND',
     skills: [
-      { name: 'Python',        icon: `${CDN}/python.svg` },
-      { name: 'PHP',           icon: `${CDN}/php.svg` },
-      { name: 'Node.js',       icon: `${CDN}/nodejs.svg` },
-      { name: 'Go (Golang)',   icon: `${CDN}/golang.svg` },
-      { name: 'Bash / Shell',  icon: `${CDN}/shell.svg` },
+      { name: 'Python',       icon: `${CDN}/svg/python.svg` },
+      { name: 'PHP',          icon: `${CDN}/svg/php.svg` },
+      { name: 'Node.js',      icon: `${CDN}/svg/nodejs.svg` },
+      // golang default is white → use dark variant for dark bg
+      { name: 'Go (Golang)',  icon: `${CDN}/svg/golang-dark.svg` },
+      // shell default is black text → use light variant (white) for dark bg
+      { name: 'Bash / Shell', icon: `${CDN}/svg/shell-light.svg` },
     ],
   },
 ];
