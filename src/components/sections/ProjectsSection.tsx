@@ -262,7 +262,7 @@ export default function ProjectsSection() {
                         </div>
 
                         {/* Project Title */}
-                        <h3 className="text-xs sm:text-sm md:text-base font-semibold text-white tracking-tight group-hover:text-accent transition-colors truncate">
+                        <h3 className="text-xs sm:text-sm md:text-base font-semibold text-white tracking-tight group-hover:text-accent transition-colors">
                           {targetUrl ? (
                             <a
                               href={targetUrl}
@@ -278,7 +278,7 @@ export default function ProjectsSection() {
                         </h3>
 
                         {/* Purpose Description */}
-                        <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-1 leading-normal max-w-3xl">
+                        <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed max-w-3xl">
                           {project.purpose}
                         </p>
 
