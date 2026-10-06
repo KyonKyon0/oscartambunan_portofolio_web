@@ -59,8 +59,8 @@ Digunakan khusus untuk grafis berdimensi besar seperti wallpaper latar belakang,
 
 | Path File | Ukuran File | Penggunaan / Komponen | Alasan Pemilihan Format |
 | :--- | :--- | :--- | :--- |
-| `/images/wallpapers/wallpaper_bendera indonesia.webp` | ~137 KB | `HeroSection.tsx` (Background Ambient) | Format kompresi tinggi untuk visual lebar tanpa lag render. |
-| `/images/wallpapers/wallpaper_section2.webp` | ~466 KB | `ContactSection.tsx` (Frosted Glass Card) | Menghadirkan tekstur grafis kaya detail dengan ukuran file efisien. |
+| `/images/wallpapers/wallpaper-bendera-indonesia.webp` | ~137 KB | `HeroSection.tsx` (Background Ambient) | Format kompresi tinggi untuk visual lebar tanpa lag render. |
+| `/images/wallpapers/wallpaper-section2.webp` | ~111 KB | `ContactSection.tsx` (Frosted Glass Card) | Menghadirkan tekstur grafis kaya detail dengan ukuran file efisien. |
 | `/images/wallpapers/odc-hardware.webp` | ~45 KB | `AboutSection.tsx` (Drawer Hardware Host) | Wallpaper internal drawer kartu spesifikasi fisik ODC Server. |
 | `/images/wallpapers/asset-management.webp` | ~31 KB | `AboutSection.tsx` (Drawer Asset Specs) | Wallpaper visual drawer alokasi treasury multi-aset. |
 | `/images/wallpapers/cloudflare.webp` | ~134 KB | Cadangan Wallpaper Infrastruktur Cloudflare | Cadangan aset visual edge routing. |
@@ -74,12 +74,12 @@ Digunakan khusus untuk logo institusi, lambang universitas, dan dokumen sertifik
 
 | Path File | Ukuran File | Penggunaan / Komponen | Alasan Pemilihan Format |
 | :--- | :--- | :--- | :--- |
-| `/images/logos/odc.png` | ~8.6 KB | `Footer.tsx` (Label Server) & Modal Sistem | Logo ODC transparan, tajam di background gelap (`#070a12`). |
-| `/images/logos/gunadarma.png` | ~195 KB | `ExperienceSection.tsx` (Pendidikan) | Lambang resmi Universitas Gunadarma dengan kanal transparansi. |
-| `/images/logos/labamen.png` | ~214 KB | `ExperienceSection.tsx` (Asisten Lab) | Logo resmi Lab. Akuntansi Menengah Gunadarma. |
-| `/images/logos/kspm.png` | ~118 KB | `ExperienceSection.tsx` (Organisasi KSPM) | Logo Kelompok Studi Pasar Modal dengan resolusi tajam. |
-| `/images/logos/kerjain.png` | ~54 KB | Portfolio Project (Kerjain Platform) | Logo identitas software aplikasi. |
-| `/images/logos/martha.png` | ~25 KB | Subhalaman `/martha` & Portfolio | Identitas merchant ekosistem Martha. |
+| `/images/logos/odc.avif` | ~3 KB | `Footer.tsx` (Label Server) & Modal Sistem | Logo ODC transparan dalam format AVIF ultra-ringan. |
+| `/images/logos/gunadarma.avif` | ~33 KB | `ExperienceSection.tsx` (Pendidikan) | Lambang resmi Universitas Gunadarma dalam format AVIF. |
+| `/images/logos/labamen.avif` | ~21 KB | `ExperienceSection.tsx` (Asisten Lab) | Logo resmi Lab. Akuntansi Menengah Gunadarma dalam format AVIF. |
+| `/images/logos/kspm.avif` | ~10 KB | `ExperienceSection.tsx` (Organisasi KSPM) | Logo Kelompok Studi Pasar Modal dalam format AVIF. |
+| `/images/logos/kerjain.avif` | ~26 KB | Portfolio Project (Kerjain Platform) | Logo identitas software aplikasi dalam format AVIF. |
+| `/images/logos/martha.avif` | ~12 KB | Subhalaman `/martha` & Portfolio | Identitas merchant ekosistem Martha dalam format AVIF. |
 | `/sertifikat/IESE_Corporate Finance Essential.png` | ~461 KB | `CertificationsSection.tsx` | Salinan asli kredensial kursus IESE Business School. |
 | `/sertifikat/PK_PKKMB.png` | ~1.25 MB | `CertificationsSection.tsx` | Sertifikat pengesahan kepanitiaan universitas beresolusi penuh. |
 
@@ -91,7 +91,7 @@ Digunakan untuk foto bernuansa warna kontinu (fotografi jalanan, makro satwa lia
 | Path File | Ukuran File | Penggunaan / Komponen | Alasan Pemilihan Format |
 | :--- | :--- | :--- | :--- |
 | `/images/profile/oscar-portrait.jpg` | ~64 KB | `HeroSection.tsx` (Kartu Foto Oscar) | Potret personal profesional berorientasi rasio 4:5. |
-| `/images/profile/carmen-portrait.jpg` | ~322 KB | `ContactSection.tsx` (Foto Profil Kontak) | Foto pendamping pada area kartu konsultasi & kontak. |
+| `/images/profile/carmen-potrait.avif` | ~148 KB | `ContactSection.tsx` (Foto Profil Kontak) | Foto pendamping pada area kartu konsultasi & kontak dalam format AVIF modern. |
 | `/images/photography/kota-tua-gambir.jpg` | ~77 KB | `GallerySection.tsx` (Street Photography) | Foto jalanan bernuansa historis arsitektur Jakarta. |
 | `/images/photography/smoking-man.jpg` | ~113 KB | `GallerySection.tsx` (Human Interest) | Potret humaniora dengan kedalaman kontras hitam-putih/warna. |
 | `/images/photography/ui-x-ug.jpg` | ~167 KB | `GallerySection.tsx` (Campus Architecture) | Dokumentasi arsitektur kampus kolaborasi UI & UG. |

@@ -131,7 +131,7 @@ export const projects: Project[] = [
     slug: 'kerjain-local-service-marketplace',
     name: 'Kerjain (Friendly Local Service Marketplace)',
     purpose: 'Marketplace jasa rumah tangga — menghubungkan konsumen dengan mitra kerja lokal secara transparan dan mudah.',
-    imageUrl: '/images/logos/kerjain.png',
+    imageUrl: '/images/logos/kerjain.avif',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'TanStack Query', 'Vercel'],
     contributions: [
       'Merancang arsitektur aplikasi marketplace web responsif untuk kebutuhan rumah tangga harian',
@@ -214,7 +214,7 @@ export const projects: Project[] = [
     slug: 'martha-eco-infrastructure',
     name: 'Mertha (Food Waste Mitigation Platform)',
     purpose: 'Platform web pengurangan food waste — menghubungkan surplus inventori makanan dengan pembeli melalui peta geolokasi real-time.',
-    imageUrl: '/images/logos/martha.png',
+    imageUrl: '/images/logos/martha.avif',
     technologies: ['Next.js 16', 'React 19', 'Supabase', 'Leaflet Maps', 'Zustand', 'Tailwind CSS'],
     contributions: [
       'Developed responsive user interfaces with Next.js App Router and React 19',
@@ -253,7 +253,7 @@ export const projects: Project[] = [
     slug: 'odc-storage-datacenter',
     name: 'ODC Storage (Media & Private DNS)',
     purpose: 'Cloud storage mandiri multi-tenant dengan API gateway, streaming media, dan private AdGuard DNS di bare-metal server.',
-    imageUrl: '/images/logos/odc.png',
+    imageUrl: '/images/logos/odc.avif',
     technologies: ['PHP', 'API Gateway', 'Multi-Tenant', 'AdGuard Home', 'Cloudflare', 'Linux'],
     contributions: [
       'Merancang arsitektur penyimpanan berkas fisik independen berbasis UUID di luar webroot publik',

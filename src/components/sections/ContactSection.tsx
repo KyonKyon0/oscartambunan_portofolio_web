@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import {
   Mail,
-  ExternalLink,
   Download,
   Copy,
   Check,
@@ -42,10 +41,10 @@ export default function ContactSection() {
       id="contact"
       className="py-16 sm:py-24 bg-[#080a10] relative overflow-hidden border-t border-white/[0.08]"
     >
-      {/* Background Wallpaper: wallpaper_section2 */}
+      {/* Background Wallpaper: wallpaper-section2 */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <Image
-          src="/images/wallpapers/wallpaper_section2.webp"
+          src="/images/wallpapers/wallpaper-section2.webp"
           alt="Contact Section Wallpaper"
           fill
           sizes="100vw"
@@ -81,7 +80,7 @@ export default function ContactSection() {
             <div className="relative w-full max-w-[320px] lg:max-w-none h-full min-h-[340px] lg:min-h-0 aspect-[4/5] lg:aspect-auto rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl group">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/profile/carmen-portrait.jpg"
+                src="/images/profile/carmen-potrait.avif"
                 alt="Carmen"
                 className="w-full h-full object-cover object-[center_18%] brightness-95 contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
               />
@@ -112,8 +111,15 @@ export default function ContactSection() {
                     <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors">
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center shrink-0">
-                            <Mail className="w-3.5 h-3.5 text-sky-400" />
+                          <div className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                            <Image
+                              src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gmail.svg"
+                              alt="Gmail"
+                              width={15}
+                              height={15}
+                              className="w-3.5 h-3.5 object-contain"
+                              unoptimized
+                            />
                           </div>
                           <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
                             {t('Alamat Email', 'Email Address')}
@@ -150,7 +156,14 @@ export default function ContactSection() {
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                            <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+                            <Image
+                              src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/linkedin.svg"
+                              alt="LinkedIn"
+                              width={15}
+                              height={15}
+                              className="w-3.5 h-3.5 object-contain"
+                              unoptimized
+                            />
                           </div>
                           <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
                             {t('Profil LinkedIn', 'LinkedIn Profile')}

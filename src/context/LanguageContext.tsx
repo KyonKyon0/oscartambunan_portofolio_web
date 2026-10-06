@@ -14,22 +14,21 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('id');
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('portfolio_lang') as Language | null;
+        if (saved === 'id' || saved === 'en') return saved;
+      } catch {
+        // Fallback if localStorage is inaccessible
+      }
+    }
+    return 'id';
+  });
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('portfolio_lang') as Language | null;
-      if (saved === 'id' || saved === 'en') {
-        setLanguageState(saved);
-        document.documentElement.lang = saved;
-      } else {
-        document.documentElement.lang = 'id';
-      }
-    } catch {
-      // Fallback if localStorage is inaccessible
-      document.documentElement.lang = 'id';
-    }
-  }, []);
+    document.documentElement.lang = language;
+  }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

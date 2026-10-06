@@ -52,7 +52,7 @@ export default function HeroSection() {
       {/* Background Wallpaper: Bendera Indonesia — Mulus, Alami, & Rapi */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <Image
-          src="/images/wallpapers/wallpaper_bendera indonesia.webp"
+          src="/images/wallpapers/wallpaper-bendera-indonesia.webp"
           alt="Indonesian Flag Wallpaper"
           fill
           priority

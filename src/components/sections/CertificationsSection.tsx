@@ -38,8 +38,12 @@ export default function CertificationsSection() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (lightboxCert) return;
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') {
+        setCurrentIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
+      }
+      if (e.key === 'ArrowRight') {
+        setCurrentIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);

@@ -8,19 +8,6 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/context/LanguageContext';
 
-function getProjectCategory(slug: string): string {
-  if (slug === 'labamen-accounting-portal') return 'ACADEMIC PLATFORM';
-  if (slug === 'labamen-admin-dashboard') return 'ADMIN DASHBOARD & DATABASE';
-  if (slug === 'cloudflare-edge-tunnel-analytics') return 'EDGE INFRA & ANALYTICS';
-  if (slug === 'pesonatari-cultural-ticketing') return 'CULTURAL TICKETING & WEB';
-  if (slug === 'kerjain-local-service-marketplace') return 'WEB APPLICATION';
-  if (slug === 'martha-eco-infrastructure') return 'WEB PLATFORM';
-  if (slug === 'odc-storage-datacenter') return 'CLOUD INFRASTRUCTURE';
-  if (slug === 'virtualized-server-infrastructure') return 'SYSTEMS LAB';
-  if (slug === 'private-cloud-storage') return 'PRIVATE CLOUD';
-  return 'PROJECT';
-}
-
 function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
   if (project.slug === 'labamen-accounting-portal') {
     return (
@@ -83,7 +70,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-gradient-to-br from-slate-900/90 via-[#070e1b] to-emerald-950/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/kerjain.png"
+          src="/images/logos/kerjain.avif"
           alt="Kerjain Logo"
           className="max-h-5 sm:max-h-6 md:max-h-7 w-auto max-w-[80%] object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
         />
@@ -96,7 +83,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-gradient-to-br from-slate-900/90 via-[#070e1b] to-emerald-950/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/martha.png"
+          src="/images/logos/martha.avif"
           alt="Mertha Logo"
           className="max-h-5 sm:max-h-6 md:max-h-7 w-auto max-w-[80%] object-contain rounded relative z-10 transition-transform duration-300 group-hover:scale-105"
         />
@@ -109,7 +96,7 @@ function ProjectVisual({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-full flex items-center justify-center p-1.5 bg-gradient-to-br from-slate-900/90 via-[#070e1b] to-emerald-950/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/odc.png"
+          src="/images/logos/odc.avif"
           alt="ODC Storage Logo"
           className="max-h-5 sm:max-h-6 md:max-h-7 w-auto max-w-[80%] object-contain rounded relative z-10 transition-transform duration-300 group-hover:scale-105"
         />
@@ -230,7 +217,6 @@ export default function ProjectsSection() {
                 const isExternal = Boolean(targetUrl && targetUrl.startsWith('http'));
                 const absoluteIdx = startIndex + idx;
                 const indexStr = String(absoluteIdx + 1).padStart(2, '0');
-                const category = getProjectCategory(project.slug);
 
                 return (
                   <div

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, ExternalLink, FileCode2 } from "lucide-react";
 
@@ -46,10 +47,10 @@ export default function MarthaPage() {
         
         {/* Back Button */}
         <div className="w-full flex justify-start mb-8">
-          <a href="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
+          <Link href="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
             <ArrowRight className="w-5 h-5 rotate-180" />
             <span className="font-medium">Kembali</span>
-          </a>
+          </Link>
         </div>
         
         {/* Header Section */}

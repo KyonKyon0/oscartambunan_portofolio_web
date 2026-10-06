@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="flex items-center justify-center gap-2.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/logos/odc.png"
+              src="/images/logos/odc.avif"
               alt="ODC Server Logo"
               className="w-6 h-6 sm:w-7 sm:h-7 object-contain shrink-0"
             />
