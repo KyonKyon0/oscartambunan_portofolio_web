@@ -50,7 +50,7 @@ export default function ContactSection() {
           fill
           sizes="100vw"
           className="object-cover object-center opacity-65 sm:opacity-75"
-          quality={95}
+          unoptimized
         />
         {/* Layer 1: Ambient deep dark overlay to ensure readability */}
         <div className="absolute inset-0 bg-[#080a10]/60" />
