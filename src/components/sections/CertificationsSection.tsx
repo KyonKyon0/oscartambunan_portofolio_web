@@ -210,7 +210,7 @@ export default function CertificationsSection() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white tracking-tight leading-snug line-clamp-2">
+                      <h3 className="text-base sm:text-lg font-bold text-white tracking-tight leading-snug line-clamp-2">
                         {cert.name}
                       </h3>
 

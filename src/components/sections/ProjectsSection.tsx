@@ -262,7 +262,7 @@ export default function ProjectsSection() {
                       {/* Middle: Content & Details */}
                       <div className="flex-1 min-w-0 space-y-0.5 sm:space-y-1">
                         {/* Project Title */}
-                        <h3 className="text-xs sm:text-sm md:text-base font-semibold text-white tracking-tight group-hover:text-accent transition-colors">
+                        <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-accent transition-colors">
                           {targetUrl ? (
                             <a
                               href={targetUrl}
