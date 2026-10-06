@@ -16,10 +16,10 @@ export interface Profile {
   bio: string;
   location: string;
   email: string;
-  phone: string;
+  phone?: string | null;
   linkedIn: string;
   github: string | null;
-  whatsapp: string | null;
+  whatsapp?: string | null;
   instagram?: string | null;
   cvUrl: string;
   socialLinks: SocialLink[];

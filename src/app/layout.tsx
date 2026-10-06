@@ -56,7 +56,10 @@ const jsonLd = {
   description: siteMetadata.description,
   url: siteMetadata.siteUrl,
   email: "oss.tam1137@gmail.com",
-  sameAs: ["https://www.linkedin.com/in/haioscartambunan"],
+  sameAs: [
+    "https://www.linkedin.com/in/haioscartambunan",
+    "https://instagram.com/oss_tam",
+  ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Universitas Gunadarma",

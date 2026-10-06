@@ -18,13 +18,8 @@ const FOOTER_SOCIAL_LINKS = [
     icon: `${DASHBOARD_ICONS_CDN}/svg/gmail.svg`,
   },
   {
-    name: 'WhatsApp',
-    href: profile.whatsapp || 'https://wa.me/6281222994801',
-    icon: `${DASHBOARD_ICONS_CDN}/svg/whatsapp.svg`,
-  },
-  {
     name: 'Instagram',
-    href: profile.instagram || 'https://instagram.com/haioscartambunan',
+    href: profile.instagram || 'https://instagram.com/oss_tam',
     icon: `${DASHBOARD_ICONS_CDN}/svg/instagram.svg`,
   },
 ];
@@ -58,7 +53,7 @@ export default function Footer() {
             {/* Divider pemisah vertikal di desktop */}
             <div className="hidden sm:block w-px h-5 bg-white/10" />
 
-            {/* Icon Only Buttons (LinkedIn, Email, WhatsApp, Instagram) — Rata ke Kiri */}
+            {/* Icon Only Buttons (LinkedIn, Email, Instagram) — Rata ke Kiri */}
             <div className="flex items-center gap-2.5 sm:gap-3">
               {FOOTER_SOCIAL_LINKS.map((item) => (
                 <a

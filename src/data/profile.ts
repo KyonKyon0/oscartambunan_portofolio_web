@@ -7,11 +7,9 @@ export const profile: Profile = {
   bio: 'Informatics Engineering student building practical web applications and reliable self-hosted infrastructure using PHP, MySQL, Linux, virtualization, and cloud-based deployment tools.',
   location: 'Indonesia',
   email: 'oss.tam1137@gmail.com',
-  phone: '+62 812-2299-4801',
   linkedIn: 'https://www.linkedin.com/in/haioscartambunan',
   github: null, // TODO: Add GitHub URL when available
-  whatsapp: 'https://wa.me/6281222994801',
-  instagram: 'https://instagram.com/haioscartambunan',
+  instagram: 'https://instagram.com/oss_tam',
   cvUrl: '/oscar-tambunan-cv.pdf', // TODO: Replace with actual CV file
   socialLinks: [
     {
@@ -19,6 +17,12 @@ export const profile: Profile = {
       url: 'https://www.linkedin.com/in/haioscartambunan',
       label: 'LinkedIn Profile',
       icon: 'Linkedin',
+    },
+    {
+      platform: 'Instagram',
+      url: 'https://instagram.com/oss_tam',
+      label: 'Instagram Profile',
+      icon: 'Instagram',
     },
     {
       platform: 'GitHub',

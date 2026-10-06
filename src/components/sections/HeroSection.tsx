@@ -20,13 +20,8 @@ const SOCIAL_LINKS = [
     icon: `${DASHBOARD_ICONS_CDN}/svg/gmail.svg`,
   },
   {
-    name: 'WhatsApp',
-    href: profile.whatsapp || 'https://wa.me/6281222994801',
-    icon: `${DASHBOARD_ICONS_CDN}/svg/whatsapp.svg`,
-  },
-  {
     name: 'Instagram',
-    href: profile.instagram || 'https://instagram.com/haioscartambunan',
+    href: profile.instagram || 'https://instagram.com/oss_tam',
     icon: `${DASHBOARD_ICONS_CDN}/svg/instagram.svg`,
   },
 ];
