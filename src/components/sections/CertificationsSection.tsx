@@ -17,15 +17,6 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/context/LanguageContext';
 import { Certification } from '@/types';
 
-const CERT_IDS = [
-  '#LF-LFS162',
-  '#IBM-SQL8X',
-  '#GCP-ALISON',
-  '#IESE-FINANCE',
-  '#INFEST-BP26',
-  '#INFEST-ICIK',
-  '#BEM-PKKMB25',
-];
 
 export default function CertificationsSection() {
   const { t } = useLanguage();
@@ -142,7 +133,6 @@ export default function CertificationsSection() {
             }
 
             const docUrl = (cert.certificateFile || cert.credentialUrl) ?? undefined;
-            const certId = CERT_IDS[index] || `#0${index + 1}`;
 
             return (
               <motion.div
@@ -190,12 +180,12 @@ export default function CertificationsSection() {
                         className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-[1.03]"
                       />
                     ) : (
-                      <Award className="w-12 h-12 text-sky-400" />
+                      <Award className="w-12 h-12 text-accent" />
                     )}
 
                     {isCenter && (
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-sans text-white backdrop-blur-[2px]">
-                        <Maximize2 className="w-4 h-4 text-sky-400" />
+                        <Maximize2 className="w-4 h-4 text-accent" />
                         <span>{t('Perbesar Tampilan', 'Zoom View')}</span>
                       </div>
                     )}
@@ -204,11 +194,6 @@ export default function CertificationsSection() {
                   {/* Card Information Body */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      {/* Issuer / Category */}
-                      <div className="text-[11px] font-sans font-semibold text-sky-400 uppercase tracking-widest truncate mb-1">
-                        {cert.issuer}
-                      </div>
-
                       {/* Title */}
                       <h3 className="text-base sm:text-lg font-bold text-white tracking-tight leading-snug line-clamp-2">
                         {cert.name}
@@ -227,41 +212,22 @@ export default function CertificationsSection() {
                       )}
                     </div>
 
-                    {/* Bottom Action Bar: BUKA DOKUMEN / DETAIL / #ID */}
+                    {/* Bottom Action Bar: BUKA DOKUMEN */}
                     <div className="pt-3.5 mt-3 border-t border-white/10 flex items-center justify-between text-xs font-sans">
-                      <div className="flex items-center gap-3.5 sm:gap-4">
-                        {docUrl ? (
-                          <a
-                            href={docUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 text-slate-200 hover:text-accent font-semibold transition-colors group/link"
-                          >
-                            <span>{t('BUKA DOKUMEN', 'OPEN DOCUMENT')}</span>
-                            <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-accent transition-colors" />
-                          </a>
-                        ) : (
-                          <span className="text-slate-500">{t('RESMI', 'OFFICIAL')}</span>
-                        )}
-
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setLightboxCert(cert);
-                          }}
-                          className="inline-flex items-center gap-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                      {docUrl ? (
+                        <a
+                          href={docUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 text-slate-200 hover:text-accent font-semibold transition-colors group/link"
                         >
-                          <span>{t('DETAIL', 'DETAILS')}</span>
-                          <Maximize2 className="w-3 h-3 text-sky-400" />
-                        </button>
-                      </div>
-
-                      {/* Industrial Hash/Serial ID */}
-                      <span className="text-slate-500 font-sans text-[10px] sm:text-[11px] tracking-wider shrink-0">
-                        {certId}
-                      </span>
+                          <span>{t('BUKA DOKUMEN', 'OPEN DOCUMENT')}</span>
+                          <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-accent transition-colors" />
+                        </a>
+                      ) : (
+                        <span className="text-slate-500">{t('RESMI', 'OFFICIAL')}</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -318,7 +284,7 @@ export default function CertificationsSection() {
               {/* Modal Header */}
               <div className="flex items-start justify-between gap-4 pb-3 mb-3 border-b border-white/10 shrink-0">
                 <div className="min-w-0">
-                  <span className="text-[10px] font-sans font-semibold text-sky-400 uppercase tracking-wider">
+                  <span className="text-[10px] font-sans font-semibold text-slate-400 uppercase tracking-wider">
                     {lightboxCert.category} &bull; {lightboxCert.date}
                   </span>
                   <h3 className="text-base sm:text-lg font-bold text-white leading-snug mt-0.5">
