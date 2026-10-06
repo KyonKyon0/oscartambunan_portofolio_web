@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import {
   Server,
   PieChart,
@@ -482,33 +481,10 @@ export default function AboutSection() {
   return (
     <AnimatedSection
       id="infrastructure"
-      className="py-14 sm:py-20 bg-[#080a10] relative overflow-hidden border-t border-white/[0.08]"
+      className="py-14 sm:py-20 bg-bg-secondary relative overflow-hidden border-t border-white/[0.08]"
     >
       {/* Anchor for backward compatibility with #about */}
       <span id="about" className="sr-only" aria-hidden="true" />
-
-      {/* Background Wallpaper: wallpaper_section2 */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <Image
-          src="/images/wallpapers/wallpaper_section2.webp"
-          alt="Infrastruktur & Manajemen Aset Wallpaper"
-          fill
-          sizes="100vw"
-          className="object-cover object-center opacity-70 sm:opacity-80"
-          quality={95}
-        />
-        {/* Layer 1: Tint peredup halus merata untuk memastikan keterbacaan teks & kontras kartu */}
-        <div className="absolute inset-0 bg-[#080a10]/60" />
-
-        {/* Layer 2: Vignette radial halus untuk kedalaman visual */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#080a10_100%)] opacity-85" />
-
-        {/* Layer 3: Gradien atas menyatu mulus ke HeroSection */}
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#080a10] via-[#080a10]/70 to-transparent" />
-
-        {/* Layer 4: Gradien bawah menyatu mulus ke SkillsSection */}
-        <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#080a10] via-[#080a10]/80 to-transparent" />
-      </div>
 
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading

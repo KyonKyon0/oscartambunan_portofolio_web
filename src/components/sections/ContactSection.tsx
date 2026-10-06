@@ -40,17 +40,30 @@ export default function ContactSection() {
   return (
     <AnimatedSection
       id="contact"
-      className="py-16 sm:py-24 bg-bg-secondary relative overflow-hidden border-t border-white/[0.08]"
+      className="py-16 sm:py-24 bg-[#080a10] relative overflow-hidden border-t border-white/[0.08]"
     >
-      {/* Ambient background light leaks - GPU Accelerated */}
-      <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_70%)] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-10 right-1/4 w-[500px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.05),transparent_70%)] pointer-events-none"
-        aria-hidden="true"
-      />
+      {/* Background Wallpaper: wallpaper_section2 */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <Image
+          src="/images/wallpapers/wallpaper_section2.webp"
+          alt="Contact Section Wallpaper"
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-65 sm:opacity-75"
+          quality={95}
+        />
+        {/* Layer 1: Ambient deep dark overlay to ensure readability */}
+        <div className="absolute inset-0 bg-[#080a10]/60" />
+
+        {/* Layer 2: Subtle radial vignette to focus attention towards the content */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#080a10_100%)] opacity-85" />
+
+        {/* Layer 3: Top edge seamless transition with Gallery section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#080a10] via-[#080a10]/70 to-transparent" />
+
+        {/* Layer 4: Bottom edge seamless transition with Footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#070a12] via-[#070a12]/85 to-transparent" />
+      </div>
 
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading
@@ -96,7 +109,7 @@ export default function ContactSection() {
                   {/* Direct Contact Channels — 2-Line Architecture for Zero Horizontal Truncation */}
                   <div className="space-y-2.5 sm:space-y-3 mb-5 sm:mb-6">
                     {/* Email Row */}
-                    <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-colors">
+                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors">
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center shrink-0">
@@ -133,7 +146,7 @@ export default function ContactSection() {
                     </div>
 
                     {/* LinkedIn Row */}
-                    <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-colors group/link">
+                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
@@ -165,7 +178,7 @@ export default function ContactSection() {
                     </div>
 
                     {/* Instagram Row */}
-                    <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-colors group/link">
+                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
