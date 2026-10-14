@@ -1,7 +1,8 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { profile } from '@/data/profile';
 import { useReducedMotion } from '@/lib/hooks/useReducedMotion';
 import { useLanguage } from '@/context/LanguageContext';
@@ -29,6 +30,26 @@ const SOCIAL_LINKS = [
 export default function HeroSection() {
   const { t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  // Rotate between Technical Role and Batak Life Philosophy every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % 2);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Jump to second 31 for dramatic Lake Toba aerial footage and ensure autoplay
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = 31;
+      video.play().catch(() => {});
+    }
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -49,31 +70,48 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-[90vh] flex flex-col justify-between pt-20 pb-6 sm:pt-24 sm:pb-8 overflow-hidden"
     >
-      {/* Background Wallpaper: Bendera Indonesia — Mulus, Alami, & Rapi */}
+      {/* Background Video (Native HTML5 Video: 100% Zero Buttons, Zero Delay, Muted Autoplay, Seamless Loop) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        {/* Fallback Image while video is loading */}
         <Image
           src="/images/wallpapers/wallpaper-bendera-indonesia.webp"
-          alt="Indonesian Flag Wallpaper"
+          alt="Hero Background Wallpaper"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center sm:object-[center_20%] opacity-85"
-          quality={95}
+          className="object-cover object-center opacity-40"
+          quality={85}
         />
-        {/* Layer 1: Tint peredup halus merata di seluruh layar tanpa potongan garis */}
-        <div className="absolute inset-0 bg-[#030712]/55" />
 
-        {/* Layer 2: Vignette radial halus untuk memfokuskan visual ke tengah secara mulus */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#030712_100%)] opacity-80" />
+        {/* Full-bleed Native HTML5 Video Element (No YouTube Player, No Buttons Ever) */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover pointer-events-none select-none scale-105"
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/videos/lake-toba.mp4" type="video/mp4" />
+        </video>
 
-        {/* Layer 3: Gradien halus dari kiri di desktop agar teks judul & narasi kontras tinggi */}
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#030712]/90 via-[#030712]/40 to-transparent w-3/5" />
+        {/* Ambient Dark Overlays to ensure 100% text legibility */}
+        {/* Layer 1: Dark tint for high text contrast */}
+        <div className="absolute inset-0 z-[1] bg-[#030712]/65 pointer-events-none" />
 
-        {/* Layer 4: Gradien atas untuk area navbar */}
-        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#030712] via-[#030712]/60 to-transparent" />
-        
-        {/* Layer 5: Gradien bawah menyatu mulus ke section berikutnya */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
+        {/* Layer 2: Subtle radial vignette to focus center content */}
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_center,transparent_20%,#030712_100%)] opacity-85 pointer-events-none" />
+
+        {/* Layer 3: Left gradient on desktop for headline readability */}
+        <div className="hidden lg:block absolute inset-0 z-[3] bg-gradient-to-r from-[#030712]/90 via-[#030712]/50 to-transparent w-3/5 pointer-events-none" />
+
+        {/* Layer 4: Top edge blend with navbar */}
+        <div className="absolute top-0 left-0 right-0 h-28 z-[4] bg-gradient-to-b from-[#030712] via-[#030712]/70 to-transparent pointer-events-none" />
+
+        {/* Layer 5: Bottom edge blend to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 z-[5] bg-gradient-to-t from-[#030712] via-[#030712]/90 to-transparent pointer-events-none" />
       </div>
 
       {/* Hero Container */}
@@ -97,16 +135,42 @@ export default function HeroSection() {
               </span>
             </motion.h1>
 
-            {/* Subtitle & Role */}
-            <motion.p
-              variants={itemVariants}
-              className="text-base sm:text-lg font-medium text-white sm:text-slate-200 mb-3 max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]"
-            >
-              Junior Full-Stack Developer{' '}
-              <span className="text-slate-300 sm:text-slate-400 font-normal">
-                &amp; Linux Systems Engineer
-              </span>
-            </motion.p>
+            {/* Subtitle & Role with Smooth Rotating Animation (Responsif penuh di HP tanpa kepotong) */}
+            <div className="min-h-[3rem] sm:min-h-[2rem] flex items-center justify-center lg:justify-start mb-3">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={roleIndex}
+                  initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -8, filter: 'blur(3px)' }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-base sm:text-lg font-medium text-white max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] leading-snug"
+                >
+                  {roleIndex === 0 ? (
+                    <>
+                      Junior Full-Stack Developer{' '}
+                      <span className="font-normal text-white">
+                        &amp; Linux Systems Engineer
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="font-medium text-white">
+                        Hamoraon
+                      </span>{' '}
+                      <span className="text-white font-normal">-</span>{' '}
+                      <span className="font-medium text-white">
+                        Hagabeon
+                      </span>{' '}
+                      <span className="text-white font-normal">-</span>{' '}
+                      <span className="font-medium text-white">
+                        Hasangapon
+                      </span>
+                    </>
+                  )}
+                </motion.p>
+              </AnimatePresence>
+            </div>
 
             {/* Narrative Description - To The Point */}
             <motion.p

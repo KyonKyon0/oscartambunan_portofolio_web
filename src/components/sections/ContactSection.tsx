@@ -3,21 +3,35 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import {
-  Mail,
-  Download,
   Copy,
   Check,
   ArrowUpRight,
+  Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from 'lucide-react';
 import { profile } from '@/data/profile';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
-import Button from '@/components/ui/Button';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactSection() {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleCopyEmail = async () => {
     try {
@@ -33,6 +47,56 @@ export default function ContactSection() {
       document.body.removeChild(textarea);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Gagal mengirim pesan.');
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: t(
+          'Pesan Anda berhasil dikirim langsung ke email Oscar Tambunan! Terima kasih telah menghubungi.',
+          'Your message has been sent directly to Oscar Tambunan! Thank you for reaching out.'
+        ),
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : t(
+              'Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.',
+              'An error occurred while sending the message. Please try again.'
+            );
+      setSubmitStatus({
+        type: 'error',
+        message: errorMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -73,190 +137,300 @@ export default function ContactSection() {
           )}
         />
 
-        {/* Open Direct Layout — Simetris Sesuai Standar Bab Lain */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-stretch max-w-5xl mx-auto">
-          {/* Photo Showcase Panel: Kiri di Desktop, Atas di Mobile (Simetris Penuh dengan Form di Kanan) */}
-          <div className="lg:col-span-5 order-first flex flex-col items-center lg:items-stretch w-full h-full">
-            <div className="relative w-full max-w-[320px] lg:max-w-none h-full min-h-[340px] lg:min-h-0 aspect-[4/5] lg:aspect-auto rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl group">
+        {/* Dual Layout: Form di Kiri & Profil / Kanal di Kanan (Tinggi Sama Sempurna di Desktop) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-stretch max-w-6xl mx-auto">
+          {/* Kolom 1: Formulir Kontak Interaktif */}
+          <div className="lg:col-span-7 w-full flex flex-col h-full">
+            <div className="p-5 sm:p-7 md:p-8 rounded-2xl bg-[#070c18]/85 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col justify-between h-full">
+              {/* Header Form */}
+              <div className="mb-4 sm:mb-5">
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  {t('Kirim Pesan Langsung', 'Send a Direct Message')}
+                </h3>
+              </div>
+
+              {/* Status Alert */}
+              {submitStatus.type === 'success' && (
+                <div className="mb-4 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs sm:text-sm flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <span>{submitStatus.message}</span>
+                </div>
+              )}
+
+              {submitStatus.type === 'error' && (
+                <div className="mb-4 p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-xs sm:text-sm flex items-start gap-2.5">
+                  <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                  <span>{submitStatus.message}</span>
+                </div>
+              )}
+
+              {/* Semantik HTML Form (Flex-1 agar merentang pas dengan kolom kanan) */}
+              <form onSubmit={handleSubmit} className="flex-1 flex flex-col justify-between space-y-3.5 sm:space-y-4">
+                <div className="space-y-3 sm:space-y-3.5 flex-1 flex flex-col">
+                  {/* Nama & Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+                    <div>
+                      <label
+                        htmlFor="contact-name"
+                        className="block text-[11px] font-sans font-semibold uppercase text-slate-400 tracking-wider mb-1.5"
+                      >
+                        {t('Nama Lengkap', 'Full Name')}{' '}
+                        <span className="text-accent">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        placeholder={t('Contoh: Budi Santoso', 'e.g. John Doe')}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.06] focus:bg-white/[0.08] border border-white/10 focus:border-accent/60 text-xs sm:text-sm text-white placeholder:text-slate-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="contact-email"
+                        className="block text-[11px] font-sans font-semibold uppercase text-slate-400 tracking-wider mb-1.5"
+                      >
+                        {t('Alamat Email', 'Email Address')}{' '}
+                        <span className="text-accent">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="email@example.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.06] focus:bg-white/[0.08] border border-white/10 focus:border-accent/60 text-xs sm:text-sm text-white placeholder:text-slate-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Subjek Pesan */}
+                  <div>
+                    <label
+                      htmlFor="contact-subject"
+                      className="block text-[11px] font-sans font-semibold uppercase text-slate-400 tracking-wider mb-1.5"
+                    >
+                      {t('Subjek / Topik', 'Subject / Topic')}
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      placeholder={t(
+                        'Tawaran Kerja / Diskusi Proyek / Pertanyaan',
+                        'Job Offer / Project Discussion / Inquiry'
+                      )}
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.06] focus:bg-white/[0.08] border border-white/10 focus:border-accent/60 text-xs sm:text-sm text-white placeholder:text-slate-500 focus:outline-none transition-colors"
+                    />
+                  </div>
+
+                  {/* Isi Pesan (Stretches smoothly to match height) */}
+                  <div className="flex-1 flex flex-col">
+                    <label
+                      htmlFor="contact-message"
+                      className="block text-[11px] font-sans font-semibold uppercase text-slate-400 tracking-wider mb-1.5"
+                    >
+                      {t('Isi Pesan', 'Message')}{' '}
+                      <span className="text-accent">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      placeholder={t(
+                        'Tuliskan pesan Anda secara rinci di sini...',
+                        'Write your detailed message here...'
+                      )}
+                      className="w-full flex-1 min-h-[120px] sm:min-h-[140px] px-3.5 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.06] focus:bg-white/[0.08] border border-white/10 focus:border-accent/60 text-xs sm:text-sm text-white placeholder:text-slate-500 focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Tombol Submit Form di Bagian Bawah */}
+                <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between gap-3 shrink-0">
+                  <span className="text-[11px] text-slate-500 font-sans">
+                    {t('* Wajib diisi', '* Required fields')}
+                  </span>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-accent text-slate-950 font-bold hover:bg-accent/90 transition-all cursor-pointer disabled:opacity-50 text-xs sm:text-sm shadow-md hover:shadow-accent/20"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
+                        <span>{t('Mengirim...', 'Sending...')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-slate-950" />
+                        <span>{t('Kirim Pesan', 'Send Message')}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Kolom 2: Info Profil, Quote, dan Saluran Kontak Langsung */}
+          <div className="lg:col-span-5 w-full flex flex-col justify-between h-full space-y-3.5 sm:space-y-4">
+            {/* Kartu Foto Carmen Showcase */}
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl group shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/profile/carmen-potrait.avif"
                 alt="Carmen"
                 className="w-full h-full object-cover object-[center_18%] brightness-95 contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
               />
-            </div>
-          </div>
-
-          {/* Form & Channels Column: Kanan di Desktop (Form di Kanan) */}
-          <div className="lg:col-span-7 order-last flex flex-col justify-between h-full">
-            <div>
-              {/* Level 2: Title Sesuai Standar Bab Lain */}
-              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                {t('Mari bangun sistem yang cepat, bersih, dan handal.', "Let's build something fast, clean, and reliable.")}
-              </h3>
-
-              {/* Quote Block — Sesuai Standar Level 5 Bab Lain */}
-              <div className="mt-3 mb-5 sm:mb-6 border-l-2 border-accent/60 pl-3.5 sm:pl-4 py-0.5">
-                <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed italic">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070c18] via-transparent to-transparent opacity-85" />
+              <div className="absolute bottom-3 left-3 right-3 text-left">
+                <p className="text-[11px] sm:text-xs text-slate-300 italic leading-snug">
                   &ldquo;Tidak ada yang memperhatikan rasa sakitmu, tapi semua orang memperhatikan kesalahanmu.&rdquo;
                 </p>
-                <p className="text-xs font-sans text-slate-400 mt-1 font-medium">
+                <p className="text-[10px] text-slate-400 mt-0.5 font-medium">
                   — Nyoman Ayu Carmenita 2026
                 </p>
               </div>
+            </div>
 
-                  {/* Direct Contact Channels — 2-Line Architecture for Zero Horizontal Truncation */}
-                  <div className="space-y-2.5 sm:space-y-3 mb-5 sm:mb-6">
-                    {/* Email Row */}
-                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
-                            <Image
-                              src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gmail.svg"
-                              alt="Gmail"
-                              width={15}
-                              height={15}
-                              className="w-3.5 h-3.5 object-contain"
-                              unoptimized
-                            />
-                          </div>
-                          <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
-                            {t('Alamat Email', 'Email Address')}
-                          </span>
-                        </div>
-                        <button
-                          onClick={handleCopyEmail}
-                          className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 transition-colors flex items-center gap-1 shrink-0"
-                          aria-label={copied ? 'Email copied' : 'Copy email address'}
-                        >
-                          {copied ? (
-                            <>
-                              <Check className="w-3 h-3 text-emerald-400" />
-                              <span className="text-emerald-400 font-semibold">{t('Tersalin!', 'Copied!')}</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3 h-3 text-slate-400" />
-                              <span>{t('Salin', 'Copy')}</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-                      <a
-                        href={`mailto:${profile.email}`}
-                        className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-9 block font-medium break-all sm:break-normal"
-                      >
-                        {profile.email}
-                      </a>
+            {/* Direct Contact Channels */}
+            <div className="space-y-2.5 sm:space-y-3 flex-1 flex flex-col justify-between">
+              {/* Email Row */}
+              <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                      <Image
+                        src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gmail.svg"
+                        alt="Gmail"
+                        width={15}
+                        height={15}
+                        className="w-3.5 h-3.5 object-contain"
+                        unoptimized
+                      />
                     </div>
-
-                    {/* LinkedIn Row */}
-                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                            <Image
-                              src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/linkedin.svg"
-                              alt="LinkedIn"
-                              width={15}
-                              height={15}
-                              className="w-3.5 h-3.5 object-contain"
-                              unoptimized
-                            />
-                          </div>
-                          <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
-                            {t('Profil LinkedIn', 'LinkedIn Profile')}
-                          </span>
-                        </div>
-                        <a
-                          href={profile.linkedIn}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1 shrink-0"
-                          aria-label="Visit LinkedIn profile"
-                        >
-                          <span>{t('Terhubung', 'Connect')}</span>
-                          <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-accent transition-colors" />
-                        </a>
-                      </div>
-                      <a
-                        href={profile.linkedIn}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-9 block font-medium truncate"
-                      >
-                        linkedin.com/in/haioscartambunan
-                      </a>
-                    </div>
-
-                    {/* Instagram Row */}
-                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
-                            <Image
-                              src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/instagram.svg"
-                              alt="Instagram"
-                              width={15}
-                              height={15}
-                              className="w-3.5 h-3.5 object-contain"
-                              unoptimized
-                            />
-                          </div>
-                          <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
-                            {t('Profil Instagram', 'Instagram Profile')}
-                          </span>
-                        </div>
-                        <a
-                          href={profile.instagram || 'https://instagram.com/oss_tam'}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1 shrink-0"
-                          aria-label="Visit Instagram profile"
-                        >
-                          <span>{t('Kunjungi', 'Visit')}</span>
-                          <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-pink-400 transition-colors" />
-                        </a>
-                      </div>
-                      <a
-                        href={profile.instagram || 'https://instagram.com/oss_tam'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs sm:text-sm font-sans text-white hover:text-pink-400 transition-colors pl-9 block font-medium truncate"
-                      >
-                        instagram.com/oss_tam
-                      </a>
-                    </div>
+                    <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
+                      {t('Alamat Email Pribadi', 'Personal Email')}
+                    </span>
                   </div>
+                  <button
+                    onClick={handleCopyEmail}
+                    className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 transition-colors flex items-center gap-1 shrink-0 cursor-pointer"
+                    aria-label={copied ? 'Email copied' : 'Copy email address'}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-3 h-3 text-emerald-400" />
+                        <span className="text-emerald-400 font-semibold">{t('Tersalin!', 'Copied!')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3 h-3 text-slate-400" />
+                        <span>{t('Salin', 'Copy')}</span>
+                      </>
+                    )}
+                  </button>
                 </div>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-9 block font-medium break-all sm:break-normal"
+                >
+                  {profile.email}
+                </a>
+              </div>
 
-                {/* Primary Action Buttons Bar */}
-                <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row gap-2.5 sm:gap-3">
-                  <Button
-                    href={`mailto:${profile.email}`}
-                    variant="primary"
-                    icon={Mail}
-                    size="md"
-                    external
-                    className="flex-1 justify-center text-xs font-semibold"
+              {/* LinkedIn Row */}
+              <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                      <Image
+                        src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/linkedin.svg"
+                        alt="LinkedIn"
+                        width={15}
+                        height={15}
+                        className="w-3.5 h-3.5 object-contain"
+                        unoptimized
+                      />
+                    </div>
+                    <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
+                      {t('Profil LinkedIn', 'LinkedIn Profile')}
+                    </span>
+                  </div>
+                  <a
+                    href={profile.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1 shrink-0"
+                    aria-label="Visit LinkedIn profile"
                   >
-                    {t('Kirim Email Langsung', 'Send Direct Email')}
-                  </Button>
-                  <Button
-                    href={profile.cvUrl}
-                    variant="secondary"
-                    icon={Download}
-                    size="md"
-                    external
-                    className="flex-1 justify-center text-xs font-semibold"
-                  >
-                    {t('Unduh CV (PDF)', 'Download CV (PDF)')}
-                  </Button>
+                    <span>{t('Terhubung', 'Connect')}</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-accent transition-colors" />
+                  </a>
                 </div>
+                <a
+                  href={profile.linkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-9 block font-medium truncate"
+                >
+                  linkedin.com/in/haioscartambunan
+                </a>
+              </div>
+
+              {/* Instagram Row */}
+              <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+                      <Image
+                        src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/instagram.svg"
+                        alt="Instagram"
+                        width={15}
+                        height={15}
+                        className="w-3.5 h-3.5 object-contain"
+                        unoptimized
+                      />
+                    </div>
+                    <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
+                      {t('Profil Instagram', 'Instagram Profile')}
+                    </span>
+                  </div>
+                  <a
+                    href={profile.instagram || 'https://instagram.com/oss_tam'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1 shrink-0"
+                    aria-label="Visit Instagram profile"
+                  >
+                    <span>{t('Kunjungi', 'Visit')}</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-pink-400 transition-colors" />
+                  </a>
+                </div>
+                <a
+                  href={profile.instagram || 'https://instagram.com/oss_tam'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs sm:text-sm font-sans text-white hover:text-pink-400 transition-colors pl-9 block font-medium truncate"
+                >
+                  instagram.com/oss_tam
+                </a>
               </div>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
+      </div>
+    </AnimatedSection>
   );
 }

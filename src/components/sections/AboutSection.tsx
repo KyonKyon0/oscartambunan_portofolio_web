@@ -545,27 +545,38 @@ export default function AboutSection() {
                     />
                   </div>
 
-                  {/* Legend Items */}
-                  <div className="mt-2.5 pt-2.5 border-t border-white/10 space-y-1.5">
-                    {ASSET_ALLOCATIONS.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center justify-between text-xs py-1 px-1.5 rounded-lg hover:bg-white/[0.04] transition-colors"
-                      >
-                        <div className="flex items-center gap-2 min-w-0 pr-2">
-                          <span
-                            className="w-2.5 h-2.5 rounded-full shrink-0 shadow-sm"
-                            style={{ backgroundColor: item.color }}
-                          />
-                          <span className="text-slate-300 text-[11px] sm:text-xs truncate font-medium">
-                            {item.label}
-                          </span>
-                        </div>
-                        <span className="font-sans font-bold text-white text-[11px] sm:text-xs shrink-0">
-                          {item.percent}%
-                        </span>
-                      </div>
-                    ))}
+                  {/* Semantic Table: Asset Breakdown */}
+                  <div className="mt-2.5 pt-2.5 border-t border-white/10 overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="border-b border-white/10 text-[10px] font-sans text-slate-400 uppercase tracking-wider">
+                          <th scope="col" className="pb-1.5 font-semibold text-slate-400">{t('Kelas Aset', 'Asset Class')}</th>
+                          <th scope="col" className="pb-1.5 font-semibold text-slate-400 text-right">{t('Alokasi', 'Allocation')}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/[0.04]">
+                        {ASSET_ALLOCATIONS.map((item, idx) => (
+                          <tr key={idx} className="hover:bg-white/[0.03] transition-colors">
+                            <td className="py-1.5 pr-2">
+                              <div className="flex items-center gap-2 min-w-0">
+                                <span
+                                  className="w-2 h-2 rounded-full shrink-0 shadow-sm"
+                                  style={{ backgroundColor: item.color }}
+                                />
+                                <span className="text-slate-300 text-[11px] sm:text-xs truncate font-medium">
+                                  {item.label}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-1.5 pl-2 text-right">
+                              <span className="font-sans font-bold text-white text-[11px] sm:text-xs">
+                                {item.percent}%
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               )}
@@ -604,26 +615,35 @@ export default function AboutSection() {
                       {section.title}
                     </h3>
 
-                    {/* Table Rows dengan Garis Pemisah Tipis */}
-                    <div className="border-t border-white/[0.08]">
-                      {section.rows.map((row, rIdx) => (
-                        <div
-                          key={rIdx}
-                          className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-white/[0.08] hover:bg-white/[0.02] transition-colors"
-                        >
-                          {/* Sisi Kiri: Parameter */}
-                          <span className="text-xs sm:text-sm font-semibold text-slate-200">
-                            {row.label}
-                          </span>
-
-                          {/* Sisi Kanan: Nilai */}
-                          <div className="sm:text-right shrink-0">
-                            <span className="text-xs sm:text-sm font-sans text-slate-300 font-medium">
-                              {row.value}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
+                    {/* Semantic HTML Table */}
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="border-b border-white/15 text-[11px] font-sans text-slate-400 uppercase tracking-wider">
+                            <th scope="col" className="py-2.5 pr-4 font-semibold text-slate-400">
+                              {t('Parameter / Komponen', 'Parameter / Component')}
+                            </th>
+                            <th scope="col" className="py-2.5 pl-4 font-semibold text-slate-400 text-right sm:text-left">
+                              {t('Nilai Spesifikasi', 'Specification Value')}
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/[0.08]">
+                          {section.rows.map((row, rIdx) => (
+                            <tr
+                              key={rIdx}
+                              className="hover:bg-white/[0.02] transition-colors"
+                            >
+                              <td className="py-3 pr-4 text-xs sm:text-sm font-semibold text-slate-200">
+                                {row.label}
+                              </td>
+                              <td className="py-3 pl-4 text-xs sm:text-sm font-sans text-slate-300 font-medium text-right sm:text-left">
+                                {row.value}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 ))}

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone+Bounce:wght@400;500&family=Allura&family=Alex+Brush&family=Cinzel:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
@@ -56,6 +57,14 @@ h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, div, li, ul
 
 .font-mono {
   font-family: var(--font-sans) !important;
+}
+
+.font-luxury {
+  font-family: 'Cinzel', 'Cormorant Garamond', 'Didot', 'Bodoni MT', Georgia, serif !important;
+}
+
+.font-signature {
+  font-family: 'Alex Brush', 'Allura', cursive !important;
 }
 
 /* ============================================================
