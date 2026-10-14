@@ -42,12 +42,25 @@ export default function HeroSection() {
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Jump to second 31 for dramatic Lake Toba aerial footage and ensure autoplay
+  // Jump to second 31 for dramatic Lake Toba aerial footage and ensure seamless autoplay
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      video.currentTime = 31;
+    if (!video) return;
+
+    const handlePlayAndSeek = () => {
+      try {
+        if (video.currentTime < 31) {
+          video.currentTime = 31;
+        }
+      } catch {}
       video.play().catch(() => {});
+    };
+
+    if (video.readyState >= 1) {
+      handlePlayAndSeek();
+    } else {
+      video.addEventListener('loadedmetadata', handlePlayAndSeek, { once: true });
+      video.addEventListener('canplay', handlePlayAndSeek, { once: true });
     }
   }, []);
 
