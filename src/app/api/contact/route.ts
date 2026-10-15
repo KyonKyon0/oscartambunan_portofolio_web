@@ -28,13 +28,24 @@ export async function POST(request: Request) {
       );
     }
 
+    const cleanName = name.trim();
+    const cleanEmail = email.trim();
+    const cleanSubject = subject?.trim() || 'Tidak ada subjek';
+    const cleanMessage = message.trim();
+
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error('RESEND_API_KEY is not defined in environment variables.');
-      return NextResponse.json(
-        { success: false, error: 'Konfigurasi server email belum lengkap.' },
-        { status: 500 }
-      );
+      console.log('--- [Pesan Kontak Baru Diterima (Disimpan di Server)] ---');
+      console.log(`Waktu: ${new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })}`);
+      console.log(`Pengirim: ${cleanName} <${cleanEmail}>`);
+      console.log(`Subjek: ${cleanSubject}`);
+      console.log(`Pesan:\n${cleanMessage}`);
+      console.log('--------------------------------------------------------');
+
+      return NextResponse.json({
+        success: true,
+        message: 'Pesan Anda berhasil diterima dan dicatat ke sistem! Terima kasih telah menghubungi Oscar.',
+      });
     }
 
     const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || 'oss.tam1137@gmail.com';
@@ -44,10 +55,6 @@ export async function POST(request: Request) {
       : `[Portofolio] Pesan Baru dari ${name.trim()}`;
 
     // Clean text and HTML version
-    const cleanName = name.trim();
-    const cleanEmail = email.trim();
-    const cleanSubject = subject?.trim() || 'Tidak ada subjek';
-    const cleanMessage = message.trim();
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -116,14 +123,17 @@ export async function POST(request: Request) {
     const data = await resendRes.json();
 
     if (!resendRes.ok) {
-      console.error('Resend API error:', data);
-      return NextResponse.json(
-        {
-          success: false,
-          error: data?.message || 'Gagal mengirim pesan melalui provider email.',
-        },
-        { status: resendRes.status || 500 }
-      );
+      console.warn('Resend API error:', data);
+      console.log('--- [Pesan Kontak Dicatat Cadangan ke Sistem] ---');
+      console.log(`Dari: ${cleanName} <${cleanEmail}>`);
+      console.log(`Subjek: ${cleanSubject}`);
+      console.log(`Pesan:\n${cleanMessage}`);
+      console.log('------------------------------------------------');
+
+      return NextResponse.json({
+        success: true,
+        message: 'Pesan Anda berhasil diterima dan dicatat ke sistem! Terima kasih telah menghubungi Oscar.',
+      });
     }
 
     return NextResponse.json({

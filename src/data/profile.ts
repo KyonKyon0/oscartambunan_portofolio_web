@@ -10,7 +10,7 @@ export const profile: Profile = {
   linkedIn: 'https://www.linkedin.com/in/haioscartambunan',
   github: null, // TODO: Add GitHub URL when available
   instagram: 'https://instagram.com/oss_tam',
-  cvUrl: '/oscar-tambunan-cv.pdf', // TODO: Replace with actual CV file
+  cvUrl: '/pdf/CV_OSCAR%20VICTORIOUS%20PUTRA%20TAMBUNAN_51424063.pdf',
   socialLinks: [
     {
       platform: 'LinkedIn',

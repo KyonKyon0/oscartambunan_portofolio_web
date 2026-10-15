@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, Download } from 'lucide-react';
-import { navigationItems } from '@/data/profile';
+import { navigationItems, profile } from '@/data/profile';
 import { useActiveSection } from '@/lib/hooks/useActiveSection';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageToggle from '@/components/ui/LanguageToggle';
@@ -99,8 +99,10 @@ export default function Navbar() {
             <LanguageToggle className="hidden lg:inline-flex" />
 
             <a
-              href="/oscar-tambunan-cv.pdf"
-              download
+              href={profile.cvUrl}
+              download="CV_OSCAR_VICTORIOUS_PUTRA_TAMBUNAN_51424063.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden lg:inline-flex items-center justify-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 rounded-full transition-all duration-200 shadow-sm min-h-[36px]"
               aria-label="Download CV"
               title={t('Unduh CV', 'Download CV')}

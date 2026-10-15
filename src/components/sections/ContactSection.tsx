@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import {
-  Copy,
-  Check,
   ArrowUpRight,
   Send,
   Loader2,
@@ -18,7 +16,6 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactSection() {
   const { t } = useLanguage();
-  const [copied, setCopied] = useState(false);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -32,23 +29,6 @@ export default function ContactSection() {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(profile.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      const textarea = document.createElement('textarea');
-      textarea.value = profile.email;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -306,50 +286,6 @@ export default function ContactSection() {
 
             {/* Direct Contact Channels */}
             <div className="space-y-2.5 sm:space-y-3 flex-1 flex flex-col justify-between">
-              {/* Email Row */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
-                      <Image
-                        src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gmail.svg"
-                        alt="Gmail"
-                        width={15}
-                        height={15}
-                        className="w-3.5 h-3.5 object-contain"
-                        unoptimized
-                      />
-                    </div>
-                    <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
-                      {t('Alamat Email Pribadi', 'Personal Email')}
-                    </span>
-                  </div>
-                  <button
-                    onClick={handleCopyEmail}
-                    className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 transition-colors flex items-center gap-1 shrink-0 cursor-pointer"
-                    aria-label={copied ? 'Email copied' : 'Copy email address'}
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3 h-3 text-emerald-400" />
-                        <span className="text-emerald-400 font-semibold">{t('Tersalin!', 'Copied!')}</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3 h-3 text-slate-400" />
-                        <span>{t('Salin', 'Copy')}</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-9 block font-medium break-all sm:break-normal"
-                >
-                  {profile.email}
-                </a>
-              </div>
-
               {/* LinkedIn Row */}
               <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
                 <div className="flex items-center justify-between gap-2 mb-1">

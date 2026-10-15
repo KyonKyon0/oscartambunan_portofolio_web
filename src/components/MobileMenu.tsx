@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download } from 'lucide-react';
-import { navigationItems } from '@/data/profile';
+import { navigationItems, profile } from '@/data/profile';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageToggle from '@/components/ui/LanguageToggle';
 
@@ -157,8 +157,10 @@ export default function MobileMenu({ isOpen, onClose, activeSection }: MobileMen
             {/* Footer — Unduh CV di Paling Bawah Drawer Burger */}
             <div className="p-4 sm:p-5 border-t border-white/[0.08]">
               <a
-                href="/oscar-tambunan-cv.pdf"
-                download
+                href={profile.cvUrl}
+                download="CV_OSCAR_VICTORIOUS_PUTRA_TAMBUNAN_51424063.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white rounded-full font-medium text-xs transition-colors"
               >
                 <Download className="w-3.5 h-3.5 text-slate-400 shrink-0" />
