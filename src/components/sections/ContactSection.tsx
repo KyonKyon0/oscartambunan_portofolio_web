@@ -119,8 +119,8 @@ export default function ContactSection() {
 
         {/* Dual Layout: Form di Kiri & Profil / Kanal di Kanan (Full Width Kanan Kiri & Sejajar ke Atas) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start w-full">
-          {/* Kolom 1: Formulir Kontak Interaktif */}
-          <div className="lg:col-span-7 w-full flex flex-col h-full">
+          {/* Kolom 1: Formulir Kontak Interaktif (order-2 di mobile, order-1 di desktop) */}
+          <div className="lg:col-span-7 w-full flex flex-col h-full order-2 lg:order-1">
             <div className="p-5 sm:p-7 md:p-8 rounded-2xl bg-[#070c18]/85 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col justify-between h-full">
               {/* Header Form */}
               <div className="mb-4 sm:mb-5">
@@ -263,8 +263,8 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Kolom 2: Saluran Kontak Langsung (Hanya LinkedIn & Instagram - Sejajar ke Atas) */}
-          <div className="lg:col-span-5 w-full flex flex-col justify-start space-y-4">
+          {/* Kolom 2: Saluran Kontak Langsung (order-1 di mobile agar di atas form, order-2 di desktop) */}
+          <div className="lg:col-span-5 w-full flex flex-col justify-start space-y-4 order-1 lg:order-2">
             {/* LinkedIn Row */}
             <div className="p-4 sm:p-5 rounded-2xl bg-[#070c18]/85 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link shadow-xl">
               <div className="flex items-center justify-between gap-2 mb-2">
