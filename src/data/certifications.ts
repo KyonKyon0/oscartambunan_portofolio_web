@@ -2,6 +2,16 @@ import { Certification } from '@/types';
 
 export const certifications: Certification[] = [
   {
+    name: 'Juara 2 - Software Development (KOMPRES 16)',
+    issuer: 'Program Studi Informatika, Universitas Gunadarma',
+    date: '13 Oktober 2026',
+    category: 'Awards & Leadership',
+    credentialUrl: '/sertifikat/thumbnails/sertifikat-kompres.webp',
+    certificateFile: '/sertifikat/thumbnails/sertifikat-kompres.webp',
+    thumbnail: '/sertifikat/thumbnails/sertifikat-kompres.webp',
+    description: 'Juara 2 Kategori Software Development pada ajang Kompetisi Kreativitas Pembuatan Software (KOMPRES 16) yang diselenggarakan oleh Program Studi Teknik Informatika Universitas Gunadarma.',
+  },
+  {
     name: 'Introduction to DevOps and Site Reliability Engineering (LFS162)',
     issuer: 'The Linux Foundation',
     date: 'September 2025',
