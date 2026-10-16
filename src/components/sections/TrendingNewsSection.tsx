@@ -19,7 +19,7 @@ export default function TrendingNewsSection() {
 
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <SectionHeading
-          title={t('Isu Terkini & Kepedulian Lingkungan', 'Trending News & Environmental Focus')}
+          title={t('Isu Terkini', 'Trending News')}
           subtitle={t(
             'Sorotan berita aktual mengenai bencana kebakaran hutan dan lahan (Karhutla) serta urgensi konservasi ekosistem di Indonesia.',
             'Spotlight on ongoing forest and land fire (Karhutla) emergencies and the critical importance of ecosystem conservation in Indonesia.'

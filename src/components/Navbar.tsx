@@ -16,6 +16,7 @@ const navTranslations: Record<string, { id: string; en: string }> = {
   '#projects': { id: 'Karya Pilihan', en: 'Selected Works' },
   '#certifications': { id: 'Sertifikasi', en: 'Certifications' },
   '#gallery': { id: 'Galeri', en: 'Gallery' },
+  '#news': { id: 'Isu Terkini', en: 'Trending News' },
   '#contact': { id: 'Kontak', en: 'Contact' },
 };
 
@@ -27,6 +28,7 @@ const sectionIds = [
   'projects',
   'certifications',
   'gallery',
+  'news',
   'contact',
 ];
 
