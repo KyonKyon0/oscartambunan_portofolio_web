@@ -6,29 +6,39 @@ function getEnv(key: string, defaultValue = ''): string {
   if (process.env[key]) return process.env[key]!;
 
   // Fallback: Read directly from .env.local or .env in project root (useful for standalone mode)
+  const candidateDirs = [
+    process.cwd(),
+    path.resolve(process.cwd(), '..'),
+    path.resolve(process.cwd(), '../..'),
+    '/www/wwwroot/oscartambunan_portofolio_web',
+    '/www/wwwroot/oscartambunan_portofolio_web/.next/standalone',
+  ];
   const candidateFiles = ['.env.local', '.env.production', '.env'];
-  for (const filename of candidateFiles) {
-    try {
-      const filePath = path.join(/* turbopackIgnore: true */ process.cwd(), filename);
-      if (fs.existsSync(filePath)) {
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const lines = fileContent.split('\n');
-        for (const line of lines) {
-          const trimmed = line.trim();
-          if (trimmed && !trimmed.startsWith('#')) {
-            const eqIdx = trimmed.indexOf('=');
-            if (eqIdx !== -1) {
-              const k = trimmed.substring(0, eqIdx).trim();
-              const v = trimmed.substring(eqIdx + 1).trim().replace(/^['"]|['"]$/g, '');
-              if (k === key && v) {
-                return v;
+
+  for (const dir of candidateDirs) {
+    for (const filename of candidateFiles) {
+      try {
+        const filePath = path.join(/* turbopackIgnore: true */ dir, filename);
+        if (fs.existsSync(filePath)) {
+          const fileContent = fs.readFileSync(filePath, 'utf-8');
+          const lines = fileContent.split('\n');
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (trimmed && !trimmed.startsWith('#')) {
+              const eqIdx = trimmed.indexOf('=');
+              if (eqIdx !== -1) {
+                const k = trimmed.substring(0, eqIdx).trim();
+                const v = trimmed.substring(eqIdx + 1).trim().replace(/^['"]|['"]$/g, '');
+                if (k === key && v) {
+                  return v;
+                }
               }
             }
           }
         }
+      } catch {
+        // Continue search
       }
-    } catch {
-      // Continue to next candidate
     }
   }
 
