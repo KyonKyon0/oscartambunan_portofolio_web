@@ -263,107 +263,84 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Kolom 2: Info Profil, Quote, dan Saluran Kontak Langsung */}
-          <div className="lg:col-span-5 w-full flex flex-col justify-between h-full space-y-3.5 sm:space-y-4">
-            {/* Kartu Informasi Kolaborasi & Ketersediaan */}
-            <div className="rounded-2xl border border-white/10 bg-[#070c18]/85 backdrop-blur-md shadow-2xl p-5 sm:p-6 space-y-3.5 shrink-0">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                <span className="text-xs sm:text-sm font-semibold text-white tracking-tight">
-                  {t('Terbuka untuk Diskusi & Peluang Baru', 'Open for Discussion & Opportunities')}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed font-sans">
-                {t(
-                  'Tertarik berkolaborasi pada proyek web engineering, arsitektur Linux & bare-metal server, atau sekadar berdiskusi teknis seputar sistem self-hosted? Jangan ragu mengirimkan pesan melalui formulir di samping.',
-                  'Interested in collaborating on web engineering projects, Linux & bare-metal server architectures, or having a technical discussion on self-hosted systems? Feel free to reach out via the form.'
-                )}
-              </p>
-              <div className="pt-2 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span>{t('Lokasi Operasional', 'Base Location')}</span>
-                <span className="text-slate-300">Depok, West Java · On-site & Remote</span>
-              </div>
-            </div>
-
-            {/* Direct Contact Channels */}
-            <div className="space-y-2.5 sm:space-y-3 flex-1 flex flex-col justify-between">
-              {/* LinkedIn Row */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                      <Image
-                        src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/linkedin.svg"
-                        alt="LinkedIn"
-                        width={15}
-                        height={15}
-                        className="w-3.5 h-3.5 object-contain"
-                        unoptimized
-                      />
-                    </div>
-                    <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
-                      {t('Profil LinkedIn', 'LinkedIn Profile')}
-                    </span>
+          {/* Kolom 2: Saluran Kontak Langsung (Hanya LinkedIn & Instagram) */}
+          <div className="lg:col-span-5 w-full flex flex-col justify-center space-y-4">
+            {/* LinkedIn Row */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#070c18]/85 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link shadow-xl">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                    <Image
+                      src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/linkedin.svg"
+                      alt="LinkedIn"
+                      width={18}
+                      height={18}
+                      className="w-4 h-4 object-contain"
+                      unoptimized
+                    />
                   </div>
-                  <a
-                    href={profile.linkedIn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1 shrink-0"
-                    aria-label="Visit LinkedIn profile"
-                  >
-                    <span>{t('Terhubung', 'Connect')}</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-accent transition-colors" />
-                  </a>
+                  <span className="text-xs font-sans uppercase text-slate-300 tracking-wider font-semibold">
+                    {t('Profil LinkedIn', 'LinkedIn Profile')}
+                  </span>
                 </div>
                 <a
                   href={profile.linkedIn}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-9 block font-medium truncate"
+                  className="px-3 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-xs font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 shrink-0"
+                  aria-label="Visit LinkedIn profile"
                 >
-                  linkedin.com/in/haioscartambunan
+                  <span>{t('Terhubung', 'Connect')}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-accent transition-colors" />
                 </a>
               </div>
+              <a
+                href={profile.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm font-sans text-white hover:text-accent transition-colors pl-10.5 block font-medium truncate"
+              >
+                linkedin.com/in/haioscartambunan
+              </a>
+            </div>
 
-              {/* Instagram Row */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-[#070c18]/80 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
-                      <Image
-                        src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/instagram.svg"
-                        alt="Instagram"
-                        width={15}
-                        height={15}
-                        className="w-3.5 h-3.5 object-contain"
-                        unoptimized
-                      />
-                    </div>
-                    <span className="text-[10px] font-sans uppercase text-slate-400 tracking-wider font-semibold">
-                      {t('Profil Instagram', 'Instagram Profile')}
-                    </span>
+            {/* Instagram Row */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#070c18]/85 hover:bg-[#070c18] border border-white/10 backdrop-blur-md transition-colors group/link shadow-xl">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+                    <Image
+                      src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/instagram.svg"
+                      alt="Instagram"
+                      width={18}
+                      height={18}
+                      className="w-4 h-4 object-contain"
+                      unoptimized
+                    />
                   </div>
-                  <a
-                    href={profile.instagram || 'https://instagram.com/oss_tam'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1 shrink-0"
-                    aria-label="Visit Instagram profile"
-                  >
-                    <span>{t('Kunjungi', 'Visit')}</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-pink-400 transition-colors" />
-                  </a>
+                  <span className="text-xs font-sans uppercase text-slate-300 tracking-wider font-semibold">
+                    {t('Profil Instagram', 'Instagram Profile')}
+                  </span>
                 </div>
                 <a
                   href={profile.instagram || 'https://instagram.com/oss_tam'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm font-sans text-white hover:text-pink-400 transition-colors pl-9 block font-medium truncate"
+                  className="px-3 py-1 rounded-md bg-white/[0.06] hover:bg-white/[0.12] text-xs font-sans text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 shrink-0"
+                  aria-label="Visit Instagram profile"
                 >
-                  instagram.com/oss_tam
+                  <span>{t('Kunjungi', 'Visit')}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover/link:text-pink-400 transition-colors" />
                 </a>
               </div>
+              <a
+                href={profile.instagram || 'https://instagram.com/oss_tam'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm font-sans text-white hover:text-pink-400 transition-colors pl-10.5 block font-medium truncate"
+              >
+                instagram.com/oss_tam
+              </a>
             </div>
           </div>
         </div>

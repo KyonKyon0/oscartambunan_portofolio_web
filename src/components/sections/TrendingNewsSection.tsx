@@ -3,7 +3,7 @@
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/context/LanguageContext';
-import { AlertTriangle } from 'lucide-react';
+
 
 export default function TrendingNewsSection() {
   const { t } = useLanguage();
@@ -48,14 +48,6 @@ export default function TrendingNewsSection() {
           {/* Kolom 2 (Kanan): Penjelasan Rinci & Urgensi Lingkungan (Tanpa Kutipan Tambahan) */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <div className="rounded-2xl border border-white/10 bg-[#070c18]/90 backdrop-blur-md shadow-2xl p-5 sm:p-7 lg:p-8 flex flex-col justify-center h-full space-y-4">
-              {/* Status Kategori */}
-              <div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-rose-500/10 text-rose-300 border border-rose-500/20">
-                  <AlertTriangle className="w-3 h-3 text-rose-400 shrink-0" />
-                  {t('Darurat Ekologis Indonesia', 'Ecological Emergency')}
-                </span>
-              </div>
-
               {/* Judul Utama Berita */}
               <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white tracking-tight leading-snug">
                 {t(
