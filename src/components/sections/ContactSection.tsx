@@ -265,21 +265,27 @@ export default function ContactSection() {
 
           {/* Kolom 2: Info Profil, Quote, dan Saluran Kontak Langsung */}
           <div className="lg:col-span-5 w-full flex flex-col justify-between h-full space-y-3.5 sm:space-y-4">
-            {/* Kartu Foto Carmen Showcase */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl group shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/profile/carmen-potrait.avif"
-                alt="Carmen"
-                className="w-full h-full object-cover object-[center_18%] brightness-95 contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070c18] via-transparent to-transparent opacity-85" />
-              <div className="absolute bottom-3 left-3 right-3 text-left">
-                <p className="text-[11px] sm:text-xs text-slate-300 italic leading-snug">
-                  &ldquo;Tidak ada yang memperhatikan rasa sakitmu, tapi semua orang memperhatikan kesalahanmu.&rdquo;
+            {/* Kartu Video Dokumentasi Karhutla (Unsur Semantik iFrame Resmi) */}
+            <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#070c18]/85 backdrop-blur-md shadow-2xl p-3 sm:p-3.5 shrink-0 space-y-2.5">
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black/60 border border-white/10 shadow-inner">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/BdJ5oRjGTP8?rel=0&modestbranding=1"
+                  title="Dokumentasi Karhutla - Konservasi Kawasan Hutan & Satwa"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  className="w-full h-full border-0"
+                />
+              </div>
+              <div className="text-left px-1">
+                <p className="text-[11px] sm:text-xs text-slate-300 italic leading-relaxed">
+                  &ldquo;{t(
+                    'Hutan adalah paru-paru kehidupan dan rumah bagi satwa yang tak tergantikan. Mencegah serta menghentikan kebakaran hutan dan lahan (karhutla) adalah ikhtiar bersama demi menjaga masa depan bumi.',
+                    'Forests are the lungs of life and an irreplaceable sanctuary for wildlife. Preventing and combating forest and land fires (karhutla) is our shared commitment to safeguard our planet.'
+                  )}&rdquo;
                 </p>
-                <p className="text-[10px] text-slate-400 mt-0.5 font-medium">
-                  — Nyoman Ayu Carmenita 2026
+                <p className="text-[10px] text-amber-400/90 mt-1 font-mono font-medium">
+                  {t('— Kepedulian Karhutla & Konservasi Alam Indonesia', '— Forest Fire (Karhutla) Awareness & Wildlife Conservation')}
                 </p>
               </div>
             </div>
