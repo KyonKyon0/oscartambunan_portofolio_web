@@ -1,4 +1,39 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+
+function getEnv(key: string, defaultValue = ''): string {
+  if (process.env[key]) return process.env[key]!;
+
+  // Fallback: Read directly from .env.local or .env in project root (useful for standalone mode)
+  const candidateFiles = ['.env.local', '.env.production', '.env'];
+  for (const filename of candidateFiles) {
+    try {
+      const filePath = path.join(/* turbopackIgnore: true */ process.cwd(), filename);
+      if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const lines = fileContent.split('\n');
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed && !trimmed.startsWith('#')) {
+            const eqIdx = trimmed.indexOf('=');
+            if (eqIdx !== -1) {
+              const k = trimmed.substring(0, eqIdx).trim();
+              const v = trimmed.substring(eqIdx + 1).trim().replace(/^['"]|['"]$/g, '');
+              if (k === key && v) {
+                return v;
+              }
+            }
+          }
+        }
+      }
+    } catch {
+      // Continue to next candidate
+    }
+  }
+
+  return defaultValue;
+}
 
 export async function POST(request: Request) {
   try {
@@ -33,7 +68,7 @@ export async function POST(request: Request) {
     const cleanSubject = subject?.trim() || 'Tidak ada subjek';
     const cleanMessage = message.trim();
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = getEnv('RESEND_API_KEY');
     if (!apiKey) {
       console.log('--- [Pesan Kontak Baru Diterima (Disimpan di Server)] ---');
       console.log(`Waktu: ${new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })}`);
@@ -48,8 +83,9 @@ export async function POST(request: Request) {
       });
     }
 
-    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || 'oss.tam1137@gmail.com';
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
+    const receiverEmail = getEnv('CONTACT_RECEIVER_EMAIL', 'oss.tam1137@gmail.com');
+    const configuredFrom = getEnv('RESEND_FROM_EMAIL', '');
+    const fromEmail = configuredFrom || 'Portfolio Contact <contact@oscartambunan.my.id>';
     const emailSubject = subject?.trim()
       ? `[Portofolio] ${subject.trim()} - dari ${name.trim()}`
       : `[Portofolio] Pesan Baru dari ${name.trim()}`;
