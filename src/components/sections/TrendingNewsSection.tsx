@@ -90,37 +90,22 @@ export default function TrendingNewsSection() {
                 </div>
               </div>
 
-              {/* Kartu Khusus Donasi & Informasi Borneo Orangutan Survival (BOS) Foundation */}
-              <div className="p-4 rounded-xl bg-emerald-500/[0.08] border border-emerald-500/25 space-y-2.5">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs font-semibold text-emerald-300 flex items-center gap-1.5 font-sans">
-                    <Heart className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400/20 shrink-0" />
-                    {t('Tempat Donasi & Konservasi Resmi', 'Official Conservation & Donation')}
-                  </span>
-                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 font-medium">
-                    BOS Foundation
-                  </span>
-                </div>
-
-                <p className="text-[11px] sm:text-xs text-slate-300/95 leading-relaxed font-sans">
-                  {t(
-                    'Sejak 1991, Yayasan Penyelamatan Orangutan Borneo (Borneo Orangutan Survival / BOS Foundation) telah bekerja tanpa henti untuk melestarikan orangutan Kalimantan dan habitatnya, bekerja sama dengan masyarakat lokal, pemerintah Indonesia, dan organisasi mitra internasional. Pelajari lebih lanjut tentang nilai-nilai, pencapaian, dan tim kami.',
-                    'Since 1991, the Borneo Orangutan Survival (BOS) Foundation has worked tirelessly to conserve the Bornean orangutan and its habitat, in cooperation with local communities, Indonesian authorities, and international partner organisations. Learn more about our values, our achievements, and our team.'
-                  )}
-                </p>
-
-                <div className="pt-1">
-                  <a
-                    href="https://www.orangutan.or.id/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all shadow-md hover:shadow-emerald-500/20 group/btn"
-                  >
-                    <Heart className="w-3.5 h-3.5 fill-current shrink-0" />
-                    <span>{t('Donasi & Pelajari di orangutan.or.id', 'Donate & Learn at orangutan.or.id')}</span>
-                    <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform shrink-0" />
-                  </a>
-                </div>
+              {/* Kartu Tempat Donasi & Konservasi Resmi */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-emerald-500/[0.08] border border-emerald-500/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <span className="text-xs font-semibold text-emerald-300 flex items-center gap-2 font-sans">
+                  <Heart className="w-4 h-4 text-emerald-400 fill-emerald-400/20 shrink-0" />
+                  {t('Tempat Donasi & Konservasi Resmi', 'Official Conservation & Donation')}
+                </span>
+                <a
+                  href="https://www.orangutan.or.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all shadow-md hover:shadow-emerald-500/20 group/btn shrink-0"
+                >
+                  <Heart className="w-3.5 h-3.5 fill-current shrink-0" />
+                  <span>{t('Donasi di orangutan.or.id', 'Donate at orangutan.or.id')}</span>
+                  <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform shrink-0" />
+                </a>
               </div>
             </div>
           </div>
