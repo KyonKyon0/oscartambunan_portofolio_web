@@ -44,7 +44,7 @@ export const navigationItems: NavigationItem[] = [
   { label: 'Infrastructure', href: '#infrastructure' },
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Works', href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'News', href: '#news' },

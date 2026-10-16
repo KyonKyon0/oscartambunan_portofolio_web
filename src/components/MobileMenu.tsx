@@ -12,10 +12,10 @@ const navTranslations: Record<string, { id: string; en: string }> = {
   '#infrastructure': { id: 'Infrastruktur', en: 'Infrastructure' },
   '#skills': { id: 'Kemampuan', en: 'Capabilities' },
   '#experience': { id: 'Pengalaman', en: 'Experience' },
-  '#projects': { id: 'Karya Pilihan', en: 'Selected Works' },
+  '#projects': { id: 'Karya', en: 'Works' },
   '#certifications': { id: 'Sertifikasi', en: 'Certifications' },
   '#gallery': { id: 'Galeri', en: 'Gallery' },
-  '#news': { id: 'Isu Terkini', en: 'Trending News' },
+  '#news': { id: 'Isu', en: 'News' },
   '#contact': { id: 'Kontak', en: 'Contact' },
 };
 
