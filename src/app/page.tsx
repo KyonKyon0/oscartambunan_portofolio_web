@@ -9,6 +9,7 @@ import ExperienceSection from '@/components/sections/ExperienceSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import CertificationsSection from '@/components/sections/CertificationsSection';
+import TrendingNewsSection from '@/components/sections/TrendingNewsSection';
 import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
         <ProjectsSection />
         <CertificationsSection />
         <GallerySection initialImages={cameraImages} />
+        <TrendingNewsSection />
         <ContactSection />
       </main>
       <Footer />

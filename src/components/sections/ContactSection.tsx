@@ -265,28 +265,23 @@ export default function ContactSection() {
 
           {/* Kolom 2: Info Profil, Quote, dan Saluran Kontak Langsung */}
           <div className="lg:col-span-5 w-full flex flex-col justify-between h-full space-y-3.5 sm:space-y-4">
-            {/* Kartu Video Dokumentasi Karhutla (Unsur Semantik iFrame Resmi) */}
-            <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#070c18]/85 backdrop-blur-md shadow-2xl p-3 sm:p-3.5 shrink-0 space-y-2.5">
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black/60 border border-white/10 shadow-inner">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/BdJ5oRjGTP8?rel=0&modestbranding=1"
-                  title="Dokumentasi Karhutla - Konservasi Kawasan Hutan & Satwa"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                  className="w-full h-full border-0"
-                />
+            {/* Kartu Informasi Kolaborasi & Ketersediaan */}
+            <div className="rounded-2xl border border-white/10 bg-[#070c18]/85 backdrop-blur-md shadow-2xl p-5 sm:p-6 space-y-3.5 shrink-0">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="text-xs sm:text-sm font-semibold text-white tracking-tight">
+                  {t('Terbuka untuk Diskusi & Peluang Baru', 'Open for Discussion & Opportunities')}
+                </span>
               </div>
-              <div className="text-left px-1">
-                <p className="text-[11px] sm:text-xs text-slate-300 italic leading-relaxed">
-                  &ldquo;{t(
-                    'Hutan adalah paru-paru kehidupan dan rumah bagi satwa yang tak tergantikan. Mencegah serta menghentikan kebakaran hutan dan lahan (karhutla) adalah ikhtiar bersama demi menjaga masa depan bumi.',
-                    'Forests are the lungs of life and an irreplaceable sanctuary for wildlife. Preventing and combating forest and land fires (karhutla) is our shared commitment to safeguard our planet.'
-                  )}&rdquo;
-                </p>
-                <p className="text-[10px] text-amber-400/90 mt-1 font-mono font-medium">
-                  {t('— Kepedulian Karhutla & Konservasi Alam Indonesia', '— Forest Fire (Karhutla) Awareness & Wildlife Conservation')}
-                </p>
+              <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed font-sans">
+                {t(
+                  'Tertarik berkolaborasi pada proyek web engineering, arsitektur Linux & bare-metal server, atau sekadar berdiskusi teknis seputar sistem self-hosted? Jangan ragu mengirimkan pesan melalui formulir di samping.',
+                  'Interested in collaborating on web engineering projects, Linux & bare-metal server architectures, or having a technical discussion on self-hosted systems? Feel free to reach out via the form.'
+                )}
+              </p>
+              <div className="pt-2 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span>{t('Lokasi Operasional', 'Base Location')}</span>
+                <span className="text-slate-300">Depok, West Java · On-site & Remote</span>
               </div>
             </div>
 
